@@ -32,9 +32,9 @@ const logger = createLogger(logConfig)
 
 const sagaMiddleWare = createSagaMiddleware()
 const persistConfig = {
-  key: 'root',
+  key: 'bread',
   storage,
-  transforms: [immutableTransform()]
+  transforms: [immutableTransform()],
 }
 const appReducer = persistReducer(persistConfig, reducers)
 

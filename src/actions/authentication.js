@@ -4,6 +4,10 @@ export function bootstrapSuccess(payload) {
   return { type: AUTHENTICATION.BOOTSTRAP_SUCCESS, payload }
 }
 
+export function bootstrapFailure() {
+  return { type: AUTHENTICATION.BOOTSTRAP_FAILURE, payload: {} }
+}
+
 export function refresh(payload) {
   return { type: AUTHENTICATION.REFRESH, payload }
 }

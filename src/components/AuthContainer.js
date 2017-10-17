@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import EnterForm from './EnterForm'
 import {
-  bootstrap,
   signIn,
   signOut,
 } from '../actions/authentication'
@@ -32,11 +31,6 @@ class AuthContainer extends Component {
 
   static defaultProps = {
     error: null,
-  }
-
-  componentWillMount() {
-    const { dispatch } = this.props
-    dispatch(bootstrap())
   }
 
   login = (email, password) => {

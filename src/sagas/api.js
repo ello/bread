@@ -2,7 +2,6 @@ import { call, put, select } from 'redux-saga/effects'
 import { selectAuthToken } from '../selectors/auth'
 
 // TODO: Centralize ENV and constants.
-const AUTH_DOMAIN = process.env.REACT_APP_AUTH_DOMAIN
 const OAUTH_CLIENT_ID = process.env.REACT_APP_AUTH_CLIENT_ID
 
 function mergeSuccessAction({ type, payload }, response) {
@@ -54,7 +53,7 @@ export function* tokenRequest(body, action = {}) {
     },
     body: JSON.stringify({ ...body, client_id: OAUTH_CLIENT_ID }),
   }
-  return yield call(request, `${AUTH_DOMAIN}/api/oauth/token`, options, action)
+  return yield call(request, `/api/oauth/token`, options, action)
 }
 
 // Helper function to make an authenticated API request
@@ -71,7 +70,7 @@ export function* authenticatedRequest(method, path, body, action = {}) {
   if (body) {
     options.body = JSON.stringify(body)
   }
-  return yield call(request, AUTH_DOMAIN + path, options, action)
+  return yield call(request, path, options, action)
 }
 
 export default authenticatedRequest

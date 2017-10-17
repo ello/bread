@@ -1,9 +1,9 @@
 import Immutable from 'immutable'
-import { AUTHENTICATION } from '../constants/action_types'
+import { AUTHENTICATION, REHYDRATE } from '../constants/action_types'
 
 const DEFAULT_STATE = Immutable.Map({
   status: 'unauthenticated',
-  token: null,
+  accessToken: null,
   refreshToken: null,
   expiresAt: null,
   error: null,
@@ -21,12 +21,6 @@ function tokenSuccess(state, { payload }) {
     expires_in: expiresIn,
   } = payload.response
   const expiresAt = createdAt + expiresIn
-
-  // Set localStorage because that is how app currently is wired to get token.
-  // This should eventually be accessed via state and we can use redux persist.
-  localStorage.setItem('ello_access_token', accessToken)
-  localStorage.setItem('ello_refresh_token', refreshToken)
-  localStorage.setItem('ello_token_expires', expiresAt)
 
   return state.merge({
     status: 'authenticated', accessToken, refreshToken, expiresAt,
@@ -51,9 +45,6 @@ function tokenFailure(state) {
 }
 
 function clearToken() {
-  localStorage.removeItem('ello_access_token')
-  localStorage.removeItem('ello_refresh_token')
-  localStorage.removeItem('ello_token_expires')
   return DEFAULT_STATE
 }
 
@@ -61,6 +52,7 @@ export default (state = DEFAULT_STATE, action) => {
   switch (action.type) {
     case AUTHENTICATION.SIGN_IN:
     case AUTHENTICATION.REFRESH:
+    case REHYDRATE:
       return tokenLoading(state, action)
     case AUTHENTICATION.SIGN_IN_SUCCESS:
     case AUTHENTICATION.REFRESH_SUCCESS:
@@ -72,6 +64,7 @@ export default (state = DEFAULT_STATE, action) => {
       return tokenFailure(state, action)
     case AUTHENTICATION.SIGN_OUT_SUCCESS:
     case AUTHENTICATION.SIGN_OUT_FAILURE:
+    case AUTHENTICATION.BOOTSTRAP_FAILURE:
       return clearToken(state, action)
     default:
       return state
