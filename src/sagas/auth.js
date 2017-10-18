@@ -1,9 +1,10 @@
 /* eslint no-constant-condition: ["error", { "checkLoops": false }] */
 import { fork, take, call, put, all } from 'redux-saga/effects'
 import { authenticatedRequest, tokenRequest } from './api'
-import { AUTHENTICATION } from '../constants/action_types'
+import { AUTHENTICATION, REHYDRATE } from '../constants/action_types'
 import {
   bootstrapSuccess,
+  bootstrapFailure,
   refresh,
 } from '../actions/authentication'
 
@@ -17,19 +18,23 @@ function* signInSaga() {
   }
 }
 
-// TODO: Replace with redux-persist
-function* bootstrapSaga() {
+function* rehydrateSaga() {
   while (true) {
-    yield take(AUTHENTICATION.BOOTSTRAP)
+    const { payload } = yield take(REHYDRATE)
+    if (payload && payload.auth) {
+      const accessToken = payload.auth.get('accessToken')
+      const refreshToken = payload.auth.get('refreshToken')
+      const expiresAt = payload.auth.get('expiresAt')
 
-    const accessToken = localStorage.getItem('ello_access_token')
-    const refreshToken = localStorage.getItem('ello_refresh_token')
-    const expiresAt = localStorage.getItem('ello_token_expires')
-
-    if (accessToken && (expiresAt * 1000 > Date.now())) {
-      yield put(bootstrapSuccess({ accessToken, refreshToken, expiresAt }))
-    } else if (refreshToken) {
-      yield put(refresh({ refreshToken }))
+      if (accessToken && (expiresAt * 1000 > Date.now())) {
+        yield put(bootstrapSuccess({ accessToken, refreshToken, expiresAt }))
+      } else if (refreshToken) {
+        yield put(refresh({ refreshToken }))
+      } else {
+        yield put(bootstrapFailure())
+      }
+    } else {
+      yield put(bootstrapFailure())
     }
   }
 }
@@ -54,7 +59,7 @@ function* signOutSaga() {
 
 export default function* authentication() {
   yield all([
-    fork(bootstrapSaga),
+    fork(rehydrateSaga),
     fork(signInSaga),
     fork(refreshSaga),
     fork(signOutSaga),

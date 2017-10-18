@@ -1,13 +1,14 @@
 import React from 'react';
-import { Router, Route, browserHistory } from 'react-router'
+//import { Router, Route, browserHistory } from 'react-router'
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
-import { applyMiddleware, combineReducers, createStore } from 'redux'
+import { applyMiddleware, createStore } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { createLogger } from 'redux-logger'
-import { persistStore } from 'redux-persist-immutable'
-import { persistReducer, PersistGate } from 'redux-persist/lib'
+import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import { PersistGate } from 'redux-persist/lib/integration/react'
+import immutableTransform from 'redux-persist-transform-immutable'
 import './index.css';
 import App from './App';
 import AuthContainer from './components/AuthContainer';
@@ -19,18 +20,24 @@ const logConfig = { collapsed: true }
 logConfig.stateTransformer = (state) => {
   const newState = {}
   Object.keys(state).forEach((key) => {
-    newState[key] = state[key].toJS()
+    if (key === '_persist') {
+      newState[key] = state[key]
+    } else {
+      newState[key] = state[key].toJS()
+    }
   })
   return newState
 }
 const logger = createLogger(logConfig)
 
 const sagaMiddleWare = createSagaMiddleware()
-const config = {
-  key: 'root',
+const persistConfig = {
+  key: 'bread',
   storage,
+  transforms: [immutableTransform()],
 }
-const appReducer = persistReducer(config, reducers)
+const appReducer = persistReducer(persistConfig, reducers)
+
 const store = createStore(appReducer, applyMiddleware(sagaMiddleWare, logger))
 let persistor = persistStore(store)
 
@@ -38,6 +45,7 @@ sagaMiddleWare.run(sagas)
 
 const root = document.getElementById('root')
 const app = (
+  <Provider store={store}>
     <PersistGate
       persistor={persistor}
       loading={<em>Loading</em>}
@@ -46,7 +54,8 @@ const app = (
         <App />
       </AuthContainer>
     </PersistGate>
+  </Provider>
 )
 
-ReactDOM.render(app, document.getElementById('root'));
+ReactDOM.render(app, root);
 registerServiceWorker();
