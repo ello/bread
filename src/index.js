@@ -1,5 +1,4 @@
 import React from 'react';
-//import { Router, Route, browserHistory } from 'react-router'
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
 import { applyMiddleware, createStore } from 'redux'
@@ -11,7 +10,7 @@ import { PersistGate } from 'redux-persist/lib/integration/react'
 import immutableTransform from 'redux-persist-transform-immutable'
 import './index.css';
 import App from './App';
-import AuthContainer from './components/AuthContainer';
+import AuthContainer from './containers/AuthContainer';
 import registerServiceWorker from './registerServiceWorker';
 import reducers from './reducers'
 import sagas from './sagas'
