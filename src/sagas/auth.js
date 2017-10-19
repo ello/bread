@@ -1,5 +1,6 @@
 /* eslint no-constant-condition: ["error", { "checkLoops": false }] */
 import { fork, take, call, put, all } from 'redux-saga/effects'
+import immutableTransform from 'redux-persist-transform-immutable'
 import { authenticatedRequest, tokenRequest } from './api'
 import { AUTHENTICATION, REHYDRATE } from '../constants/action_types'
 import {
@@ -18,6 +19,24 @@ function* signInSaga() {
   }
 }
 
+// Check localStorage for webapp auth token.
+// If it exists, parse it to immutable data structure, check if logged in & valid.
+// Never set refresh token from webapp, as it can only be used once.
+function* bootstrapFromWebapp() {
+  const webappAuthRaw = localStorage.getItem('reduxPersist:authentication')
+  if (!webappAuthRaw) { return yield put(bootstrapFailure()) }
+  const webappAuth = immutableTransform().out(JSON.parse(webappAuthRaw))
+  const isLoggedIn = webappAuth.get('isLoggedIn')
+  const accessToken = webappAuth.get('accessToken')
+  const expiresAt = webappAuth.get('expirationDate').valueOf()
+
+  if (isLoggedIn && accessToken && (expiresAt > Date.now())) {
+    yield put(bootstrapSuccess({ accessToken, refreshToke: null, expiresAt }))
+  } else {
+    yield put(bootstrapFailure())
+  }
+}
+
 function* rehydrateSaga() {
   while (true) {
     const { payload } = yield take(REHYDRATE)
@@ -26,15 +45,18 @@ function* rehydrateSaga() {
       const refreshToken = payload.auth.get('refreshToken')
       const expiresAt = payload.auth.get('expiresAt')
 
+      // Prefer existing, valid token.
       if (accessToken && (expiresAt * 1000 > Date.now())) {
         yield put(bootstrapSuccess({ accessToken, refreshToken, expiresAt }))
+      // Secondary is valid refresh token.
       } else if (refreshToken) {
         yield put(refresh({ refreshToken }))
+      // Tertiary is using webapp token.
       } else {
-        yield put(bootstrapFailure())
+        yield call(bootstrapFromWebapp)
       }
     } else {
-      yield put(bootstrapFailure())
+      yield call(bootstrapFromWebapp)
     }
   }
 }
