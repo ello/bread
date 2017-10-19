@@ -10,13 +10,13 @@
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.14",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-persist": "^5.0.0-rc.6",
     "redux-persist-transform-immutable": "^4.3.0",
-    "redux-saga": "^0.16.0",
-    "remotedev-serialize": "^0.1.0"
+    "redux-saga": "^0.16.0"
   },
   "scripts": {
     "start": "react-scripts start",

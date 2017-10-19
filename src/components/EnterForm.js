@@ -45,7 +45,7 @@ export default class EnterForm extends Component {
           onChange={e => this.handleChange(e)}
         />
         <br />
-        <button type="submit">Staff Sign In</button>
+        <button type="submit">Sign In</button>
       </form>
     )
   }
