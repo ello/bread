@@ -11,7 +11,6 @@ import immutableTransform from 'redux-persist-transform-immutable'
 import './index.css';
 import App from './App';
 import AuthContainer from './containers/AuthContainer';
-import registerServiceWorker from './registerServiceWorker';
 import reducers from './reducers'
 import sagas from './sagas'
 
@@ -57,4 +56,3 @@ const app = (
 )
 
 ReactDOM.render(app, root);
-registerServiceWorker();
