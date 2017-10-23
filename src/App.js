@@ -3,11 +3,12 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Redirect } from 'react-router'
 import ArtistInvitesContainer from './containers/ArtistInvitesContainer'
 import ArtistInviteDashboardContainer from './containers/ArtistInviteDashboardContainer'
+import { BASENAME } from './env'
 
 class App extends Component {
   render() {
     return (
-      <Router>
+      <Router basename={BASENAME}>
         <div>
           <div className="todo-real-nav">
             <h1>🍞</h1>

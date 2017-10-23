@@ -1,8 +1,7 @@
 import { call, put, select } from 'redux-saga/effects'
 import { selectAuthToken } from '../selectors/auth'
+import { OAUTH_CLIENT_ID } from '../env'
 
-// TODO: Centralize ENV and constants.
-const OAUTH_CLIENT_ID = process.env.REACT_APP_AUTH_CLIENT_ID
 
 function mergeSuccessAction({ type, payload }, response) {
   return {

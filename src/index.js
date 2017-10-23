@@ -11,21 +11,24 @@ import immutableTransform from 'redux-persist-transform-immutable'
 import './index.css';
 import App from './App';
 import AuthContainer from './containers/AuthContainer';
-import registerServiceWorker from './registerServiceWorker';
 import reducers from './reducers'
 import sagas from './sagas'
+import { APP_DEBUG } from './env'
 
-const logConfig = { collapsed: true }
-logConfig.stateTransformer = (state) => {
-  const newState = {}
-  Object.keys(state).forEach((key) => {
-    if (key === '_persist') {
-      newState[key] = state[key]
-    } else {
-      newState[key] = state[key].toJS()
-    }
-  })
-  return newState
+const logConfig = {
+  collapsed: true,
+  predicate: () => APP_DEBUG,
+  stateTransformer: (state) => {
+    const newState = {}
+    Object.keys(state).forEach((key) => {
+      if (key === '_persist') {
+        newState[key] = state[key]
+      } else {
+        newState[key] = state[key].toJS()
+      }
+    })
+    return newState
+  }
 }
 const logger = createLogger(logConfig)
 
@@ -57,4 +60,3 @@ const app = (
 )
 
 ReactDOM.render(app, root);
-registerServiceWorker();
