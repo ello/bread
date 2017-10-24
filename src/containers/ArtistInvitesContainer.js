@@ -29,6 +29,7 @@ class ArtistInvitesContainer extends Component {
         id={ai.get('id')}
         title={ai.get('title')}
         type={ai.get('inviteType')}
+        headerImage={ai.get('headerImage')}
       />
     ).toArray()
   }
