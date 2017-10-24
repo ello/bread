@@ -9,3 +9,13 @@ export function loadArtistInvites() {
     },
   }
 }
+
+export function loadArtistInvite(id) {
+  return {
+    type: ARTIST_INVITES.LOAD,
+    payload: {
+      endpoint: `/api/v2/manage/artist-invites/${id}`,
+      method: 'GET',
+    },
+  }
+}

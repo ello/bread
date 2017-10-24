@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import EnterForm from '../components/EnterForm'
 import { signIn } from '../actions/authentication'
 import {
@@ -58,4 +59,4 @@ class AuthContainer extends Component {
   }
 }
 
-export default connect(mapStateToProps)(AuthContainer)
+export default withRouter(connect(mapStateToProps)(AuthContainer))
