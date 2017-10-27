@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import EnterForm from '../components/EnterForm'
-import {
-  signIn,
-  signOut,
-} from '../actions/authentication'
+import { signIn } from '../actions/authentication'
 import {
   selectAuthIsLoggedIn,
   selectAuthIsLoading,
@@ -38,20 +36,12 @@ class AuthContainer extends Component {
     dispatch(signIn(email, password))
   }
 
-  logout = () => {
-    const { dispatch } = this.props
-    dispatch(signOut())
-  }
-
   render() {
     const { isLoggedIn, isLoading, error, children } = this.props
     let element
     if (isLoggedIn) {
       element = (
         <div className="AuthContainer LoggedIn">
-          <div className="LogoutButton">
-            <button onClick={this.logout}>Logout</button>
-          </div>
           {children}
         </div>
       )
@@ -69,4 +59,4 @@ class AuthContainer extends Component {
   }
 }
 
-export default connect(mapStateToProps)(AuthContainer)
+export default withRouter(connect(mapStateToProps)(AuthContainer))

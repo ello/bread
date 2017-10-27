@@ -28,7 +28,6 @@ export default class EnterForm extends Component {
     const { username, password } = this.state
     return (
       <form onSubmit={e => this.submit(e)}>
-        <h1>🍞</h1>
         <input
           type="string"
           name="username"

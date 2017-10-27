@@ -10,7 +10,6 @@ import { PersistGate } from 'redux-persist/lib/integration/react'
 import immutableTransform from 'redux-persist-transform-immutable'
 import './index.css';
 import App from './App';
-import AuthContainer from './containers/AuthContainer';
 import reducers from './reducers'
 import sagas from './sagas'
 import { APP_DEBUG } from './env'
@@ -52,9 +51,7 @@ const app = (
       persistor={persistor}
       loading={<em>Loading</em>}
       >
-      <AuthContainer>
-        <App />
-      </AuthContainer>
+      <App />
     </PersistGate>
   </Provider>
 )
