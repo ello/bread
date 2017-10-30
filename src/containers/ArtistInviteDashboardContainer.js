@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { loadArtistInvite } from '../actions/artist_invites'
 import { selectArtistInvite } from '../selectors/artist_invites'
 import ArtistInviteListItem from '../components/ArtistInviteListItem'
+import SubmissionCount from '../components/ArtistInviteDashboard/SubmissionCount'
+import SubmissionGraph from '../components/ArtistInviteDashboard/SubmissionGraph'
 
 function mapStateToProps(state, props) {
   const { match: { params } } = props
@@ -35,6 +37,9 @@ class ArtistInviteDashboardContainer extends Component {
           type={artistInvite.get('inviteType')}
           headerImage={artistInvite.get('headerImage')}
         />
+
+        <SubmissionCount />
+        <SubmissionGraph />
       </div>
     )
   }
