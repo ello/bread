@@ -1,9 +1,31 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { VictoryLabel, VictoryLegend, VictoryPie } from 'victory'
 
-
 export default class SubmissionCount extends Component {
+  static propTypes = {
+    id: PropTypes.string.isRequired,
+    totalApprovedSubmissions: PropTypes.object,
+    totalUnapprovedSubmissions: PropTypes.object,
+    totalDeclinedSubmissions: PropTypes.object,
+    totalSelectedSubmissions: PropTypes.object,
+  }
+
+  static defaultTypes = {
+    totalApprovedSubmissions: null,
+    totalUnapprovedSubmissions: null,
+    totalDeclinedSubmissions: null,
+    totalSelectedSubmissions: null,
+  }
+
   render() {
+    const {
+      totalApprovedSubmissions,
+      totalUnapprovedSubmissions,
+      totalDeclinedSubmissions,
+      totalSelectedSubmissions,
+    } = this.props
+
     return (
       <div style={{width: "300px", height: "300px"}}>
         <svg viewBox="0 0 400 400">
@@ -12,13 +34,13 @@ export default class SubmissionCount extends Component {
             standalone={false}
             padding={60}
             data={[
-              {submissions: 100, type: "Submitted"},
-              {submissions: 3, type: "Declined"},
-              {submissions: 2, type: "Approved"},
-              {submissions: 1, type: "Selected"},
+              totalUnapprovedSubmissions.toJS(),
+              totalDeclinedSubmissions.toJS(),
+              totalApprovedSubmissions.toJS(),
+              totalSelectedSubmissions.toJS(),
             ]}
             x="submissions"
-            y="type"
+            y="status"
             labels={(data) => ""}
             colorScale={["lightgray", "red", "green", "orange"]}
           />
@@ -37,11 +59,12 @@ export default class SubmissionCount extends Component {
             orientation="horizontal"
             gutter={25}
             standalone={false}
-            colorScale={["red", "green", "orange"]}
+            colorScale={["lightgray", "red", "green", "orange"]}
             data={[
-              {name: "Selected"},//, symbol: {type: "circle", fill: "orange"}},
+              {name: "Unapproved"},//, symbol: {type: "circle", fill: "orange"}},
+              {name: "Declined"},//, symbol: {type: "circle", fill: "orange"}},
               {name: "Approved"},//, symbol: {type: "circle", fill: "green"}},
-              {name: "Declined"},//, symbol: {type: "circle", fill: "red"}},
+              {name: "Selected"},//, symbol: {type: "circle", fill: "red"}},
             ]}
           />
         </svg>

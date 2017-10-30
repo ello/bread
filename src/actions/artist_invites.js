@@ -19,3 +19,13 @@ export function loadArtistInvite(id) {
     },
   }
 }
+
+export function loadTotalSubmissions(id) {
+  return {
+    type: ARTIST_INVITES.LOAD_TOTAL_SUBMISSIONS,
+    payload: {
+      endpoint: `/api/v2/manage/artist-invites/${id}/total-submissions`,
+      method: 'GET',
+    },
+  }
+}
