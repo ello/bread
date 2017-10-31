@@ -6,6 +6,7 @@ import { ARTIST_INVITES } from '../constants/action_types'
 const requestTypes = [
   ARTIST_INVITES.LOAD,
   ARTIST_INVITES.LOAD_TOTAL_SUBMISSIONS,
+  ARTIST_INVITES.LOAD_DAILY_SUBMISSIONS,
 ]
 
 function* requester() {

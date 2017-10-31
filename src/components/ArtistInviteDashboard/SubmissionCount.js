@@ -4,7 +4,6 @@ import { VictoryLabel, VictoryLegend, VictoryPie } from 'victory'
 
 export default class SubmissionCount extends Component {
   static propTypes = {
-    id: PropTypes.string.isRequired,
     totalApprovedSubmissions: PropTypes.object,
     totalUnapprovedSubmissions: PropTypes.object,
     totalDeclinedSubmissions: PropTypes.object,

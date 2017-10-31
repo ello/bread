@@ -23,3 +23,12 @@ export function selectTotalDeclinedSubmissions(state, id) {
 export function selectTotalSelectedSubmissions(state, id) {
   return state.json.getIn(['totalSubmissions', `total_submissions:${id}:selected:total`], Immutable.Map())
 }
+
+export function selectDailySubmissions(state, id) {
+  const regex = new RegExp(`daily_submissions:${id}`)
+  const dailySub = state.json.get('dailySubmissions', Immutable.Map())
+  const filteredDailySub = dailySub.filter(function(dailySubObj) {
+    return dailySubObj.get('id').search(regex) > -1
+  })
+  return filteredDailySub.valueSeq().toArray()
+}

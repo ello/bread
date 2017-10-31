@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { VictoryChart, VictoryLine, VictoryAxis } from 'victory'
 import moment from 'moment'
 
-
 export default class SubmissionGraph extends Component {
+  static propTypes = {
+    totalDailySubmissions: PropTypes.array,
+  }
+
+  static defaultTypes = {
+    totalDailySubmissions: null,
+  }
 
   lineData() {
     return [...Array(10).keys()].map((daysAgo) => {
@@ -14,8 +21,8 @@ export default class SubmissionGraph extends Component {
     })
   }
 
-
   render() {
+    const { totalDailySubmissions } = this.props
     return (
       <div style={{width: "400px", height: "200px"}}>
         <svg viewBox="0 0 400 400">
@@ -25,9 +32,9 @@ export default class SubmissionGraph extends Component {
             <VictoryLine
               // Line
               standalone={false}
-              data={this.lineData()}
-              x={(data) => data.date}
-              y={(data) => data.submissions}
+              data={totalDailySubmissions}
+              x={(data) => data.get('date', '')}
+              y={(data) => data.get('submissions', '')}
             />
             <VictoryAxis
               // X Axis

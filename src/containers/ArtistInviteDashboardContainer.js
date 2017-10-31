@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import {
   loadArtistInvite,
   loadTotalSubmissions,
+  loadDailySubmissions,
 } from '../actions/artist_invites'
 import {
   selectArtistInvite,
@@ -11,6 +12,7 @@ import {
   selectTotalUnapprovedSubmissions,
   selectTotalDeclinedSubmissions,
   selectTotalSelectedSubmissions,
+  selectDailySubmissions,
 } from '../selectors/artist_invites'
 import ArtistInviteListItem from '../components/ArtistInviteListItem'
 import SubmissionCount from '../components/ArtistInviteDashboard/SubmissionCount'
@@ -25,6 +27,7 @@ function mapStateToProps(state, props) {
     totalUnapprovedSubmissions: selectTotalUnapprovedSubmissions(state, params.id),
     totalDeclinedSubmissions: selectTotalDeclinedSubmissions(state, params.id),
     totalSelectedSubmissions: selectTotalSelectedSubmissions(state, params.id),
+    totalDailySubmissions: selectDailySubmissions(state, params.id),
   }
 }
 
@@ -32,17 +35,18 @@ class ArtistInviteDashboardContainer extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
     artistInvite: PropTypes.object.isRequired,
-    totalSubmissions: PropTypes.object,
-  }
-
-  static defaultTypes = {
-    totalSubmissions: null,
+    totalApprovedSubmissions: PropTypes.object,
+    totalUnapprovedSubmissions: PropTypes.object,
+    totalDeclinedSubmissions: PropTypes.object,
+    totalSelectedSubmissions: PropTypes.object,
+    totalDailySubmissions: PropTypes.array,
   }
 
   componentWillMount() {
     const { dispatch, id } = this.props
     dispatch(loadArtistInvite(id))
     dispatch(loadTotalSubmissions(id))
+    dispatch(loadDailySubmissions(id))
   }
 
   render() {
@@ -52,6 +56,7 @@ class ArtistInviteDashboardContainer extends Component {
       totalUnapprovedSubmissions,
       totalDeclinedSubmissions,
       totalSelectedSubmissions,
+      totalDailySubmissions,
     } = this.props
     return (
       <div>
@@ -63,13 +68,14 @@ class ArtistInviteDashboardContainer extends Component {
           headerImage={artistInvite.get('headerImage')}
         />
         <SubmissionCount
-          id={artistInvite.get('id')}
           totalApprovedSubmissions={totalApprovedSubmissions}
           totalUnapprovedSubmissions={totalUnapprovedSubmissions}
           totalDeclinedSubmissions={totalDeclinedSubmissions}
           totalSelectedSubmissions={totalSelectedSubmissions}
         />
-        <SubmissionGraph />
+        <SubmissionGraph
+          totalDailySubmissions={totalDailySubmissions}
+        />
       </div>
     )
   }

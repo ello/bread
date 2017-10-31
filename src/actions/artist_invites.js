@@ -29,3 +29,13 @@ export function loadTotalSubmissions(id) {
     },
   }
 }
+
+export function loadDailySubmissions(id) {
+  return {
+    type: ARTIST_INVITES.LOAD_DAILY_SUBMISSIONS,
+    payload: {
+      endpoint: `/api/v2/manage/artist-invites/${id}/daily-submissions`,
+      method: 'GET',
+    },
+  }
+}

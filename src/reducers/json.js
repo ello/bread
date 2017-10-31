@@ -10,6 +10,7 @@ function mergeDataFromServer(state, response) {
 export default (state = Immutable.Map(), action) => {
   switch (action.type) {
     case ACTION_TYPES.ARTIST_INVITES.LOAD_TOTAL_SUBMISSIONS_SUCCESS:
+    case ACTION_TYPES.ARTIST_INVITES.LOAD_DAILY_SUBMISSIONS_SUCCESS:
     case ACTION_TYPES.ARTIST_INVITES.LOAD_SUCCESS:
       return mergeDataFromServer(state, action.payload.response)
     default:
