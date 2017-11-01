@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { VictoryChart, VictoryLine, VictoryAxis } from 'victory'
-import moment from 'moment'
+import {
+  VictoryChart,
+  VictoryLine,
+  VictoryVoronoiContainer,
+  VictoryTooltip,
+  VictoryGroup,
+  VictoryScatter,
+} from 'victory'
 
 export default class SubmissionGraph extends Component {
   static propTypes = {
@@ -12,15 +18,6 @@ export default class SubmissionGraph extends Component {
     totalDailySubmissions: null,
   }
 
-  lineData() {
-    return [...Array(10).keys()].map((daysAgo) => {
-      return {
-        submissions: Math.floor(Math.random() * 15) + 1,
-        date: moment().subtract(daysAgo, 'd').valueOf(),
-      }
-    })
-  }
-
   render() {
     const { totalDailySubmissions } = this.props
     return (
@@ -28,24 +25,49 @@ export default class SubmissionGraph extends Component {
         <svg viewBox="0 0 400 400">
           <VictoryChart
             standalone={false}
+            containerComponent={<VictoryVoronoiContainer/>}
           >
-            <VictoryLine
-              // Line
-              standalone={false}
+            <VictoryGroup
+              color="#c43a31"
+              labels={(d) => d.y}
+              labelComponent={
+                <VictoryTooltip
+                  style={{fontSize: 10}}
+                />
+              }
               data={totalDailySubmissions}
               x={(data) => data.get('date', '')}
               y={(data) => data.get('submissions', '')}
-            />
-            <VictoryAxis
-              // X Axis
-              standalone={false}
-              tickFormat={(value) => moment(value).format('YYYY-MM-DD')}
-            />
-            <VictoryAxis
-              // Y Axis
-              standalone={false}
-              dependentAxis={true}
-            />
+            >
+              <VictoryLine />
+              <VictoryScatter
+                events={[{
+                  target: "data",
+                  eventHandlers: {
+                    onMouseEnter: () => {
+                      return [
+                        {
+                          target: "data",
+                          mutation: (props) => {
+                            return { size: 8 };
+                          }
+                        }
+                      ];
+                    },
+                    onMouseLeave: () => {
+                      return [
+                        {
+                          target: "data",
+                          mutation: (props) => {
+                            return { size: 5 };
+                          }
+                        }
+                      ];
+                    },
+                  }
+                }]}
+              />
+            </VictoryGroup>
           </VictoryChart>
         </svg>
       </div>
