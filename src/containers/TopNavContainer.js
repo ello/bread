@@ -7,6 +7,8 @@ import {
   selectAuthIsLoggedIn,
 } from '../selectors/auth'
 
+import LogoTitle from '../components/LogoTitle'
+
 function mapStateToProps(state) {
   return {
     isLoggedIn: selectAuthIsLoggedIn(state),
@@ -27,7 +29,7 @@ class TopNavContainer extends Component {
     const { isLoggedIn } = this.props
     return (
       <div>
-        <p><a href="/">ELLO</a></p>
+        <LogoTitle />
         {isLoggedIn &&
           <ul>
             <li><Link to='/artist-invites'>My Dashboards</Link></li>
