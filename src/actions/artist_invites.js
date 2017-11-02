@@ -39,3 +39,13 @@ export function loadDailySubmissions(id) {
     },
   }
 }
+
+export function loadTotalParticipants(id) {
+  return {
+    type: ARTIST_INVITES.LOAD_TOTAL_PARTICIPANTS,
+    payload: {
+      endpoint: `/api/v2/manage/artist-invites/${id}/total-participants`,
+      method: 'GET',
+    },
+  }
+}

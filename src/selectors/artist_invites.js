@@ -24,6 +24,7 @@ export function selectTotalSelectedSubmissions(state, id) {
   return state.json.getIn(['totalSubmissions', `total_submissions:${id}:selected:total`], Immutable.Map())
 }
 
+//TODO: Refactor this shit!
 export function selectDailySubmissions(state, id) {
   const regex = new RegExp(`daily_submissions:${id}`)
   const dailySub = state.json.get('dailySubmissions', Immutable.Map())
@@ -31,4 +32,12 @@ export function selectDailySubmissions(state, id) {
     return dailySubObj.get('id').search(regex) > -1
   })
   return filteredDailySub.valueSeq().toArray()
+}
+
+export function selectInfluentialParticipants(state, id) {
+  return state.json.getIn(['totalParticipants', `total_participants:${id}:Influencer:total`], Immutable.Map())
+}
+
+export function selectNormalParticipants(state, id) {
+  return state.json.getIn(['totalParticipants', `total_participants:${id}:Normal:total`], Immutable.Map())
 }
