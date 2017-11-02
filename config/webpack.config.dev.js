@@ -125,6 +125,10 @@ module.exports = {
         include: paths.appSrc,
       },
       {
+        test: /\.(eot|svg|otf|ttf|woff|woff2)$/,
+        use: 'file-loader',
+      },
+      {
         // "oneOf" will traverse all following loaders until one will
         // match the requirements. When no loader matches it will fall
         // back to the "file" loader at the end of the loader list.
