@@ -22,6 +22,7 @@ export default class SubmissionCount extends Component {
     totalSelectedSubmissions: null,
   }
 
+  //TODO: Move labels to reducer
   unapprovedSubmissions = () => {
     const { totalUnapprovedSubmissions } = this.props
     const total = totalUnapprovedSubmissions.toJS()

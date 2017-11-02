@@ -6,6 +6,7 @@ import {
   loadTotalSubmissions,
   loadDailySubmissions,
   loadTotalParticipants,
+  loadDailyImpressions,
 } from '../actions/artist_invites'
 import {
   selectArtistInvite,
@@ -16,11 +17,13 @@ import {
   selectDailySubmissions,
   selectNormalParticipants,
   selectInfluentialParticipants,
+  selectDailyImpressions,
 } from '../selectors/artist_invites'
 import ArtistInviteListItem from '../components/ArtistInviteListItem'
 import SubmissionCount from '../components/ArtistInviteDashboard/SubmissionCount'
 import ParticipantCount from '../components/ArtistInviteDashboard/ParticipantCount'
 import SubmissionGraph from '../components/ArtistInviteDashboard/SubmissionGraph'
+import ViewCountGraph from '../components/ArtistInviteDashboard/ViewCountGraph'
 
 function mapStateToProps(state, props) {
   const { match: { params } } = props
@@ -34,6 +37,7 @@ function mapStateToProps(state, props) {
     totalDailySubmissions: selectDailySubmissions(state, params.id),
     totalNormalParticipants: selectNormalParticipants(state ,params.id),
     totalInfluentialParticipants: selectInfluentialParticipants(state ,params.id),
+    totalDailyImpressions: selectDailyImpressions(state, params.id),
   }
 }
 
@@ -45,9 +49,10 @@ class ArtistInviteDashboardContainer extends Component {
     totalUnapprovedSubmissions: PropTypes.object,
     totalDeclinedSubmissions: PropTypes.object,
     totalSelectedSubmissions: PropTypes.object,
-    totalDailySubmissions: PropTypes.array,
+    totalDailySubmissions: PropTypes.object,
     totalNormalParticipants: PropTypes.object,
     totalInfluentialParticipants: PropTypes.object,
+    totalDailyImpressions: PropTypes.object,
   }
 
   componentWillMount() {
@@ -56,6 +61,7 @@ class ArtistInviteDashboardContainer extends Component {
     dispatch(loadTotalSubmissions(id))
     dispatch(loadDailySubmissions(id))
     dispatch(loadTotalParticipants(id))
+    dispatch(loadDailyImpressions(id))
   }
 
   render() {
@@ -68,6 +74,7 @@ class ArtistInviteDashboardContainer extends Component {
       totalDailySubmissions,
       totalNormalParticipants,
       totalInfluentialParticipants,
+      totalDailyImpressions,
     } = this.props
     return (
       <div>
@@ -90,6 +97,9 @@ class ArtistInviteDashboardContainer extends Component {
         />
         <SubmissionGraph
           totalDailySubmissions={totalDailySubmissions}
+        />
+        <ViewCountGraph
+          totalDailyImpressions={totalDailyImpressions}
         />
       </div>
     )
