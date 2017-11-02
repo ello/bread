@@ -11,15 +11,19 @@ import {
 
 export default class SubmissionGraph extends Component {
   static propTypes = {
-    totalDailySubmissions: PropTypes.array,
+    totalDailySubmissions: PropTypes.object,
   }
 
   static defaultTypes = {
     totalDailySubmissions: null,
   }
 
-  render() {
+  dailySubmissions = () => {
     const { totalDailySubmissions } = this.props
+    return totalDailySubmissions.valueSeq().toArray()
+  }
+
+  render() {
     return (
       <div style={{width: "400px", height: "200px"}}>
         <svg viewBox="0 0 400 400">
@@ -35,7 +39,7 @@ export default class SubmissionGraph extends Component {
                   style={{fontSize: 10}}
                 />
               }
-              data={totalDailySubmissions}
+              data={this.dailySubmissions()}
               x={(data) => data.get('date', '')}
               y={(data) => data.get('submissions', '')}
             >

@@ -24,14 +24,8 @@ export function selectTotalSelectedSubmissions(state, id) {
   return state.json.getIn(['totalSubmissions', `total_submissions:${id}:selected:total`], Immutable.Map())
 }
 
-//TODO: Refactor this shit!
 export function selectDailySubmissions(state, id) {
-  const regex = new RegExp(`daily_submissions:${id}`)
-  const dailySub = state.json.get('dailySubmissions', Immutable.Map())
-  const filteredDailySub = dailySub.filter(function(dailySubObj) {
-    return dailySubObj.get('id').search(regex) > -1
-  })
-  return filteredDailySub.valueSeq().toArray()
+  return state.json.get('dailySubmissions').filter(sub => sub.get('artistInviteId') === id)
 }
 
 export function selectInfluentialParticipants(state, id) {
