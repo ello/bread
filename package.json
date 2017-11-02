@@ -48,6 +48,10 @@
     "sanitize.css": "^5.0.0",
     "style-loader": "0.18.2",
     "styled-components": "^2.2.3",
+    "stylelint": "^8.2.0",
+    "stylelint-config-standard": "^17.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.0.0",
     "svg-react-loader": "^0.4.5",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.5.9",
@@ -62,7 +66,9 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "lint": "./node_modules/.bin/eslint src/**.js"
+    "lint": "./node_modules/.bin/eslint src/**.js; stylelint './src/**/*.js'",
+    "lint:js": "./node_modules/.bin/eslint src/**.js",
+    "lint:css": "stylelint './src/**/*.js'"
   },
   "jest": {
     "collectCoverageFrom": [
