@@ -8,11 +8,13 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import { PersistGate } from 'redux-persist/lib/integration/react'
 import immutableTransform from 'redux-persist-transform-immutable'
-import './index.css';
 import App from './App';
 import reducers from './reducers'
 import sagas from './sagas'
 import { APP_DEBUG } from './env'
+
+// Import CSS reset and Global Styles
+import './constants/styled/global'
 
 const logConfig = {
   collapsed: true,
