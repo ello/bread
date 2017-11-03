@@ -7,6 +7,7 @@ import {
   loadDailySubmissions,
   loadTotalParticipants,
   loadDailyImpressions,
+  loadTotalImpressions,
 } from '../actions/artist_invites'
 import {
   selectArtistInvite,
@@ -18,12 +19,14 @@ import {
   selectNormalParticipants,
   selectInfluentialParticipants,
   selectDailyImpressions,
+  selectTotalImpressions,
 } from '../selectors/artist_invites'
 import ArtistInviteListItem from '../components/ArtistInviteListItem'
 import SubmissionCount from '../components/ArtistInviteDashboard/SubmissionCount'
 import ParticipantCount from '../components/ArtistInviteDashboard/ParticipantCount'
 import SubmissionGraph from '../components/ArtistInviteDashboard/SubmissionGraph'
 import ViewCountGraph from '../components/ArtistInviteDashboard/ViewCountGraph'
+import ViewCountOverlay from '../components/ArtistInviteDashboard/ViewCountOverlay'
 
 function mapStateToProps(state, props) {
   const { match: { params } } = props
@@ -38,6 +41,7 @@ function mapStateToProps(state, props) {
     totalNormalParticipants: selectNormalParticipants(state ,params.id),
     totalInfluentialParticipants: selectInfluentialParticipants(state ,params.id),
     totalDailyImpressions: selectDailyImpressions(state, params.id),
+    totalImpressions: selectTotalImpressions(state, params.id),
   }
 }
 
@@ -53,6 +57,7 @@ class ArtistInviteDashboardContainer extends Component {
     totalNormalParticipants: PropTypes.object,
     totalInfluentialParticipants: PropTypes.object,
     totalDailyImpressions: PropTypes.object,
+    totalImpressions: PropTypes.object,
   }
 
   componentWillMount() {
@@ -62,6 +67,7 @@ class ArtistInviteDashboardContainer extends Component {
     dispatch(loadDailySubmissions(id))
     dispatch(loadTotalParticipants(id))
     dispatch(loadDailyImpressions(id))
+    dispatch(loadTotalImpressions(id))
   }
 
   render() {
@@ -75,6 +81,7 @@ class ArtistInviteDashboardContainer extends Component {
       totalNormalParticipants,
       totalInfluentialParticipants,
       totalDailyImpressions,
+      totalImpressions,
     } = this.props
     return (
       <div>
@@ -100,6 +107,9 @@ class ArtistInviteDashboardContainer extends Component {
         />
         <ViewCountGraph
           totalDailyImpressions={totalDailyImpressions}
+        />
+        <ViewCountOverlay
+          totalImpressions={totalImpressions}
         />
       </div>
     )

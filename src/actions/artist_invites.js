@@ -59,3 +59,13 @@ export function loadDailyImpressions(id) {
     },
   }
 }
+
+export function loadTotalImpressions(id) {
+  return {
+    type: ARTIST_INVITES.LOAD_TOTAL_IMPRESSIONS,
+    payload: {
+      endpoint: `/api/v2/manage/artist-invites/${id}/total-impressions`,
+      method: 'GET',
+    },
+  }
+}

@@ -7,9 +7,7 @@ import {
   VictoryTooltip,
   VictoryGroup,
   VictoryScatter,
-  VictoryAxis,
 } from 'victory'
-import moment from 'moment'
 
 export default class ViewCountGraph extends Component {
   static propTypes = {
@@ -44,7 +42,6 @@ export default class ViewCountGraph extends Component {
               data={this.dailyImpressions()}
               x={(data) => data.get('date', '')}
               y={(data) => data.get('impressions', '')}
-              tickFormat={(t) => Math.round(t)}
             >
               <VictoryLine />
               <VictoryScatter
