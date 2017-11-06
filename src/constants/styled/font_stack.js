@@ -8,17 +8,18 @@ import { em } from './mixins'
 // load fonts -----------------------------------------
 
 export const fonts = css`
+  /* stylelint-disable */
   @font-face {
     font-family: AtlasGroteskRegular;
     font-style: normal;
     font-weight: 400;
     font-stretch: normal;
     src:
-      local("AtlasGrotesk-Regular"),
-      url("//fonts.ello.co/AtlasGrotesk-Regular-Web.eot?#iefix") format("embedded-opentype"),
-      url("//fonts.ello.co/AtlasGrotesk-Regular-Web.woff") format("woff"),
-      url("//fonts.ello.co/AtlasGrotesk-Regular-Web.ttf") format("truetype"),
-      url("//fonts.ello.co/AtlasGrotesk-Regular-Web.svg#AtlasGroteskRegular") format("svg");
+      local('AtlasGrotesk-Regular'),
+      url('//fonts.ello.co/AtlasGrotesk-Regular-Web.eot?#iefix') format('embedded-opentype'),
+      url('//fonts.ello.co/AtlasGrotesk-Regular-Web.woff') format('woff'),
+      url('//fonts.ello.co/AtlasGrotesk-Regular-Web.ttf') format('truetype'),
+      url('//fonts.ello.co/AtlasGrotesk-Regular-Web.svg#AtlasGroteskRegular') format('svg');
   }
 
   @font-face {
@@ -27,11 +28,11 @@ export const fonts = css`
     font-weight: 700;
     font-stretch: normal;
     src:
-      local("AtlasGrotesk-Bold"),
-      url("//fonts.ello.co/AtlasGrotesk-Bold-Web.eot?#iefix") format("embedded-opentype"),
-      url("//fonts.ello.co/AtlasGrotesk-Bold-Web.woff") format("woff"),
-      url("//fonts.ello.co/AtlasGrotesk-Bold-Web.ttf") format("truetype"),
-      url("//fonts.ello.co/AtlasGrotesk-Bold-Web.svg#AtlasGroteskBold") format("svg");
+      local('AtlasGrotesk-Bold'),
+      url('//fonts.ello.co/AtlasGrotesk-Bold-Web.eot?#iefix') format('embedded-opentype'),
+      url('//fonts.ello.co/AtlasGrotesk-Bold-Web.woff') format('woff'),
+      url('//fonts.ello.co/AtlasGrotesk-Bold-Web.ttf') format('truetype'),
+      url('//fonts.ello.co/AtlasGrotesk-Bold-Web.svg#AtlasGroteskBold') format('svg');
   }
 
   @font-face {
@@ -40,11 +41,11 @@ export const fonts = css`
     font-weight: 400;
     font-stretch: normal;
     src:
-      local("AtlasGrotesk-Black"),
-      url("//fonts.ello.co/AtlasGrotesk-Black-Web.eot?#iefix") format("embedded-opentype"),
-      url("//fonts.ello.co/AtlasGrotesk-Black-Web.woff") format("woff"),
-      url("//fonts.ello.co/AtlasGrotesk-Black-Web.ttf") format("truetype"),
-      url("//fonts.ello.co/AtlasGrotesk-Black-Web.svg#AtlasGroteskBlack") format("svg");
+      local('AtlasGrotesk-Black'),
+      url('//fonts.ello.co/AtlasGrotesk-Black-Web.eot?#iefix') format('embedded-opentype'),
+      url('//fonts.ello.co/AtlasGrotesk-Black-Web.woff') format('woff'),
+      url('//fonts.ello.co/AtlasGrotesk-Black-Web.ttf') format('truetype'),
+      url('//fonts.ello.co/AtlasGrotesk-Black-Web.svg#AtlasGroteskBlack') format('svg');
   }
 
   @font-face {
@@ -53,11 +54,11 @@ export const fonts = css`
     font-weight: 400;
     font-stretch: normal;
     src:
-      local("AtlasGrotesk-Light"),
-      url("//fonts.ello.co/AtlasGrotesk-Light-Web.eot?#iefix") format("embedded-opentype"),
-      url("//fonts.ello.co/AtlasGrotesk-Light-Web.woff") format("woff"),
-      url("//fonts.ello.co/AtlasGrotesk-Light-Web.ttf") format("truetype"),
-      url("//fonts.ello.co/AtlasGrotesk-Light-Web.svg#AtlasGroteskLight") format("svg");
+      local('AtlasGrotesk-Light'),
+      url('//fonts.ello.co/AtlasGrotesk-Light-Web.eot?#iefix') format('embedded-opentype'),
+      url('//fonts.ello.co/AtlasGrotesk-Light-Web.woff') format('woff'),
+      url('//fonts.ello.co/AtlasGrotesk-Light-Web.ttf') format('truetype'),
+      url('//fonts.ello.co/AtlasGrotesk-Light-Web.svg#AtlasGroteskLight') format('svg');
   }
 
   @font-face {
@@ -66,12 +67,13 @@ export const fonts = css`
     font-weight: 400;
     font-stretch: normal;
     src:
-      local("AtlasTypewriter-Regular"),
-      url("//fonts.ello.co/AtlasTypewriter-Regular-Web.eot?#iefix") format("embedded-opentype"),
-      url("//fonts.ello.co/AtlasTypewriter-Regular-Web.woff") format("woff"),
-      url("//fonts.ello.co/AtlasTypewriter-Regular-Web.ttf") format("truetype"),
-      url("//fonts.ello.co/AtlasTypewriter-Regular-Web.svg#AtlasTypewriterRegular") format("svg");
+      local('AtlasTypewriter-Regular'),
+      url('//fonts.ello.co/AtlasTypewriter-Regular-Web.eot?#iefix') format('embedded-opentype'),
+      url('//fonts.ello.co/AtlasTypewriter-Regular-Web.woff') format('woff'),
+      url('//fonts.ello.co/AtlasTypewriter-Regular-Web.ttf') format('truetype'),
+      url('//fonts.ello.co/AtlasTypewriter-Regular-Web.svg#AtlasTypewriterRegular') format('svg');
   }
+  /* stylelint-enable */
 `
 
 export const typeface = {
