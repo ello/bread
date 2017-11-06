@@ -43,7 +43,7 @@ injectGlobal`
   /* typography defaults --------------------------------------------------------------------------- */
 
   body {  /* stylelint-disable-line no-duplicate-selectors */
-    font-family: ${ff.base};
+    ${ff.regular.full}
     font-size: 16px;
     font-weight: 400;
     line-height: 1;
@@ -64,11 +64,11 @@ injectGlobal`
   ul,
   ol {
     ${fs.body.size}
-    font-family: ${ff.base};
+    ${ff.regular.full}
   }
 
   code {
-    font-family: ${ff.code};
+    ${ff.mono.full}
     font-size: 90%;
     font-weight: 400;
   }
