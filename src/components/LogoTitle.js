@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { colors } from '../constants/styled/colors'
 import { media } from '../constants/styled/mixins'
 
-import ElloLogoSquare from '-!babel-loader!svg-react-loader?name=ElloLogoSquare!./svg/ElloLogoSquare.svg' // eslint-disable-line import/no-webpack-loader-syntax
+import ElloLogo from '-!babel-loader!svg-react-loader?name=ElloLogo!./svg/ElloLogo.svg' // eslint-disable-line import/no-webpack-loader-syntax
 
 const propTypes = {
   linkHome: PropTypes.bool.isRequired,
@@ -38,14 +38,9 @@ const Logo = styled.span`
   ${media.min1440`width: 150px;`}
 
   svg {
+    polygon,
     path {
-      &.circle {
-        fill: ${colors.black};
-      }
-
-      &.table {
-        fill: ${colors.white};
-      }
+      fill: ${colors.white};
     }
   }
 `
@@ -58,7 +53,7 @@ const renderWithLink = () => (
   <TitleHolder title="Ello">
     <Link to="/artist-invites">
       <Logo>
-        <ElloLogoSquare />
+        <ElloLogo />
       </Logo>
       <Text>
         Ello
@@ -70,7 +65,7 @@ const renderWithLink = () => (
 const renderWithoutLink = () => (
   <TitleHolder title="Ello">
     <Logo>
-      <ElloLogoSquare />
+      <ElloLogo />
     </Logo>
     <Text>
       Ello
