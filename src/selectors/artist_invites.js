@@ -24,6 +24,13 @@ export function selectTotalSelectedSubmissions(state, id) {
   return state.json.getIn(['totalSubmissions', `total_submissions:${id}:selected:total`], Immutable.Map())
 }
 
+export function selectTotalSubmissions(state, id) {
+  return selectTotalDeclinedSubmissions(state, id).get('submissions', 0)
+    + selectTotalUnapprovedSubmissions(state, id).get('submissions', 0)
+    + selectTotalApprovedSubmissions(state, id).get('submissions', 0)
+    + selectTotalSelectedSubmissions(state, id).get('submissions', 0)
+}
+
 export function selectDailySubmissions(state, id) {
   return state.json.get('dailySubmissions', Immutable.Map()).filter(sub => sub.get('artistInviteId') === id)
 }

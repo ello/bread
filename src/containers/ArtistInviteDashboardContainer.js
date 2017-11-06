@@ -15,6 +15,7 @@ import {
   selectTotalUnapprovedSubmissions,
   selectTotalDeclinedSubmissions,
   selectTotalSelectedSubmissions,
+  selectTotalSubmissions,
   selectDailySubmissions,
   selectNormalParticipants,
   selectInfluentialParticipants,
@@ -37,6 +38,7 @@ function mapStateToProps(state, props) {
     totalUnapprovedSubmissions: selectTotalUnapprovedSubmissions(state, params.id),
     totalDeclinedSubmissions: selectTotalDeclinedSubmissions(state, params.id),
     totalSelectedSubmissions: selectTotalSelectedSubmissions(state, params.id),
+    totalSubmissions: selectTotalSubmissions(state, params.id),
     totalDailySubmissions: selectDailySubmissions(state, params.id),
     totalNormalParticipants: selectNormalParticipants(state ,params.id),
     totalInfluentialParticipants: selectInfluentialParticipants(state ,params.id),
@@ -77,6 +79,7 @@ class ArtistInviteDashboardContainer extends Component {
       totalUnapprovedSubmissions,
       totalDeclinedSubmissions,
       totalSelectedSubmissions,
+      totalSubmissions,
       totalDailySubmissions,
       totalNormalParticipants,
       totalInfluentialParticipants,
@@ -97,6 +100,7 @@ class ArtistInviteDashboardContainer extends Component {
           totalUnapprovedSubmissions={totalUnapprovedSubmissions}
           totalDeclinedSubmissions={totalDeclinedSubmissions}
           totalSelectedSubmissions={totalSelectedSubmissions}
+          totalSubmissions={totalSubmissions}
         />
         <ParticipantCount
           totalNormalParticipants={totalNormalParticipants}

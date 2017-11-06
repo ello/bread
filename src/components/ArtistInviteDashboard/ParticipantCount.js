@@ -24,8 +24,8 @@ export default class SubmissionCount extends Component {
   }
 
   influentialParticipants = () => {
-    const { totalNormalParticipants } = this.props
-    return totalNormalParticipants.toJS()
+    const { totalInfluentialParticipants } = this.props
+    return totalInfluentialParticipants.toJS()
   }
 
   totalParticipantCount = () => {
@@ -45,8 +45,8 @@ export default class SubmissionCount extends Component {
               this.normalParticipants(),
               this.influentialParticipants(),
             ]}
-            x="participants"
-            y="type"
+            y="participants"
+            x="type"
             labelComponent={<VictoryTooltip/>}
             colorScale={["lightgray", "black"]}
           />

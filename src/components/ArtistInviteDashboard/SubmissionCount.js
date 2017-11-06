@@ -13,6 +13,7 @@ export default class SubmissionCount extends Component {
     totalUnapprovedSubmissions: PropTypes.object,
     totalDeclinedSubmissions: PropTypes.object,
     totalSelectedSubmissions: PropTypes.object,
+    totalSubmissions: PropTypes.number,
   }
 
   static defaultTypes = {
@@ -20,47 +21,31 @@ export default class SubmissionCount extends Component {
     totalUnapprovedSubmissions: null,
     totalDeclinedSubmissions: null,
     totalSelectedSubmissions: null,
+    totalSubmissions: null,
   }
 
-  //TODO: Move labels to reducer
   unapprovedSubmissions = () => {
     const { totalUnapprovedSubmissions } = this.props
-    const total = totalUnapprovedSubmissions.toJS()
-    return Object.assign(total, { label: `Unapproved\n${total.submissions}` })
+    return totalUnapprovedSubmissions.toJS()
   }
 
   declinedSubmissions = () => {
     const { totalDeclinedSubmissions } = this.props
-    const total = totalDeclinedSubmissions.toJS()
-    return Object.assign(total, { label: `Declined\n${total.submissions}` })
+    return totalDeclinedSubmissions.toJS()
   }
 
   approvedSubmissions = () => {
     const { totalApprovedSubmissions } = this.props
-    const total = totalApprovedSubmissions.toJS()
-    return Object.assign(total, { label: `Approved\n${total.submissions}` })
+    return totalApprovedSubmissions.toJS()
   }
 
   selectedSubmissions = () => {
     const { totalSelectedSubmissions } = this.props
-    const total = totalSelectedSubmissions.toJS()
-    return Object.assign(total, { label: `Selected\n${total.submissions}` })
-  }
-
-  totalSubmissionCount = () => {
-    const {
-      totalUnapprovedSubmissions,
-      totalDeclinedSubmissions,
-      totalApprovedSubmissions,
-      totalSelectedSubmissions,
-    } = this.props
-    return totalDeclinedSubmissions.get('submissions', 0)
-      + totalUnapprovedSubmissions.get('submissions', 0)
-      + totalApprovedSubmissions.get('submissions', 0)
-      + totalSelectedSubmissions.get('submissions', 0)
+    return totalSelectedSubmissions.toJS()
   }
 
   render() {
+    const { totalSubmissions } = this.props
     return (
       <div style={{width: "300px", height: "300px"}}>
         <svg viewBox="0 0 400 400">
@@ -74,8 +59,8 @@ export default class SubmissionCount extends Component {
               this.approvedSubmissions(),
               this.selectedSubmissions(),
             ]}
-            x="submissions"
-            y="status"
+            y="submissions"
+            x="status"
             labelComponent={<VictoryTooltip/>}
             colorScale={["lightgray", "red", "green", "orange"]}
           />
@@ -85,7 +70,7 @@ export default class SubmissionCount extends Component {
             style={{ fontSize: 48, fontWeight: 600 }}
             x={200}
             y={200}
-            text={this.totalSubmissionCount()}
+            text={totalSubmissions}
           />
           <VictoryLegend
             x={25}
