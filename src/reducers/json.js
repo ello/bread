@@ -2,9 +2,14 @@ import Immutable from 'immutable'
 import * as ACTION_TYPES from '../constants/action_types'
 import { parseJSONApi } from '../helpers/json'
 
-
 function mergeDataFromServer(state, response) {
   return state.mergeDeepWith((a, b) => (b === null ? a : b), parseJSONApi(response, state))
+}
+
+function mergeVictoryLabel(collection, labelName, labelValue) {
+  return collection.map(function(obj) {
+    return Object.assign(obj, { label: `${obj[labelName]}\n${obj[labelValue]}` })
+  })
 }
 
 function totalParticipants(state, action) {
@@ -19,12 +24,6 @@ function totalSubmissions(state, action) {
   return mergeDataFromServer(state, updatedResponse)
 }
 
-function mergeVictoryLabel(collection, labelName, labelValue) {
-  return collection.map(function(obj) {
-    return Object.assign(obj, { label: `${obj[labelName]}\n${obj[labelValue]}` })
-  })
-}
-
 export default (state = Immutable.Map(), action) => {
   switch (action.type) {
     case ACTION_TYPES.ARTIST_INVITES.LOAD_TOTAL_PARTICIPANTS_SUCCESS:
@@ -34,6 +33,7 @@ export default (state = Immutable.Map(), action) => {
     case ACTION_TYPES.ARTIST_INVITES.LOAD_DAILY_SUBMISSIONS_SUCCESS:
     case ACTION_TYPES.ARTIST_INVITES.LOAD_DAILY_IMPRESSIONS_SUCCESS:
     case ACTION_TYPES.ARTIST_INVITES.LOAD_TOTAL_IMPRESSIONS_SUCCESS:
+    case ACTION_TYPES.ARTIST_INVITES.LOAD_NETWORK_ACTIVITIES_SUCCESS:
     case ACTION_TYPES.ARTIST_INVITES.LOAD_SUCCESS:
       return mergeDataFromServer(state, action.payload.response)
     default:

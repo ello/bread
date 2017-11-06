@@ -50,3 +50,23 @@ export function selectDailyImpressions(state, id) {
 export function selectTotalImpressions(state, id) {
   return state.json.getIn(['totalImpressions', `total_impressions:${id}:all`], Immutable.Map())
 }
+
+export function selectCommentActivity(state, id) {
+  return state.json.getIn(['totalActivities', `total_activities:${id}:comments`], Immutable.Map())
+}
+
+export function selectFollowerActivity(state, id) {
+  return state.json.getIn(['totalActivities', `total_activities:${id}:followers`], Immutable.Map())
+}
+
+export function selectLoveActivity(state, id) {
+  return state.json.getIn(['totalActivities', `total_activities:${id}:loves`], Immutable.Map())
+}
+
+export function selectMentionActivity(state, id) {
+  return state.json.getIn(['totalActivities', `total_activities:${id}:mentions`], Immutable.Map())
+}
+
+export function selectRepostActivity(state, id) {
+  return state.json.getIn(['totalActivities', `total_activities:${id}:reposts`], Immutable.Map())
+}

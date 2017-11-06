@@ -69,3 +69,13 @@ export function loadTotalImpressions(id) {
     },
   }
 }
+
+export function loadNetworkActivities(id) {
+  return {
+    type: ARTIST_INVITES.LOAD_NETWORK_ACTIVITIES,
+    payload: {
+      endpoint: `/api/v2/manage/artist-invites/${id}/total-activities`,
+      method: 'GET',
+    },
+  }
+}

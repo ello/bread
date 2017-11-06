@@ -22,7 +22,7 @@ export default class ViewCountAverageOverlay extends Component {
 
   render() {
     return (
-      <div style={{width: "100px", height: "100px", margin: "100px 0px 0px 0px"}}>
+      <div style={{width: "100px", height: "100px", margin: "100px 100px 0px 0px"}}>
         <p>Average Views Per Submission</p>
         <div style={{backgroundColor: "grey", textAlign: "center", padding: "70px"}}>
           { this.avgImpressionsPerSubmission() }

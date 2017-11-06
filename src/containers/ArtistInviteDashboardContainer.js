@@ -8,6 +8,7 @@ import {
   loadTotalParticipants,
   loadDailyImpressions,
   loadTotalImpressions,
+  loadNetworkActivities,
 } from '../actions/artist_invites'
 import {
   selectArtistInvite,
@@ -21,6 +22,11 @@ import {
   selectInfluentialParticipants,
   selectDailyImpressions,
   selectTotalImpressions,
+  selectCommentActivity,
+  selectFollowerActivity,
+  selectLoveActivity,
+  selectMentionActivity,
+  selectRepostActivity,
 } from '../selectors/artist_invites'
 import ArtistInviteListItem from '../components/ArtistInviteListItem'
 import SubmissionCount from '../components/ArtistInviteDashboard/SubmissionCount'
@@ -29,6 +35,7 @@ import SubmissionGraph from '../components/ArtistInviteDashboard/SubmissionGraph
 import ViewCountGraph from '../components/ArtistInviteDashboard/ViewCountGraph'
 import ViewCountOverlay from '../components/ArtistInviteDashboard/ViewCountOverlay'
 import ViewCountAverageOverlay from '../components/ArtistInviteDashboard/ViewCountAverageOverlay'
+import ActivityBar from '../components/ArtistInviteDashboard/ActivityBar'
 
 function mapStateToProps(state, props) {
   const { match: { params } } = props
@@ -45,6 +52,11 @@ function mapStateToProps(state, props) {
     totalInfluentialParticipants: selectInfluentialParticipants(state ,params.id),
     totalDailyImpressions: selectDailyImpressions(state, params.id),
     totalImpressions: selectTotalImpressions(state, params.id),
+    totalCommentActivity: selectCommentActivity(state, params.id),
+    totalFollowerActivity: selectFollowerActivity(state, params.id),
+    totalLoveActivity: selectLoveActivity(state, params.id),
+    totalMentionActivity: selectMentionActivity(state, params.id),
+    totalRepostActivity: selectRepostActivity(state, params.id),
   }
 }
 
@@ -61,6 +73,11 @@ class ArtistInviteDashboardContainer extends Component {
     totalInfluentialParticipants: PropTypes.object,
     totalDailyImpressions: PropTypes.object,
     totalImpressions: PropTypes.object,
+    totalCommentActivity: PropTypes.object,
+    totalFollowerActivity: PropTypes.object,
+    totalLoveActivity: PropTypes.object,
+    totalMentionActivity: PropTypes.object,
+    totalRepostActivity: PropTypes.object,
   }
 
   componentWillMount() {
@@ -71,6 +88,7 @@ class ArtistInviteDashboardContainer extends Component {
     dispatch(loadTotalParticipants(id))
     dispatch(loadDailyImpressions(id))
     dispatch(loadTotalImpressions(id))
+    dispatch(loadNetworkActivities(id))
   }
 
   render() {
@@ -86,6 +104,11 @@ class ArtistInviteDashboardContainer extends Component {
       totalInfluentialParticipants,
       totalDailyImpressions,
       totalImpressions,
+      totalCommentActivity,
+      totalFollowerActivity,
+      totalLoveActivity,
+      totalMentionActivity,
+      totalRepostActivity,
     } = this.props
     return (
       <div>
@@ -119,6 +142,13 @@ class ArtistInviteDashboardContainer extends Component {
         <ViewCountAverageOverlay
           totalImpressions={totalImpressions}
           totalSubmissions={totalSubmissions}
+        />
+        <ActivityBar
+          totalCommentActivity={totalCommentActivity}
+          totalFollowerActivity={totalFollowerActivity}
+          totalLoveActivity={totalLoveActivity}
+          totalMentionActivity={totalMentionActivity}
+          totalRepostActivity={totalRepostActivity}
         />
       </div>
     )
