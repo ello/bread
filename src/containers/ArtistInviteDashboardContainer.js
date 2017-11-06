@@ -28,6 +28,7 @@ import ParticipantCount from '../components/ArtistInviteDashboard/ParticipantCou
 import SubmissionGraph from '../components/ArtistInviteDashboard/SubmissionGraph'
 import ViewCountGraph from '../components/ArtistInviteDashboard/ViewCountGraph'
 import ViewCountOverlay from '../components/ArtistInviteDashboard/ViewCountOverlay'
+import ViewCountAverageOverlay from '../components/ArtistInviteDashboard/ViewCountAverageOverlay'
 
 function mapStateToProps(state, props) {
   const { match: { params } } = props
@@ -114,6 +115,10 @@ class ArtistInviteDashboardContainer extends Component {
         />
         <ViewCountOverlay
           totalImpressions={totalImpressions}
+        />
+        <ViewCountAverageOverlay
+          totalImpressions={totalImpressions}
+          totalSubmissions={totalSubmissions}
         />
       </div>
     )
