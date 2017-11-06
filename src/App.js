@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Redirect } from 'react-router'
+import 'sanitize.css/sanitize.css'
 import AuthContainer from './containers/AuthContainer';
 import ArtistInvitesContainer from './containers/ArtistInvitesContainer'
 import ArtistInviteDashboardContainer from './containers/ArtistInviteDashboardContainer'
