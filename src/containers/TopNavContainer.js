@@ -18,6 +18,7 @@ function mapStateToProps(state) {
 class TopNavContainer extends Component {
   static propTypes = {
     isLoggedIn: PropTypes.bool.isRequired,
+    linkHome: PropTypes.bool,
   }
 
   logout = () => {
@@ -26,10 +27,10 @@ class TopNavContainer extends Component {
   }
 
   render() {
-    const { isLoggedIn } = this.props
+    const { isLoggedIn, linkHome } = this.props
     return (
       <div>
-        <LogoTitle />
+        <LogoTitle linkHome={linkHome} />
         {isLoggedIn &&
           <ul>
             <li><Link to='/artist-invites'>My Dashboards</Link></li>

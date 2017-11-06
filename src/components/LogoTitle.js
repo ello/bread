@@ -56,7 +56,7 @@ const Text = styled.span`
 
 const renderWithLink = () => (
   <TitleHolder title="Ello">
-    <Link to="/">
+    <Link to="/artist-invites">
       <Logo>
         <ElloLogoSquare />
       </Logo>
