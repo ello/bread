@@ -147,11 +147,11 @@ function sizingPackage(baseSize, lineHeight, marginBottom) {
 }
 
 const small = sizingPackage(12, 1.5, (12 * 1.5))
-const body = sizingPackage(16, 1.5, (16 * 1.5))
+const body = sizingPackage(14, 1.5, (16 * 1.5))
 const h1 = sizingPackage(64, 1.2, 64)
 const h2 = sizingPackage(48, 1.3, 48)
-const h3 = sizingPackage(36, 1.2, 36)
-const h4 = sizingPackage(24, 1.4, 24)
+const h3 = sizingPackage(38, 1.2, 36)
+const h4 = sizingPackage(22, 1.4, 24)
 const h5 = sizingPackage(18, 1.4, (20 * 1.4))
 const h6 = sizingPackage(16, 1.5, (16 * 1.4))
 
@@ -173,6 +173,7 @@ function builtLinkPackage(baseColor, hoverColor, activeColor) {
     a,
     a:visited {
       color: ${baseColor};
+      transition: color 0.2s ease;
 
       &:hover {
         color: ${hoverColor};

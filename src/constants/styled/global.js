@@ -17,6 +17,13 @@ injectGlobal`
     }
   }
 
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+  }
+
   /* common global --------------------------------------------------------------------------------- */
 
   html,
@@ -41,6 +48,13 @@ injectGlobal`
   }
 
   /* typography defaults --------------------------------------------------------------------------- */
+
+  html {
+    font: normal 400 100% / 1.5 ${ff.regular.family};
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
 
   body {  /* stylelint-disable-line no-duplicate-selectors */
     ${ff.regular.full}
