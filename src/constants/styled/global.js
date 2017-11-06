@@ -26,7 +26,7 @@ injectGlobal`
   }
 
   body {
-    background-color: ${colors.offWhite};
+    background-color: ${colors.offBlack};
   }
 
   #root {
@@ -47,12 +47,12 @@ injectGlobal`
     font-size: 16px;
     font-weight: 400;
     line-height: 1;
-    color: ${colors.black};
+    color: ${colors.white};
   }
 
   ::selection {
-    background: ${colors.offBlack};
-    color: ${colors.white};
+    background: ${colors.offWhite};
+    color: ${colors.black};
     text-shadow: none;
   }
 
@@ -104,7 +104,6 @@ injectGlobal`
     &.subtitle {
       font-weight: 500;
     }
-    ${link.subtle.package}
   }
 
   h1 {

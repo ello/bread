@@ -91,14 +91,14 @@ function builtLinkPackage(baseColor, hoverColor, activeColor) {
   return fullPackage
 }
 
-const standard = builtLinkPackage(colors.black, colors.blue, colors.darkBlue)
-const subtle = builtLinkPackage(colors.black, colors.offBlack, colors.offBlack)
-const white = builtLinkPackage(colors.white, colors.offWhite, colors.offWhite)
+const standard = builtLinkPackage(colors.white, colors.offWhite, colors.offWhite)
+const subtle = builtLinkPackage(colors.grey, colors.mediumGrey, colors.white)
+const black = builtLinkPackage(colors.black, colors.blue, colors.darkBlue)
 const inherit = builtLinkPackage('inherit', 'inherit', 'inherit')
 
 export const link = {
   standard: standard,
   subtle: subtle,
   inherit: inherit,
-  white: white,
+  black: black,
 }

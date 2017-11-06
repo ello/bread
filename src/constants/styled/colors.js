@@ -8,9 +8,9 @@ export const colors = {
   offBlack: '#333',
   offWhite: '#f8f8f8',
   // greys
-  lightGrey: '#eaeaea',
-  grey: '#999',
-  mediumGrey: '#ccc',
+  lightGrey: '#f2f2f2',
+  grey: '#e5e5e5',
+  mediumGrey: '#aaa',
   darkGrey: '#666',
   // color
   red: '#ff0000',
