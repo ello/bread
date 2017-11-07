@@ -9,6 +9,7 @@ import {
 
 import styled from 'styled-components'
 import { link } from '../constants/styled/font_stack'
+import { colors } from '../constants/styled/colors'
 import { media, em, resetList, clearFix, contentAlign } from '../constants/styled/mixins'
 
 import LogoTitle from '../components/LogoTitle'
@@ -39,6 +40,39 @@ const NavHolder = styled.nav`
         margin-right: 0;
       }
       ${link.subtle.package}
+
+      a {
+        position: relative;
+        text-decoration: none;
+
+        &:before {
+          content: '';
+          position: absolute;
+          bottom: -${em(6)};
+          width: 0%;
+          border-bottom: ${colors.mediumGrey} solid 0;
+          transition: width 0.2s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.2s ease;
+        }
+
+        &:hover {
+          text-decoration: none;
+
+          &:before {
+            width: 100%;
+            border-bottom: ${colors.grey} solid 1.5pt;
+          }
+        }
+
+        &:active {
+          text-decoration: none;
+
+          &:before {
+            width: 100%;
+            border-bottom: ${colors.white} solid 1.5pt;
+            transition: border-color 0 ease;
+          }
+        }
+      }
     }
   }
 `

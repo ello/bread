@@ -206,7 +206,7 @@ function builtLinkPackage(baseColor, hoverColor, activeColor) {
 }
 
 const linkStandard = builtLinkPackage(colors.white, colors.offWhite, colors.offWhite)
-const linkSubtle = builtLinkPackage(colors.grey, colors.mediumGrey, colors.white)
+const linkSubtle = builtLinkPackage(colors.mediumGrey, colors.grey, colors.white)
 const linkBlack = builtLinkPackage(colors.black, colors.blue, colors.darkBlue)
 const linkInherit = builtLinkPackage('inherit', 'inherit', 'inherit')
 
