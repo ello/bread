@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'
 import { colors } from '../constants/styled/colors'
-import { media } from '../constants/styled/mixins'
+import { media, contentAlign } from '../constants/styled/mixins'
 
 import ElloLogo from '-!babel-loader!svg-react-loader?name=ElloLogo!./svg/ElloLogo.svg' // eslint-disable-line import/no-webpack-loader-syntax
 
@@ -18,10 +18,11 @@ const defaultProps = {
 
 const TitleHolder = styled.h1`
   margin: 0;
-  width: 100%;
   font-size: 1.25em;
   line-height: 100%;
   text-align: left;
+  float: left;
+  ${contentAlign.vertical}
 
   a {
     text-decoration: none;
@@ -32,10 +33,7 @@ const Logo = styled.span`
   display: inline-block;
   margin: 0 auto;
   margin-right: 1vw;
-  width: 10vw;
   vertical-align: middle;
-  ${media.max640`width: 20vw;`}
-  ${media.min1440`width: 150px;`}
 
   svg {
     polygon,

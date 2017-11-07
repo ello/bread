@@ -176,9 +176,11 @@ function builtLinkPackage(baseColor, hoverColor, activeColor) {
     a:visited {
       color: ${baseColor};
       transition: color 0.2s ease;
+      text-decoration: none;
 
       &:hover {
         color: ${hoverColor};
+        text-decoration: underline;
       }
 
       &:active {
