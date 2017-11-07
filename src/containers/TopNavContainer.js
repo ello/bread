@@ -7,7 +7,75 @@ import {
   selectAuthIsLoggedIn,
 } from '../selectors/auth'
 
+import styled from 'styled-components'
+import { link } from '../constants/styled/font_stack'
+import { colors } from '../constants/styled/colors'
+import { media, em, resetList, clearFix, contentAlign } from '../constants/styled/mixins'
+
 import LogoTitle from '../components/LogoTitle'
+
+const HeaderHolder = styled.header`
+  display: block;
+  margin: 0 auto;
+  padding: ${em(40)};
+  max-width: 1440px;
+  width: 100%;
+  height: ${em(100)};
+  ${media.max1360`padding: ${em(20)};`}
+  ${media.max640`padding: ${em(10)};`}
+`
+
+const NavHolder = styled.nav`
+  text-align: right;
+  ${contentAlign.vertical}
+
+  ul {
+    ${resetList}
+
+    li {
+      display: inline-block;
+      margin-right: ${em(20)};
+
+      &:last-child {
+        margin-right: 0;
+      }
+      ${link.subtle.package}
+
+      a {
+        position: relative;
+        text-decoration: none;
+
+        &:before {
+          content: '';
+          position: absolute;
+          bottom: -${em(6)};
+          width: 0%;
+          border-bottom: ${colors.mediumGrey} solid 0;
+          transition: width 0.2s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.2s ease;
+        }
+
+        &:hover {
+          text-decoration: none;
+
+          &:before {
+            width: 100%;
+            border-bottom: ${colors.grey} solid 1.5pt;
+          }
+        }
+
+        &:active {
+          text-decoration: none;
+
+          &:before {
+            width: 100%;
+            border-bottom: ${colors.white} solid 1.5pt;
+            transition: border-color 0 ease;
+          }
+        }
+      }
+    }
+  }
+`
 
 function mapStateToProps(state) {
   return {
@@ -20,7 +88,9 @@ class TopNavContainer extends Component {
     isLoggedIn: PropTypes.bool.isRequired,
   }
 
-  logout = () => {
+  logout = (e) => {
+    e.preventDefault()
+
     const { dispatch } = this.props
     dispatch(signOut())
   }
@@ -28,15 +98,17 @@ class TopNavContainer extends Component {
   render() {
     const { isLoggedIn } = this.props
     return (
-      <div>
-        <LogoTitle />
+      <HeaderHolder>
+        <LogoTitle linkHome={true} />
         {isLoggedIn &&
-          <ul>
-            <li><Link to='/artist-invites'>My Dashboards</Link></li>
-            <li><button onClick={this.logout}>Logout</button></li>
-          </ul>
+          <NavHolder>
+            <ul>
+              <li><Link to='/artist-invites'>My Dashboards</Link></li>
+              <li><Link to='#logout' onClick={this.logout}>Logout</Link></li>
+            </ul>
+          </NavHolder>
         }
-      </div>
+      </HeaderHolder>
     )
   }
 }

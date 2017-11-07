@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'
 import { colors } from '../constants/styled/colors'
-import { media } from '../constants/styled/mixins'
+import { media, contentAlign } from '../constants/styled/mixins'
 
-import ElloLogoSquare from '-!babel-loader!svg-react-loader?name=ElloLogoSquare!./svg/ElloLogoSquare.svg' // eslint-disable-line import/no-webpack-loader-syntax
+import ElloLogo from '-!babel-loader!svg-react-loader?name=ElloLogo!./svg/ElloLogo.svg' // eslint-disable-line import/no-webpack-loader-syntax
 
 const propTypes = {
   linkHome: PropTypes.bool.isRequired,
@@ -18,10 +18,11 @@ const defaultProps = {
 
 const TitleHolder = styled.h1`
   margin: 0;
-  width: 100%;
   font-size: 1.25em;
   line-height: 100%;
   text-align: left;
+  float: left;
+  ${contentAlign.vertical}
 
   a {
     text-decoration: none;
@@ -32,20 +33,12 @@ const Logo = styled.span`
   display: inline-block;
   margin: 0 auto;
   margin-right: 1vw;
-  width: 10vw;
   vertical-align: middle;
-  ${media.max640`width: 20vw;`}
-  ${media.min1440`width: 150px;`}
 
   svg {
+    polygon,
     path {
-      &.circle {
-        fill: ${colors.black};
-      }
-
-      &.table {
-        fill: ${colors.white};
-      }
+      fill: ${colors.white};
     }
   }
 `
@@ -58,7 +51,7 @@ const renderWithLink = () => (
   <TitleHolder title="Ello">
     <Link to="/">
       <Logo>
-        <ElloLogoSquare />
+        <ElloLogo />
       </Logo>
       <Text>
         Ello
@@ -70,7 +63,7 @@ const renderWithLink = () => (
 const renderWithoutLink = () => (
   <TitleHolder title="Ello">
     <Logo>
-      <ElloLogoSquare />
+      <ElloLogo />
     </Logo>
     <Text>
       Ello

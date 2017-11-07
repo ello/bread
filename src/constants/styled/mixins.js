@@ -7,12 +7,16 @@ import { parseToRgb } from '../../helpers/vendor/polished/color_hex_to_rgb'
 
 // media queries & breakpoints ------------------------------------------------------------
 const sizes = {
-  max1440: [1440, true],
-  min1440: [1441, false],
-  max1024: [1024, true],
-  min1024: [1025, false],
-  max768: [768, true],
-  min768: [769, false],
+  max2440: [2440, true],
+  min2440: [2441, false],
+  max2080: [2080, true],
+  min2080: [2081, false],
+  max1720: [1720, true],
+  min1720: [1721, false],
+  max1360: [1360, true],
+  min1360: [1361, false],
+  max960: [960, true],
+  min960: [961, false],
   max640: [640, true],
   min640: [641, false],
 }
@@ -74,6 +78,14 @@ export function embedSvgRender(svgObject, color) {
 
 
 // layout helpers -------------------------------------
+export const clearFix = css`
+  &:after {
+    content: '""',
+    display: 'block',
+    clear: 'both',
+  }
+`
+
 export const hideText = css`
   text-indent: -120%;
   white-space: nowrap;

@@ -2,7 +2,7 @@
   "name": "bread",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://ello.ninja",
+  "proxy": "https://ello-fg-stage1.herokuapp.com",
   "dependencies": {
     "autoprefixer": "7.1.2",
     "babel-core": "6.25.0",

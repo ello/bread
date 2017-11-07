@@ -9,13 +9,35 @@ import { ff, fs, link } from './font_stack'
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
   /* reset ----------------------------------------------------------------------------------------- */
+  /* stylelint-disable */
+  html {
+    font: normal 400 100% / 1.5 ${ff.regular.family};
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
 
   button {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: 0;
     &:active,
     &:focus {
       outline: 0;
     }
+    &:hover {
+      cursor: pointer;
+    }
   }
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* stylelint-enable */
 
   /* common global --------------------------------------------------------------------------------- */
 
@@ -26,7 +48,7 @@ injectGlobal`
   }
 
   body {
-    background-color: ${colors.offWhite};
+    background-color: ${colors.offBlack};
   }
 
   #root {
@@ -43,16 +65,16 @@ injectGlobal`
   /* typography defaults --------------------------------------------------------------------------- */
 
   body {  /* stylelint-disable-line no-duplicate-selectors */
-    font-family: ${ff.base};
+    ${ff.regular.full}
     font-size: 16px;
     font-weight: 400;
     line-height: 1;
-    color: ${colors.black};
+    color: ${colors.white};
   }
 
   ::selection {
-    background: ${colors.offBlack};
-    color: ${colors.white};
+    background: ${colors.offWhite};
+    color: ${colors.black};
     text-shadow: none;
   }
 
@@ -64,11 +86,11 @@ injectGlobal`
   ul,
   ol {
     ${fs.body.size}
-    font-family: ${ff.base};
+    ${ff.regular.full}
   }
 
   code {
-    font-family: ${ff.code};
+    ${ff.mono.full}
     font-size: 90%;
     font-weight: 400;
   }
@@ -104,7 +126,6 @@ injectGlobal`
     &.subtitle {
       font-weight: 500;
     }
-    ${link.subtle.package}
   }
 
   h1 {
