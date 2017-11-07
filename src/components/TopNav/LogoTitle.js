@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'
-import { colors } from '../constants/styled/colors'
-import { media, contentAlign } from '../constants/styled/mixins'
+import { colors } from '../../constants/styled/colors'
+import { contentAlign } from '../../constants/styled/mixins'
 
-import ElloLogo from '-!babel-loader!svg-react-loader?name=ElloLogo!./svg/ElloLogo.svg' // eslint-disable-line import/no-webpack-loader-syntax
+import ElloLogo from '-!babel-loader!svg-react-loader?name=ElloLogo!../svg/ElloLogo.svg' // eslint-disable-line import/no-webpack-loader-syntax
 
 const propTypes = {
   linkHome: PropTypes.bool.isRequired,

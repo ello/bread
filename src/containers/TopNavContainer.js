@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { signOut } from '../actions/authentication'
 import {
   selectAuthIsLoggedIn,
 } from '../selectors/auth'
 
 import styled from 'styled-components'
-import { link } from '../constants/styled/font_stack'
-import { colors } from '../constants/styled/colors'
-import { media, em, resetList, clearFix, contentAlign } from '../constants/styled/mixins'
+import { media, em } from '../constants/styled/mixins'
 
-import LogoTitle from '../components/LogoTitle'
+import LogoTitle from '../components/TopNav/LogoTitle'
+import Nav from '../components/TopNav/Nav'
 
 const HeaderHolder = styled.header`
   display: block;
@@ -23,58 +21,6 @@ const HeaderHolder = styled.header`
   height: ${em(100)};
   ${media.max1360`padding: ${em(20)};`}
   ${media.max640`padding: ${em(10)};`}
-`
-
-const NavHolder = styled.nav`
-  text-align: right;
-  ${contentAlign.vertical}
-
-  ul {
-    ${resetList}
-
-    li {
-      display: inline-block;
-      margin-right: ${em(20)};
-
-      &:last-child {
-        margin-right: 0;
-      }
-      ${link.subtle.package}
-
-      a {
-        position: relative;
-        text-decoration: none;
-
-        &:before {
-          content: '';
-          position: absolute;
-          bottom: -${em(6)};
-          width: 0%;
-          border-bottom: ${colors.mediumGrey} solid 0;
-          transition: width 0.2s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.2s ease;
-        }
-
-        &:hover {
-          text-decoration: none;
-
-          &:before {
-            width: 100%;
-            border-bottom: ${colors.grey} solid 1.5pt;
-          }
-        }
-
-        &:active {
-          text-decoration: none;
-
-          &:before {
-            width: 100%;
-            border-bottom: ${colors.white} solid 1.5pt;
-            transition: border-color 0 ease;
-          }
-        }
-      }
-    }
-  }
 `
 
 function mapStateToProps(state) {
@@ -100,14 +46,7 @@ class TopNavContainer extends Component {
     return (
       <HeaderHolder>
         <LogoTitle linkHome={true} />
-        {isLoggedIn &&
-          <NavHolder>
-            <ul>
-              <li><Link to='/artist-invites'>My Dashboards</Link></li>
-              <li><Link to='#logout' onClick={this.logout}>Logout</Link></li>
-            </ul>
-          </NavHolder>
-        }
+        <Nav isLoggedIn={isLoggedIn} handleSignOut={this.logout} />
       </HeaderHolder>
     )
   }
