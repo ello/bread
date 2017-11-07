@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <Router basename={BASENAME}>
         <div>
-          <TopNav linkHome={window.location.pathname !== '/artist-invites'} />
+          <TopNav />
           <AuthContainer>
             <Route exact path="/" render={() => <Redirect to="/artist-invites" />} />
             <Route exact path="/artist-invites" component={ArtistInvitesContainer} />
