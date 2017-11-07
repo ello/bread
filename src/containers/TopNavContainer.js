@@ -8,7 +8,6 @@ import {
 } from '../selectors/auth'
 
 import styled from 'styled-components'
-import { colors } from '../constants/styled/colors'
 import { link } from '../constants/styled/font_stack'
 import { media, em, resetList, clearFix, contentAlign } from '../constants/styled/mixins'
 
@@ -17,8 +16,8 @@ import LogoTitle from '../components/LogoTitle'
 const HeaderHolder = styled.header`
   display: block;
   margin: 0 auto;
-  max-width: 1440px;
   padding: ${em(40)};
+  max-width: 1440px;
   width: 100%;
   height: ${em(100)};
   ${media.max1360`padding: ${em(20)};`}
