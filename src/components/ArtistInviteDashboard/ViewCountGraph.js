@@ -9,18 +9,18 @@ import {
   VictoryScatter,
 } from 'victory'
 
-export default class SubmissionGraph extends Component {
+export default class ViewCountGraph extends Component {
   static propTypes = {
-    totalDailySubmissions: PropTypes.object,
+    totalDailyImpressions: PropTypes.object,
   }
 
   static defaultTypes = {
-    totalDailySubmissions: null,
+    totalDailyImpressions: null,
   }
 
-  dailySubmissions = () => {
-    const { totalDailySubmissions } = this.props
-    return totalDailySubmissions.valueSeq().toArray()
+  dailyImpressions = () => {
+    const { totalDailyImpressions } = this.props
+    return totalDailyImpressions.valueSeq().toArray()
   }
 
   render() {
@@ -39,9 +39,9 @@ export default class SubmissionGraph extends Component {
                   style={{fontSize: 10}}
                 />
               }
-              data={this.dailySubmissions()}
+              data={this.dailyImpressions()}
               x={(data) => data.get('date', '')}
-              y={(data) => data.get('submissions', '')}
+              y={(data) => data.get('impressions', '')}
             >
               <VictoryLine />
               <VictoryScatter

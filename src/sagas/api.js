@@ -2,7 +2,6 @@ import { call, put, select } from 'redux-saga/effects'
 import { selectAuthToken } from '../selectors/auth'
 import { OAUTH_CLIENT_ID } from '../env'
 
-
 function mergeSuccessAction({ type, payload }, response) {
   return {
     type: `${type}_SUCCESS`,
