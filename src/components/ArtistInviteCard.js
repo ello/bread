@@ -25,6 +25,7 @@ const CardHolder = styled.span`
   margin: 0 auto;
   width: 100%;
   max-width: 1360px;
+  background-color: ${colors.darkGrey};
   background-image: url(${(props) => props.imgSrc});
   background-position: center center;
   background-size: cover;
