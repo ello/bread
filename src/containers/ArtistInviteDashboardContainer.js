@@ -32,7 +32,7 @@ import {
 import styled from 'styled-components'
 import { media } from '../constants/styled/mixins'
 
-import ArtistInviteListItem from '../components/ArtistInviteListItem'
+import ArtistInviteCard from '../components/ArtistInviteCard'
 import SubmissionCount from '../components/ArtistInviteDashboard/SubmissionCount'
 import ParticipantCount from '../components/ArtistInviteDashboard/ParticipantCount'
 import SubmissionGraph from '../components/ArtistInviteDashboard/SubmissionGraph'
@@ -123,12 +123,11 @@ class ArtistInviteDashboardContainer extends Component {
     return (
       <div>
         <ArtistInviteHeader>
-          <ArtistInviteListItem
-            key={'artist-invite:' + artistInvite.get('id')}
-            id={artistInvite.get('id')}
+          <ArtistInviteCard
+            renderedFromLink={false}
+            imgSrc={artistInvite.get('headerImage').getIn(['optimized', 'url'])}
             title={artistInvite.get('title')}
             type={artistInvite.get('inviteType')}
-            headerImage={artistInvite.get('headerImage')}
           />
         </ArtistInviteHeader>
         <SubmissionCount
