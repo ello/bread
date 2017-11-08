@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
   VictoryChart,
+  VictoryTooltip,
   VictoryBar,
 } from 'victory'
 import ChartTitle from './ChartTitle'
@@ -60,6 +61,7 @@ export default class ActivityBar extends Component {
             >
               <VictoryBar
                 standalone={false}
+                labelComponent={<VictoryTooltip/>}
                 data={[
                   this.commentActivity(),
                   this.followerActivity(),

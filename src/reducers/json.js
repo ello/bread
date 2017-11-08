@@ -24,16 +24,23 @@ function totalSubmissions(state, action) {
   return mergeDataFromServer(state, updatedResponse)
 }
 
+function networkActivities(state, action) {
+  const totalAct = action.payload.response['total_activities'] || []
+  const updatedResponse = { 'total_activities': mergeVictoryLabel(totalAct, 'type', 'activities') }
+  return mergeDataFromServer(state, updatedResponse)
+}
+
 export default (state = Immutable.Map(), action) => {
   switch (action.type) {
     case ACTION_TYPES.ARTIST_INVITES.LOAD_TOTAL_PARTICIPANTS_SUCCESS:
       return totalParticipants(state, action)
     case ACTION_TYPES.ARTIST_INVITES.LOAD_TOTAL_SUBMISSIONS_SUCCESS:
       return totalSubmissions(state, action)
+    case ACTION_TYPES.ARTIST_INVITES.LOAD_NETWORK_ACTIVITIES_SUCCESS:
+      return networkActivities(state, action)
     case ACTION_TYPES.ARTIST_INVITES.LOAD_DAILY_SUBMISSIONS_SUCCESS:
     case ACTION_TYPES.ARTIST_INVITES.LOAD_DAILY_IMPRESSIONS_SUCCESS:
     case ACTION_TYPES.ARTIST_INVITES.LOAD_TOTAL_IMPRESSIONS_SUCCESS:
-    case ACTION_TYPES.ARTIST_INVITES.LOAD_NETWORK_ACTIVITIES_SUCCESS:
     case ACTION_TYPES.ARTIST_INVITES.LOAD_SUCCESS:
       return mergeDataFromServer(state, action.payload.response)
     default:
