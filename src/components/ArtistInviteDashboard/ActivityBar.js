@@ -24,7 +24,6 @@ export default class ActivityBar extends Component {
 
   commentActivity = () => {
     const { totalCommentActivity } = this.props
-    console.log(totalCommentActivity.toJS())
     return totalCommentActivity.toJS()
   }
 
