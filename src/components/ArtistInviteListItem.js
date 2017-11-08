@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'
 import { colors } from '../constants/styled/colors'
-import { media, contentAlign, toRGB } from '../constants/styled/mixins'
+import { toRGB } from '../constants/styled/mixins'
 
 import ArtistInviteCard from '../components/ArtistInviteCard'
 
