@@ -124,12 +124,12 @@ class ArtistInviteDashboardContainer extends Component {
       <div>
         <ArtistInviteHeader>
           <ArtistInviteCard
-            renderedFromLink={false}
             imgSrc={artistInvite.get('headerImage').getIn(['optimized', 'url'])}
             title={artistInvite.get('title')}
             type={artistInvite.get('inviteType')}
           />
         </ArtistInviteHeader>
+
         <SubmissionCount
           totalApprovedSubmissions={totalApprovedSubmissions}
           totalUnapprovedSubmissions={totalUnapprovedSubmissions}

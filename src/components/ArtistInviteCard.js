@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'
 import { ff, fs } from '../constants/styled/font_stack'
@@ -11,14 +10,12 @@ const propTypes = {
   imgSrc: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.string,
-  renderedFromLink: PropTypes.bool.isRequired,
 }
 
 const defaultProps = {
   imgSrc: null,
   title: null,
   type: null,
-  renderedFromLink: true,
 }
 
 const CardHolder = styled.span`
@@ -81,7 +78,7 @@ const ContentHolder = styled.span`
   }
 `
 
-const ArtistInviteCard = ({ imgSrc, title, type, renderedFromLink }) => (
+const ArtistInviteCard = ({ imgSrc, title, type }) => (
   <CardHolder imgSrc={imgSrc}>
     <ContentHolder>
       <span className="inner">

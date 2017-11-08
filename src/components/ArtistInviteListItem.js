@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'
-import { media } from '../constants/styled/mixins'
 
 import ArtistInviteCard from '../components/ArtistInviteCard'
 
@@ -29,7 +28,6 @@ export default class ArtistInviteListItem extends Component {
     return (
       <StyledLink to={`/artist-invites/${id}`}>
         <ArtistInviteCard
-          renderedFromLink
           imgSrc={headerImage.getIn(['optimized', 'url'])}
           title={title}
           type={type}
