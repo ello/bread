@@ -17,12 +17,14 @@ const defaultProps = {
 }
 
 const TitleHolder = styled.h1`
+  position: relative;
   margin: 0;
   font-size: 1.25em;
   line-height: 100%;
   text-align: left;
   float: left;
   ${contentAlign.vertical}
+  z-index: 2;
 
   a {
     text-decoration: none;

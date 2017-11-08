@@ -14,6 +14,8 @@ const NavHolder = styled.nav`
 
 const NavList = styled.ul`
   ${resetList}
+  position: relative;
+  z-index: 1;
 
   li {
     display: inline-block;
