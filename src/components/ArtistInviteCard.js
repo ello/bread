@@ -79,7 +79,7 @@ const ContentHolder = styled.span`
 `
 
 const ArtistInviteCard = ({ imgSrc, title, type }) => (
-  <CardHolder imgSrc={imgSrc}>
+  <CardHolder imgSrc={imgSrc} className="artist-invite-card">
     <ContentHolder>
       <span className="inner">
         <h1>{title}</h1>
