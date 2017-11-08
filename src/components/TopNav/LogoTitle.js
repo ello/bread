@@ -51,14 +51,14 @@ const Text = styled.span`
 
 const renderWithLink = () => (
   <TitleHolder title="Ello">
-    <Link to="/">
+    <a href="/" title="Back to Ello">
       <Logo>
         <ElloLogo />
       </Logo>
       <Text>
         Ello
       </Text>
-    </Link>
+    </a>
   </TitleHolder>
 )
 
