@@ -2,6 +2,19 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
+import styled from 'styled-components'
+
+import ArtistInviteCard from '../components/ArtistInviteCard'
+
+const StyledLink = styled(Link)`
+  display: block;
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`
+
 export default class ArtistInviteListItem extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
@@ -13,13 +26,13 @@ export default class ArtistInviteListItem extends Component {
   render() {
     const { title, type, id, headerImage } = this.props
     return (
-      <Link to={`/artist-invites/${id}`}>
-        <div className="ArtistInviteListItem">
-          <img src={headerImage.getIn(['optimized', 'url'])} height="100" alt ="" />
-          <h1>{title}</h1>
-          <p>{type}</p>
-        </div>
-      </Link>
+      <StyledLink to={`/artist-invites/${id}`}>
+        <ArtistInviteCard
+          imgSrc={headerImage.getIn(['optimized', 'url'])}
+          title={title}
+          type={type}
+        />
+      </StyledLink>
     )
   }
 }
