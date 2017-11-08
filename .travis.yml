@@ -1,0 +1,10 @@
+language: node_js
+cache: yarn
+script:
+- yarn lint
+- yarn test
+deploy:
+  provider: script
+  script: yarn build
+  on:
+    branch: master
