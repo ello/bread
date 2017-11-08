@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
+  VictoryAxis,
   VictoryChart,
   VictoryLine,
   VictoryVoronoiContainer,
@@ -36,7 +37,7 @@ export default class SubmissionGraph extends Component {
             >
               <VictoryGroup
                 color="#c43a31"
-                labels={(d) => d.y}
+                labels={(d) => `${d.x}\n${d.y}`}
                 labelComponent={
                   <VictoryTooltip
                     style={{fontSize: 10}}
@@ -73,6 +74,13 @@ export default class SubmissionGraph extends Component {
                       },
                     }
                   }]}
+                />
+                <VictoryAxis
+                  dependentAxis={true}
+                  tickFormat={(t) => ''}
+                />
+                <VictoryAxis
+                  tickFormat={(t) => ''}
                 />
               </VictoryGroup>
             </VictoryChart>
