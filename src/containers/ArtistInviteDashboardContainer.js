@@ -28,6 +28,10 @@ import {
   selectMentionActivity,
   selectRepostActivity,
 } from '../selectors/artist_invites'
+
+import styled from 'styled-components'
+import { media } from '../constants/styled/mixins'
+
 import ArtistInviteListItem from '../components/ArtistInviteListItem'
 import SubmissionCount from '../components/ArtistInviteDashboard/SubmissionCount'
 import ParticipantCount from '../components/ArtistInviteDashboard/ParticipantCount'
@@ -36,6 +40,12 @@ import ViewCountGraph from '../components/ArtistInviteDashboard/ViewCountGraph'
 import ViewCountOverlay from '../components/ArtistInviteDashboard/ViewCountOverlay'
 import ViewCountAverageOverlay from '../components/ArtistInviteDashboard/ViewCountAverageOverlay'
 import ActivityBar from '../components/ArtistInviteDashboard/ActivityBar'
+
+const ArtistInviteHeader = styled.header`
+  padding: 0 40px 0 40px;
+  ${media.max1360`padding: 0 20px 0 20px;`}
+  ${media.max640`padding: 0 10px 0 10px;`}
+`
 
 function mapStateToProps(state, props) {
   const { match: { params } } = props
@@ -112,13 +122,15 @@ class ArtistInviteDashboardContainer extends Component {
     } = this.props
     return (
       <div>
-        <ArtistInviteListItem
-          key={'artist-invite:' + artistInvite.get('id')}
-          id={artistInvite.get('id')}
-          title={artistInvite.get('title')}
-          type={artistInvite.get('inviteType')}
-          headerImage={artistInvite.get('headerImage')}
-        />
+        <ArtistInviteHeader>
+          <ArtistInviteListItem
+            key={'artist-invite:' + artistInvite.get('id')}
+            id={artistInvite.get('id')}
+            title={artistInvite.get('title')}
+            type={artistInvite.get('inviteType')}
+            headerImage={artistInvite.get('headerImage')}
+          />
+        </ArtistInviteHeader>
         <SubmissionCount
           totalApprovedSubmissions={totalApprovedSubmissions}
           totalUnapprovedSubmissions={totalUnapprovedSubmissions}
