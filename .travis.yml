@@ -4,11 +4,11 @@ node_js:
 cache: yarn
 script:
   - yarn lint
-  - yarn test
+    #- yarn test
 node_js:
   - "6.4.0"
 deploy:
   provider: script
   script: yarn build
   on:
-    branch: master
+    branch: "ap/travis"
