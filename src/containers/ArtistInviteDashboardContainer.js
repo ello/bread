@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Immutable from 'immutable'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {
@@ -40,6 +41,7 @@ import ViewCountGraph from '../components/ArtistInviteDashboard/ViewCountGraph'
 import ViewCountOverlay from '../components/ArtistInviteDashboard/ViewCountOverlay'
 import ViewCountAverageOverlay from '../components/ArtistInviteDashboard/ViewCountAverageOverlay'
 import ActivityBar from '../components/ArtistInviteDashboard/ActivityBar'
+import CustomCharts from '../components/ArtistInviteDashboard/CustomCharts'
 
 const ArtistInviteHeader = styled.header`
   padding: 0 40px 0 40px;
@@ -160,6 +162,9 @@ class ArtistInviteDashboardContainer extends Component {
           totalLoveActivity={totalLoveActivity}
           totalMentionActivity={totalMentionActivity}
           totalRepostActivity={totalRepostActivity}
+        />
+        <CustomCharts
+          data={artistInvite.get('customStats', Immutable.List())}
         />
       </div>
     )

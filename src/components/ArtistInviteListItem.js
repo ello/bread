@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'
+import { colors } from '../constants/styled/colors'
+import { toRGB } from '../constants/styled/mixins'
 
 import ArtistInviteCard from '../components/ArtistInviteCard'
 
@@ -12,6 +14,14 @@ const StyledLink = styled(Link)`
 
   &:last-child {
     margin-bottom: 0;
+  }
+
+  &:hover {
+    .artist-invite-card {
+      .cover {
+        background-color: rgba(${toRGB(colors.black)}, 0.8);
+      }
+    }
   }
 `
 

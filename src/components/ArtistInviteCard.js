@@ -25,6 +25,7 @@ const CardHolder = styled.span`
   margin: 0 auto;
   width: 100%;
   max-width: 1360px;
+  background-color: ${colors.darkGrey};
   background-image: url(${(props) => props.imgSrc});
   background-position: center center;
   background-size: cover;
@@ -79,7 +80,7 @@ const ContentHolder = styled.span`
 `
 
 const ArtistInviteCard = ({ imgSrc, title, type }) => (
-  <CardHolder imgSrc={imgSrc}>
+  <CardHolder imgSrc={imgSrc} className="artist-invite-card">
     <ContentHolder>
       <span className="inner">
         <h1>{title}</h1>
