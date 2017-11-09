@@ -7,8 +7,5 @@ script:
     #- yarn test
 node_js:
   - "6.4.0"
-deploy:
-  provider: script
-  script: yarn install && yarn build
-  on:
-    branch: "ap/travis"
+after_success:
+  - test $TRAVIS_PULL_REQUEST = false && test $TRAVIS_BRANCH = "ap/travis" && yarn build
