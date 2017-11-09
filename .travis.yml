@@ -8,4 +8,4 @@ script:
 node_js:
   - "6.4.0"
 after_success:
-  - test $TRAVIS_PULL_REQUEST = false && test $TRAVIS_BRANCH = "ap/travis" && yarn build
+  - test $TRAVIS_PULL_REQUEST = false && test $TRAVIS_BRANCH = "master" && yarn build
