@@ -6,6 +6,8 @@ import { ff, fs } from '../../constants/styled/font_stack'
 import { colors } from '../../constants/styled/colors'
 // import { media } from '../../constants/styled/mixins'
 
+import ArtistInviteCountDown from './ArtistInviteCountDown'
+
 const propTypes = {
   status: PropTypes.string.isRequired,
 }
@@ -17,6 +19,7 @@ const defaultProps = {
 const StatusHolder = styled.h3`
   ${ff.light.full}
   ${fs.h4.size}
+  color: ${colors.grey};
 
   &.closed { .current-status { color: ${colors.red} } }
   &.open { .current-status { color: ${colors.green} } }
@@ -46,7 +49,11 @@ const ArtistInviteStatus = ({ status }) => (
   <StatusHolder className={'status-holder ' + status}>
     <span className="current-status">{getStatusText(status)}</span>
     &nbsp;
-    <span className="time-remaining">Forever</span>
+    <ArtistInviteCountDown
+      status={status}
+      openedAt={(new Date("October 31, 2017 11:13:00")).toString()}
+      closedAt={(new Date("December 1, 2017 11:13:00")).toString()}
+    />
   </StatusHolder>
 )
 
