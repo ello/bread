@@ -34,6 +34,7 @@ import styled from 'styled-components'
 import { media } from '../constants/styled/mixins'
 
 import ArtistInviteCard from '../components/ArtistInviteCard'
+import ArtistInviteStatus from '../components/ArtistInviteDashboard/ArtistInviteStatus'
 import SubmissionCount from '../components/ArtistInviteDashboard/SubmissionCount'
 import ParticipantCount from '../components/ArtistInviteDashboard/ParticipantCount'
 import SubmissionGraph from '../components/ArtistInviteDashboard/SubmissionGraph'
@@ -47,6 +48,13 @@ const ArtistInviteHeader = styled.header`
   padding: 0 40px 0 40px;
   ${media.max1360`padding: 0 20px 0 20px;`}
   ${media.max640`padding: 0 10px 0 10px;`}
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1440px;
+
+  .status-holder {
+    margin: 40px 0 40px 0;
+  }
 `
 
 function mapStateToProps(state, props) {
@@ -129,6 +137,9 @@ class ArtistInviteDashboardContainer extends Component {
             imgSrc={artistInvite.get('headerImage').getIn(['optimized', 'url'])}
             title={artistInvite.get('title')}
             type={artistInvite.get('inviteType')}
+          />
+          <ArtistInviteStatus
+            status="open"
           />
         </ArtistInviteHeader>
 
