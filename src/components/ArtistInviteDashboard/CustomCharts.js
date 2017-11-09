@@ -82,7 +82,7 @@ export default class CustomCharts extends Component {
 
   render() {
     const { data } = this.props
-    console.log(data.toJS())
+    // console.log(data.toJS())
     return (
       <div>
         { data && data.map((datum, index) =>
