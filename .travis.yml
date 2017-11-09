@@ -4,7 +4,7 @@ node_js:
 cache: yarn
 script:
   - yarn lint
-    #- yarn test
+  - yarn test
 node_js:
   - "6.4.0"
 after_success:
