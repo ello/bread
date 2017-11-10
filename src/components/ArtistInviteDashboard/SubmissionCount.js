@@ -74,8 +74,10 @@ export default class SubmissionCount extends Component {
                     return [
                       {
                         target: "data",
-                        mutation: (props, idk) => {
-                          return { style: { fill: props.style.fill, stroke: props.style.fill, strokeWidth: 10 }};
+                        mutation: (props) => {
+                          return {
+                            slice: { ...props.slice, startAngle: props.slice.startAngle + .04, endAngle: props.slice.endAngle - .04 },
+                            style: { fill: props.style.fill, stroke: props.style.fill, strokeWidth: 10 }};
                         }
                       }
                     ];
