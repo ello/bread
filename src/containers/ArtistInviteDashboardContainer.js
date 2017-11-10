@@ -57,6 +57,15 @@ const ArtistInviteHeader = styled.header`
   }
 `
 
+const ChartsHolder = styled.section`
+  padding: 0 40px 0 40px;
+  ${media.max1360`padding: 0 20px 0 20px;`}
+  ${media.max640`padding: 0 10px 0 10px;`}
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1440px;
+`
+
 function mapStateToProps(state, props) {
   const { match: { params } } = props
   return {
@@ -143,40 +152,42 @@ class ArtistInviteDashboardContainer extends Component {
           />
         </ArtistInviteHeader>
 
-        <SubmissionCount
-          totalApprovedSubmissions={totalApprovedSubmissions}
-          totalUnapprovedSubmissions={totalUnapprovedSubmissions}
-          totalDeclinedSubmissions={totalDeclinedSubmissions}
-          totalSelectedSubmissions={totalSelectedSubmissions}
-          totalSubmissions={totalSubmissions}
-        />
-        <ParticipantCount
-          totalNormalParticipants={totalNormalParticipants}
-          totalInfluentialParticipants={totalInfluentialParticipants}
-        />
-        <SubmissionGraph
-          totalDailySubmissions={totalDailySubmissions}
-        />
-        <ViewCountGraph
-          totalDailyImpressions={totalDailyImpressions}
-        />
-        <ViewCountOverlay
-          totalImpressions={totalImpressions}
-        />
-        <ViewCountAverageOverlay
-          totalImpressions={totalImpressions}
-          totalSubmissions={totalSubmissions}
-        />
-        <ActivityBar
-          totalCommentActivity={totalCommentActivity}
-          totalFollowerActivity={totalFollowerActivity}
-          totalLoveActivity={totalLoveActivity}
-          totalMentionActivity={totalMentionActivity}
-          totalRepostActivity={totalRepostActivity}
-        />
-        <CustomCharts
-          data={artistInvite.get('customStats', Immutable.List())}
-        />
+        <ChartsHolder>
+          <SubmissionCount
+            totalApprovedSubmissions={totalApprovedSubmissions}
+            totalUnapprovedSubmissions={totalUnapprovedSubmissions}
+            totalDeclinedSubmissions={totalDeclinedSubmissions}
+            totalSelectedSubmissions={totalSelectedSubmissions}
+            totalSubmissions={totalSubmissions}
+          />
+          <ParticipantCount
+            totalNormalParticipants={totalNormalParticipants}
+            totalInfluentialParticipants={totalInfluentialParticipants}
+          />
+          <SubmissionGraph
+            totalDailySubmissions={totalDailySubmissions}
+          />
+          <ViewCountGraph
+            totalDailyImpressions={totalDailyImpressions}
+          />
+          <ViewCountOverlay
+            totalImpressions={totalImpressions}
+          />
+          <ViewCountAverageOverlay
+            totalImpressions={totalImpressions}
+            totalSubmissions={totalSubmissions}
+          />
+          <ActivityBar
+            totalCommentActivity={totalCommentActivity}
+            totalFollowerActivity={totalFollowerActivity}
+            totalLoveActivity={totalLoveActivity}
+            totalMentionActivity={totalMentionActivity}
+            totalRepostActivity={totalRepostActivity}
+          />
+          <CustomCharts
+            data={artistInvite.get('customStats', Immutable.List())}
+          />
+        </ChartsHolder>
       </div>
     )
   }
