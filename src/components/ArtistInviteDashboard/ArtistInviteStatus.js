@@ -21,11 +21,11 @@ const StatusHolder = styled.h3`
   ${fs.h4.size}
   color: ${colors.grey};
 
-  &.closed { .current-status { color: ${colors.red} } }
-  &.open { .current-status { color: ${colors.green} } }
-  &.preview { .current-status { color: ${colors.blue} } }
-  &.selecting { .current-status { color: ${colors.gold} } }
-  &.upcoming { .current-status { color: ${colors.purple} } }
+  &.closed { .current-status { color: ${colors.red}; } }
+  &.open { .current-status { color: ${colors.green}; } }
+  &.preview { .current-status { color: ${colors.blue}; } }
+  &.selecting { .current-status { color: ${colors.gold}; } }
+  &.upcoming { .current-status { color: ${colors.purple}; } }
 `
 
 const getStatusText = (status) => {

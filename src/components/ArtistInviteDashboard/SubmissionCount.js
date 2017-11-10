@@ -6,6 +6,7 @@ import {
   VictoryPie,
   VictoryTooltip,
 } from 'victory'
+import ChartTitle from './ChartTitle'
 
 export default class SubmissionCount extends Component {
   static propTypes = {
@@ -47,47 +48,50 @@ export default class SubmissionCount extends Component {
   render() {
     const { totalSubmissions } = this.props
     return (
-      <div style={{width: "300px", height: "300px"}}>
-        <svg viewBox="0 0 400 400">
-          <VictoryPie
-            innerRadius={105}
-            standalone={false}
-            padding={60}
-            data={[
-              this.unapprovedSubmissions(),
-              this.declinedSubmissions(),
-              this.approvedSubmissions(),
-              this.selectedSubmissions(),
-            ]}
-            y="submissions"
-            x="status"
-            labelComponent={<VictoryTooltip/>}
-            colorScale={["lightgray", "red", "green", "orange"]}
-          />
-          <VictoryLabel
-            textAnchor="middle"
-            standalone={false}
-            style={{ fontSize: 48, fontWeight: 600 }}
-            x={200}
-            y={200}
-            text={totalSubmissions}
-          />
-          <VictoryLegend
-            x={25}
-            y={350}
-            style={{ labels: { fontSize: 18 }}}
-            orientation="horizontal"
-            gutter={25}
-            standalone={false}
-            colorScale={["lightgray", "red", "green", "orange"]}
-            data={[
-              {name: "Unapproved"},//, symbol: {type: "circle", fill: "orange"}},
-              {name: "Declined"},//, symbol: {type: "circle", fill: "orange"}},
-              {name: "Approved"},//, symbol: {type: "circle", fill: "green"}},
-              {name: "Selected"},//, symbol: {type: "circle", fill: "red"}},
-            ]}
-          />
-        </svg>
+      <div>
+        <ChartTitle title="Total Submissions" />
+        <div style={{width: "300px", height: "300px"}}>
+          <svg viewBox="0 0 400 400">
+            <VictoryPie
+              innerRadius={105}
+              standalone={false}
+              padding={60}
+              data={[
+                this.unapprovedSubmissions(),
+                this.declinedSubmissions(),
+                this.approvedSubmissions(),
+                this.selectedSubmissions(),
+              ]}
+              y="submissions"
+              x="status"
+              labelComponent={<VictoryTooltip/>}
+              colorScale={["lightgray", "red", "green", "orange"]}
+            />
+            <VictoryLabel
+              textAnchor="middle"
+              standalone={false}
+              style={{ fontSize: 48, fontWeight: 600 }}
+              x={200}
+              y={200}
+              text={totalSubmissions}
+            />
+            <VictoryLegend
+              x={25}
+              y={350}
+              style={{ labels: { fontSize: 18 }}}
+              orientation="horizontal"
+              gutter={25}
+              standalone={false}
+              colorScale={["lightgray", "red", "green", "orange"]}
+              data={[
+                {name: "Unapproved"},//, symbol: {type: "circle", fill: "orange"}},
+                {name: "Declined"},//, symbol: {type: "circle", fill: "orange"}},
+                {name: "Approved"},//, symbol: {type: "circle", fill: "green"}},
+                {name: "Selected"},//, symbol: {type: "circle", fill: "red"}},
+              ]}
+            />
+          </svg>
+        </div>
       </div>
     )
   }

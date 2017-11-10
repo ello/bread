@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { numberToHuman } from '../../lib/number_to_human'
+import ChartTitle from './ChartTitle'
 
 export default class ViewCountOverlay extends Component {
   static propTypes = {
@@ -19,10 +20,12 @@ export default class ViewCountOverlay extends Component {
 
   render() {
     return (
-      <div style={{width: "100px", height: "100px", margin: "100px 0px 0px 0px"}}>
-        <p>Total Views</p>
-        <div style={{backgroundColor: "grey", textAlign: "center", padding: "70px"}}>
-          { this.totalImpressionsFmt() }
+      <div>
+        <ChartTitle title="Total Views" />
+        <div style={{width: "100px", height: "100px", margin: "100px 0px 0px 0px"}}>
+          <div style={{backgroundColor: "grey", textAlign: "center", padding: "70px"}}>
+            { this.totalImpressionsFmt() }
+          </div>
         </div>
       </div>
     )

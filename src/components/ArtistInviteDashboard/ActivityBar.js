@@ -4,6 +4,7 @@ import {
   VictoryChart,
   VictoryBar,
 } from 'victory'
+import ChartTitle from './ChartTitle'
 
 export default class ActivityBar extends Component {
   static propTypes = {
@@ -49,26 +50,29 @@ export default class ActivityBar extends Component {
 
   render() {
     return (
-      <div style={{width: "800px", height: "300px", marginTop: "200px"}}>
-        <svg viewBox="0 0 800 400">
-          <VictoryChart
-            standalone={false}
-            domainPadding={20}
-          >
-            <VictoryBar
+      <div>
+        <ChartTitle title="On Network Activity" />
+        <div style={{width: "800px", height: "300px", marginTop: "200px"}}>
+          <svg viewBox="0 0 800 400">
+            <VictoryChart
               standalone={false}
-              data={[
-                this.commentActivity(),
-                this.followerActivity(),
-                this.loveActivity(),
-                this.mentionActivity(),
-                this.repostActivity(),
-              ]}
-              x="type"
-              y="activities"
-            />
-          </VictoryChart>
-        </svg>
+              domainPadding={20}
+            >
+              <VictoryBar
+                standalone={false}
+                data={[
+                  this.commentActivity(),
+                  this.followerActivity(),
+                  this.loveActivity(),
+                  this.mentionActivity(),
+                  this.repostActivity(),
+                ]}
+                x="type"
+                y="activities"
+              />
+            </VictoryChart>
+          </svg>
+        </div>
       </div>
     )
   }
