@@ -97,17 +97,6 @@ export const cancelTypeSize = css`
   line-height: inherit;
 `
 
-export const flexRows = {
-  top: css`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-`,
-  bottom: css`
-  display: block;
-`,
-}
-
 export const contentAlign = {
   vertical: css`
   position: relative;

@@ -62,7 +62,7 @@ const ContentHolder = styled.span`
     position: relative;
     ${contentAlign.vertical}
 
-    h1, p {
+    h1, h2 {
       margin: 0;
       ${fs.h3.size}
       ${media.max640`${fs.h4.size}`}
@@ -72,7 +72,7 @@ const ContentHolder = styled.span`
       ${ff.black.full}
     }
 
-    p {
+    h2 {
       ${ff.light.full}
       color: ${colors.mediumGrey};
     }
@@ -84,7 +84,7 @@ const ArtistInviteCard = ({ imgSrc, title, type }) => (
     <ContentHolder>
       <span className="inner">
         <h1>{title}</h1>
-        <p>{type}</p>
+        <h2>{type}</h2>
       </span>
     </ContentHolder>
     <span className="cover"></span>

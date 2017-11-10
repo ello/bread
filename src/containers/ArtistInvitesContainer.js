@@ -11,8 +11,8 @@ import ArtistInviteListItem from '../components/ArtistInviteListItem'
 
 const ArtistInvitesList = styled.section`
   padding: 0 40px 100px 40px;
-  ${media.max1360`padding: 0 20px 0 20px;`}
-  ${media.max640`padding: 0 10px 0 10px;`}
+  ${media.max1360`padding: 0 20px 80px 20px;`}
+  ${media.max640`padding: 0 10px 40px 10px;`}
 `
 
 function mapStateToProps(state, props) {
