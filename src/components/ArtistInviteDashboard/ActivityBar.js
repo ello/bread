@@ -53,28 +53,26 @@ export default class ActivityBar extends Component {
     return (
       <div className="chart-container full">
         <ChartTitle title="On Network Activity" />
-        <div style={{width: "800px", height: "300px", marginTop: "200px"}}>
-          <svg viewBox="0 0 800 400">
-            <VictoryChart
+        <svg viewBox="0 0 1360 310" className="chart">
+          <VictoryChart
+            standalone={false}
+            domainPadding={20}
+          >
+            <VictoryBar
               standalone={false}
-              domainPadding={20}
-            >
-              <VictoryBar
-                standalone={false}
-                labelComponent={<VictoryTooltip/>}
-                data={[
-                  this.commentActivity(),
-                  this.followerActivity(),
-                  this.loveActivity(),
-                  this.mentionActivity(),
-                  this.repostActivity(),
-                ]}
-                x="type"
-                y="activities"
-              />
-            </VictoryChart>
-          </svg>
-        </div>
+              labelComponent={<VictoryTooltip/>}
+              data={[
+                this.commentActivity(),
+                this.followerActivity(),
+                this.loveActivity(),
+                this.mentionActivity(),
+                this.repostActivity(),
+              ]}
+              x="type"
+              y="activities"
+            />
+          </VictoryChart>
+        </svg>
       </div>
     )
   }

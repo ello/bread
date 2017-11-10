@@ -31,6 +31,7 @@ import {
 } from '../selectors/artist_invites'
 
 import styled from 'styled-components'
+import { colors } from '../constants/styled/colors'
 import { media } from '../constants/styled/mixins'
 
 import ArtistInviteCard from '../components/ArtistInviteCard'
@@ -74,6 +75,12 @@ const ChartsHolder = styled.section`
     &.quarter { width: 25%; }
     &.half { width: 50%; }
     &.full { width: 100%; }
+
+    .chart {
+      width: 100%;
+      background-color: ${colors.grey};
+      border-radius: 5px;
+    }
   }
 `
 
