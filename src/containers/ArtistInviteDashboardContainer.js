@@ -61,8 +61,9 @@ const ArtistInviteHeader = styled.header`
 const ChartsHolder = styled.section`
   display: flex;
   flex-wrap: wrap;
-  padding: 0 40px 0 40px;
-  ${media.max1360`padding: 0 20px 0 20px;`}
+  justify-content: space-between;
+  padding: 0 20px 0 20px;
+  ${media.max1360`padding: 0 10px 0 10px;`}
   ${media.max640`padding: 0 10px 0 10px;`}
   margin: 0 auto;
   width: 100%;
@@ -70,11 +71,23 @@ const ChartsHolder = styled.section`
 
   .chart-container {
     display: block;
+    margin-left: 20px;
+    margin-right: 20px;
     margin-bottom: 40px;
 
-    &.quarter { width: 25%; }
-    &.half { width: 50%; }
+    &.quarter { width: calc(25% - 40px); }
+    &.half { width: calc(50% - 40px); }
     &.full { width: 100%; }
+
+    ${media.max1360`
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-bottom: 20px;
+
+      &.quarter { width: calc(25% - 20px); }
+      &.half { width: calc(50% - 20px); }
+      &.full { width: 100%; }
+    `}
 
     .chart {
       width: 100%;

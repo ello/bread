@@ -7,6 +7,11 @@ import { ff, fs } from '../../constants/styled/font_stack'
 const ChartTitleHolder = styled.h4`
   ${ff.light.full}
   ${fs.h6.size}
+  margin-bottom: 8px;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 const propTypes = {
