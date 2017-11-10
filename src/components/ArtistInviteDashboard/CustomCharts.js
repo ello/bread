@@ -7,6 +7,7 @@ import {
   VictoryTooltip,
 } from 'victory'
 import { numberToHuman } from '../../lib/number_to_human'
+import ChartTitle from './ChartTitle'
 
 function pieChartLegend(data) {
   const x = data.map(function(datum) {
@@ -28,7 +29,8 @@ function overlayNumber(data) {
 const CustomPie = ({
   datum,
 }) =>
-  <div style={{width: "300px", height: "300px", margin: "100px 0px 0px 0px"}}>
+  <div style={{width: "300px", height: "300px", margin: "100px 0px 0px 0px"}} className="chart-holder quarter">
+    <ChartTitle title="Custom Chart" />
     <svg viewBox="0 0 400 400">
       <VictoryPie
         innerRadius={105}
