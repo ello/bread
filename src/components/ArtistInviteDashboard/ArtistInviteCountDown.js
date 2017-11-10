@@ -66,7 +66,6 @@ class ArtistInviteCountDown extends React.PureComponent {
   }
 
   render() {
-    const { className } = this.props
     return (
       <span className="countdown">{this.renderByStatus()}</span>
     )
