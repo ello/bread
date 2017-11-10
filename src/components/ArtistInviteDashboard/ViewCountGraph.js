@@ -26,7 +26,7 @@ export default class ViewCountGraph extends Component {
 
   render() {
     return (
-      <div>
+      <div className="chart-container half">
         <ChartTitle title="Total View Over Time" />
         <div style={{width: "400px", height: "200px"}}>
           <svg viewBox="0 0 400 400">

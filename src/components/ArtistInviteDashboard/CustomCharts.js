@@ -29,7 +29,7 @@ function overlayNumber(data) {
 const CustomPie = ({
   datum,
 }) =>
-  <div style={{width: "300px", height: "300px", margin: "100px 0px 0px 0px"}} className="chart-holder quarter">
+  <div style={{width: "300px", height: "300px", margin: "100px 0px 0px 0px"}} className="chart-container quarter">
     <ChartTitle title="Custom Chart" />
     <svg viewBox="0 0 400 400">
       <VictoryPie

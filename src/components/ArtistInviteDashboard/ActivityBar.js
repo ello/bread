@@ -50,7 +50,7 @@ export default class ActivityBar extends Component {
 
   render() {
     return (
-      <div>
+      <div className="chart-container full">
         <ChartTitle title="On Network Activity" />
         <div style={{width: "800px", height: "300px", marginTop: "200px"}}>
           <svg viewBox="0 0 800 400">

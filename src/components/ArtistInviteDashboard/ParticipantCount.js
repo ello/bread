@@ -36,7 +36,7 @@ export default class SubmissionCount extends Component {
 
   render() {
     return (
-      <div>
+      <div className="chart-container quarter">
         <ChartTitle title="Total Participants" />
         <div style={{width: "300px", height: "300px"}}>
           <svg viewBox="0 0 400 400">

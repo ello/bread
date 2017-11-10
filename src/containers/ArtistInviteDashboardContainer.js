@@ -58,12 +58,23 @@ const ArtistInviteHeader = styled.header`
 `
 
 const ChartsHolder = styled.section`
+  display: flex;
+  flex-wrap: wrap;
   padding: 0 40px 0 40px;
   ${media.max1360`padding: 0 20px 0 20px;`}
   ${media.max640`padding: 0 10px 0 10px;`}
   margin: 0 auto;
   width: 100%;
   max-width: 1440px;
+
+  .chart-container {
+    display: block;
+    margin-bottom: 40px;
+
+    &.quarter { width: 25%; }
+    &.half { width: 50%; }
+    &.full { width: 100%; }
+  }
 `
 
 function mapStateToProps(state, props) {

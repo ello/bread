@@ -20,7 +20,7 @@ export default class ViewCountOverlay extends Component {
 
   render() {
     return (
-      <div>
+      <div className="chart-container quarter">
         <ChartTitle title="Total Views" />
         <div style={{width: "100px", height: "100px", margin: "100px 0px 0px 0px"}}>
           <div style={{backgroundColor: "grey", textAlign: "center", padding: "70px"}}>
