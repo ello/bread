@@ -64,7 +64,7 @@ const ChartsHolder = styled.section`
   justify-content: space-between;
   padding: 0 20px 0 20px;
   ${media.max1360`padding: 0 10px 0 10px;`}
-  ${media.max640`padding: 0 10px 0 10px;`}
+  ${media.max640`padding: 0 5px 0 5px;`}
   margin: 0 auto;
   width: 100%;
   max-width: 1440px;
@@ -75,25 +75,63 @@ const ChartsHolder = styled.section`
     margin-right: 20px;
     margin-bottom: 40px;
 
-    &.quarter { width: calc(25% - 40px); }
-    &.half { width: calc(50% - 40px); }
-    &.full { width: 100%; }
-
     ${media.max1360`
       margin-left: 10px;
       margin-right: 10px;
       margin-bottom: 20px;
-
-      &.quarter { width: calc(25% - 20px); }
-      &.half { width: calc(50% - 20px); }
-      &.full { width: 100%; }
     `}
 
-    .chart {
-      width: 100%;
+    ${media.max640`
+      margin-left: 5px;
+      margin-right: 5px;
+      margin-bottom: 10px;
+    `}
+
+    .chart-structure {
+      position: relative;
+      display: block;
+      padding-bottom: 100%;
       background-color: ${colors.grey};
       border-radius: 5px;
+      width: 100%;
+
+      .chart {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
     }
+
+    &.quarter {
+      width: calc(25% - 40px);
+      ${media.max1360`width: calc(25% - 20px);`}
+      ${media.max640`width: calc(25% - 10px);`}
+    }
+
+    &.half {
+      width: calc(50% - 40px);
+      ${media.max1360`width: calc(50% - 20px);`}
+      ${media.max640`width: calc(50% - 10px);`}
+
+      .chart-structure {
+        padding-bottom: calc(50% - 20px);
+        ${media.max1360`padding-bottom: calc(50% - 10px);`}
+        ${media.max640`padding-bottom: calc(50% - 5px);`}
+      }
+    }
+    &.full {
+      width: 100%;
+
+      .chart-structure {
+        padding-bottom: calc(25% - 30px);
+        ${media.max1360`padding-bottom: calc(25% - 15px);`}
+        ${media.max1360`padding-bottom: calc(25% - 7.5px);`}
+      }
+    }
+
+
+
+
   }
 `
 

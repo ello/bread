@@ -29,61 +29,63 @@ export default class SubmissionGraph extends Component {
     return (
       <div className="chart-container half">
         <ChartTitle title="Total Submissions Over Time" />
-        <svg viewBox="0 0 660 310" className="chart">
-          <VictoryChart
-            standalone={false}
-            containerComponent={<VictoryVoronoiContainer/>}
-          >
-            <VictoryGroup
-              color="#c43a31"
-              labels={(d) => `${d.x}\n${d.y}`}
-              labelComponent={
-                <VictoryTooltip
-                  style={{fontSize: 10}}
-                />
-              }
-              data={this.dailySubmissions()}
-              x={(data) => data.get('date', '')}
-              y={(data) => data.get('submissions', '')}
+        <div className="chart-structure">
+          <svg viewBox="0 0 660 310" className="chart">
+            <VictoryChart
+              standalone={false}
+              containerComponent={<VictoryVoronoiContainer/>}
             >
-              <VictoryLine />
-              <VictoryScatter
-                events={[{
-                  target: "data",
-                  eventHandlers: {
-                    onMouseEnter: () => {
-                      return [
-                        {
-                          target: "data",
-                          mutation: (props) => {
-                            return { size: 8 };
+              <VictoryGroup
+                color="#c43a31"
+                labels={(d) => `${d.x}\n${d.y}`}
+                labelComponent={
+                  <VictoryTooltip
+                    style={{fontSize: 10}}
+                  />
+                }
+                data={this.dailySubmissions()}
+                x={(data) => data.get('date', '')}
+                y={(data) => data.get('submissions', '')}
+              >
+                <VictoryLine />
+                <VictoryScatter
+                  events={[{
+                    target: "data",
+                    eventHandlers: {
+                      onMouseEnter: () => {
+                        return [
+                          {
+                            target: "data",
+                            mutation: (props) => {
+                              return { size: 8 };
+                            }
                           }
-                        }
-                      ];
-                    },
-                    onMouseLeave: () => {
-                      return [
-                        {
-                          target: "data",
-                          mutation: (props) => {
-                            return { size: 5 };
+                        ];
+                      },
+                      onMouseLeave: () => {
+                        return [
+                          {
+                            target: "data",
+                            mutation: (props) => {
+                              return { size: 5 };
+                            }
                           }
-                        }
-                      ];
-                    },
-                  }
-                }]}
-              />
-              <VictoryAxis
-                dependentAxis={true}
-                tickFormat={(t) => ''}
-              />
-              <VictoryAxis
-                tickFormat={(t) => ''}
-              />
-            </VictoryGroup>
-          </VictoryChart>
-        </svg>
+                        ];
+                      },
+                    }
+                  }]}
+                />
+                <VictoryAxis
+                  dependentAxis={true}
+                  tickFormat={(t) => ''}
+                />
+                <VictoryAxis
+                  tickFormat={(t) => ''}
+                />
+              </VictoryGroup>
+            </VictoryChart>
+          </svg>
+        </div>
       </div>
     )
   }

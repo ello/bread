@@ -51,11 +51,13 @@ export default class ViewCountAverageOverlay extends Component {
     return (
       <div className="chart-container quarter">
         <ChartTitle title="Average Views Per Submission" />
-        <Chart className="chart">
-          <p>
-            <span className="stat">{ this.avgImpressionsPerSubmission() }</span>
-          </p>
-        </Chart>
+        <div className="chart-structure">
+          <Chart className="chart">
+            <p>
+              <span className="stat">{ this.avgImpressionsPerSubmission() }</span>
+            </p>
+          </Chart>
+        </div>
       </div>
     )
   }

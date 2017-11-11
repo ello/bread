@@ -48,11 +48,13 @@ export default class ViewCountOverlay extends Component {
     return (
       <div className="chart-container quarter">
         <ChartTitle title="Total Views" />
-        <Chart className="chart">
-          <p>
-            <span className="stat">{ this.totalImpressionsFmt() }</span>
-          </p>
-        </Chart>
+        <div className="chart-structure">
+          <Chart className="chart">
+            <p>
+              <span className="stat">{ this.totalImpressionsFmt() }</span>
+            </p>
+          </Chart>
+        </div>
       </div>
     )
   }
