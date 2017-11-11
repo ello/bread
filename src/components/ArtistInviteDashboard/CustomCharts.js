@@ -31,7 +31,6 @@ const ChartsHolder = styled.section`
     &.quarter { width: calc(25% - 20px); }
     &.half { width: calc(50% - 40px); }
     &.full { width: 100%; }
-
     ${media.max1360`
       margin-right: 20px;
       margin-bottom: 20px;

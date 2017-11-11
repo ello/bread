@@ -74,13 +74,11 @@ const ChartsHolder = styled.section`
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 40px;
-
     ${media.max1360`
       margin-left: 10px;
       margin-right: 10px;
       margin-bottom: 20px;
     `}
-
     ${media.max640`
       margin-left: 5px;
       margin-right: 5px;
@@ -105,13 +103,13 @@ const ChartsHolder = styled.section`
     &.quarter {
       width: calc(25% - 40px);
       ${media.max1360`width: calc(25% - 20px);`}
-      ${media.max640`width: calc(25% - 10px);`}
+      ${media.max640`width: calc(50% - 10px);`}
     }
 
     &.half {
       width: calc(50% - 40px);
       ${media.max1360`width: calc(50% - 20px);`}
-      ${media.max640`width: calc(50% - 10px);`}
+      ${media.max640`width: calc(100% - 10px);`}
 
       .chart-structure {
         padding-bottom: calc(50% - 20px);
@@ -119,19 +117,15 @@ const ChartsHolder = styled.section`
         ${media.max640`padding-bottom: calc(50% - 5px);`}
       }
     }
+
     &.full {
       width: 100%;
-
       .chart-structure {
         padding-bottom: calc(25% - 30px);
         ${media.max1360`padding-bottom: calc(25% - 15px);`}
-        ${media.max1360`padding-bottom: calc(25% - 7.5px);`}
+        ${media.max640`padding-bottom: calc(50% - 5px);`}
       }
     }
-
-
-
-
   }
 `
 
