@@ -26,7 +26,7 @@ export default class SubmissionGraph extends Component {
   }
 
   formattedDate = (date) => {
-    return moment(date).format('MM/DD/YYYY')
+    return moment(date).format('MM/DD/YY')
   }
 
   render() {
@@ -78,7 +78,7 @@ export default class SubmissionGraph extends Component {
                       return [
                         {
                           target: "data",
-                          mutation: (props, idk) => {
+                          mutation: (props) => {
                             return { size: 7 };
                           }
                         }
