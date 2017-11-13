@@ -15,7 +15,7 @@ const ChartTitleHolder = styled.h4`
 `
 
 const propTypes = {
-  title: PropTypes.bool,
+  title: PropTypes.string,
 }
 
 const defaultProps = {
