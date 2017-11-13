@@ -59,6 +59,7 @@ const ArtistInviteHeader = styled.header`
 `
 
 const ChartsHolder = styled.section`
+  /* stylelint-disable rule-empty-line-before, declaration-empty-line-before */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -74,11 +75,13 @@ const ChartsHolder = styled.section`
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 40px;
+
     ${media.max1360`
       margin-left: 10px;
       margin-right: 10px;
       margin-bottom: 20px;
     `}
+
     ${media.max640`
       margin-left: 5px;
       margin-right: 5px;
@@ -127,6 +130,7 @@ const ChartsHolder = styled.section`
       }
     }
   }
+  /* stylelint-enable rule-empty-line-before, declaration-empty-line-before */
 `
 
 function mapStateToProps(state, props) {
