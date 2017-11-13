@@ -50,8 +50,8 @@ export default class SubmissionCount extends Component {
     return (
       <div className="chart-container quarter">
         <ChartTitle title="Total Submissions" />
-        <div style={{width: "310px", height: "310px", backgroundColor: "#E5E5E5", borderRadius: "5px" }}>
-          <svg viewBox="0 0 400 400">
+        <div className="chart-structure">
+          <svg viewBox="0 0 400 400" className="chart">
             <VictoryPie
               innerRadius={105}
               labelRadius={123}

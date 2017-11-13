@@ -7,7 +7,72 @@ import {
   VictoryTooltip,
 } from 'victory'
 import { numberToHuman } from '../../lib/number_to_human'
+
+import styled from 'styled-components'
+import { colors } from '../../constants/styled/colors'
+import { ff, fs } from '../../constants/styled/font_stack'
+import { media } from '../../constants/styled/mixins'
+
 import ChartTitle from './ChartTitle'
+
+const ChartsHolder = styled.section`
+  width: 100%;
+
+  .chart-container {
+    display: block;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    float: left;
+
+    &:nth-child(4n) {
+      margin-right: 0;
+    }
+
+    &.quarter { width: calc(25% - 20px); }
+    &.half { width: calc(50% - 40px); }
+    &.full { width: 100%; }
+    ${media.max1360`
+      margin-right: 20px;
+      margin-bottom: 20px;
+
+      &:nth-child(4n) {
+        margin-right: 0;
+      }
+
+      &.quarter { width: calc(25% - 10px); }
+      &.half { width: calc(50% - 20px); }
+      &.full { width: 100%; }
+    `}
+
+    .chart {
+      width: 100%;
+      background-color: ${colors.grey};
+      border-radius: 5px;
+    }
+  }
+`
+
+const OverlayChart = styled.div`
+  position: relative;
+  padding-bottom: 100%;
+
+  p {
+    position: absolute;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+    .stat {
+      display: block;
+      ${ff.black.full}
+      ${fs.h3.size}
+      color: ${colors.black};
+    }
+  }
+`
 
 function pieChartLegend(data) {
   const x = data.map(function(datum) {
@@ -29,9 +94,9 @@ function overlayNumber(data) {
 const CustomPie = ({
   datum,
 }) =>
-  <div style={{width: "300px", height: "300px", margin: "100px 0px 0px 0px"}} className="chart-container quarter">
-    <ChartTitle title="Custom Chart" />
-    <svg viewBox="0 0 400 400">
+  <div className="chart-container quarter">
+    <ChartTitle title={datum.get('title')} />
+    <svg viewBox="0 0 400 400" className="chart">
       <VictoryPie
         innerRadius={105}
         standalone={false}
@@ -62,11 +127,13 @@ const CustomPie = ({
 const CustomOverlay = ({
   datum,
 }) =>
-  <div style={{width: "100px", height: "100px", margin: "100px 0px 0px 0px"}}>
-    <p>{datum.get('title')}</p>
-    <div style={{backgroundColor: "grey", textAlign: "center", padding: "70px"}}>
-      { overlayNumber(datum.get('data')) }
-    </div>
+  <div className="chart-container quarter">
+    <ChartTitle title={datum.get('title')} />
+    <OverlayChart className="chart">
+      <p>
+        <span className="stat">{ overlayNumber(datum.get('data')) }</span>
+      </p>
+    </OverlayChart>
   </div>
 
   CustomOverlay.propTypes = {
@@ -85,13 +152,13 @@ export default class CustomCharts extends Component {
   render() {
     const { data } = this.props
     return (
-      <div>
+      <ChartsHolder>
         { data && data.map((datum, index) =>
           datum.get('type') === 'pie' ?
           <CustomPie key={`CustomChart_${index + 1}`} datum={datum} />
           : <CustomOverlay key={`CustomChart_${index + 1}`} datum={datum} />
         )}
-      </div>
+      </ChartsHolder>
     )
   }
 }

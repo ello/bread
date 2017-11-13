@@ -27,9 +27,9 @@ export default class ViewCountGraph extends Component {
   render() {
     return (
       <div className="chart-container half">
-        <ChartTitle title="Total View Over Time" />
-        <div style={{width: "400px", height: "200px"}}>
-          <svg viewBox="0 0 400 400">
+        <ChartTitle title="Total Views Over Time" />
+        <div className="chart-structure">
+          <svg viewBox="0 0 660 310" className="chart">
             <VictoryChart
               standalone={false}
               containerComponent={<VictoryVoronoiContainer/>}

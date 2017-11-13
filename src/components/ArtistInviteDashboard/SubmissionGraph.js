@@ -29,8 +29,8 @@ export default class SubmissionGraph extends Component {
     return (
       <div className="chart-container half">
         <ChartTitle title="Total Submissions Over Time" />
-        <div style={{width: "400px", height: "200px"}}>
-          <svg viewBox="0 0 400 400">
+        <div className="chart-structure">
+          <svg viewBox="0 0 660 310" className="chart">
             <VictoryChart
               standalone={false}
               containerComponent={<VictoryVoronoiContainer/>}

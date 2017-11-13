@@ -31,6 +31,7 @@ import {
 } from '../selectors/artist_invites'
 
 import styled from 'styled-components'
+import { colors } from '../constants/styled/colors'
 import { media } from '../constants/styled/mixins'
 
 import ArtistInviteCard from '../components/ArtistInviteCard'
@@ -58,23 +59,78 @@ const ArtistInviteHeader = styled.header`
 `
 
 const ChartsHolder = styled.section`
+  /* stylelint-disable rule-empty-line-before, declaration-empty-line-before */
   display: flex;
   flex-wrap: wrap;
-  padding: 0 40px 0 40px;
-  ${media.max1360`padding: 0 20px 0 20px;`}
-  ${media.max640`padding: 0 10px 0 10px;`}
+  justify-content: space-between;
+  padding: 0 20px 0 20px;
+  ${media.max1360`padding: 0 10px 0 10px;`}
+  ${media.max640`padding: 0 5px 0 5px;`}
   margin: 0 auto;
   width: 100%;
   max-width: 1440px;
 
   .chart-container {
     display: block;
+    margin-left: 20px;
+    margin-right: 20px;
     margin-bottom: 40px;
 
-    &.quarter { width: 25%; }
-    &.half { width: 50%; }
-    &.full { width: 100%; }
+    ${media.max1360`
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-bottom: 20px;
+    `}
+
+    ${media.max640`
+      margin-left: 5px;
+      margin-right: 5px;
+      margin-bottom: 10px;
+    `}
+
+    .chart-structure {
+      position: relative;
+      display: block;
+      padding-bottom: 100%;
+      background-color: ${colors.grey};
+      border-radius: 5px;
+      width: 100%;
+
+      .chart {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &.quarter {
+      width: calc(25% - 40px);
+      ${media.max1360`width: calc(25% - 20px);`}
+      ${media.max640`width: calc(50% - 10px);`}
+    }
+
+    &.half {
+      width: calc(50% - 40px);
+      ${media.max1360`width: calc(50% - 20px);`}
+      ${media.max640`width: calc(100% - 10px);`}
+
+      .chart-structure {
+        padding-bottom: calc(50% - 20px);
+        ${media.max1360`padding-bottom: calc(50% - 10px);`}
+        ${media.max640`padding-bottom: calc(50% - 5px);`}
+      }
+    }
+
+    &.full {
+      width: 100%;
+      .chart-structure {
+        padding-bottom: calc(25% - 30px);
+        ${media.max1360`padding-bottom: calc(25% - 15px);`}
+        ${media.max640`padding-bottom: calc(50% - 5px);`}
+      }
+    }
   }
+  /* stylelint-enable rule-empty-line-before, declaration-empty-line-before */
 `
 
 function mapStateToProps(state, props) {
