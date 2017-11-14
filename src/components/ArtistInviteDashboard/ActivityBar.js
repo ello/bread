@@ -4,6 +4,7 @@ import {
   VictoryChart,
   VictoryTooltip,
   VictoryBar,
+  VictoryAxis,
 } from 'victory'
 import ChartTitle from './ChartTitle'
 
@@ -49,6 +50,10 @@ export default class ActivityBar extends Component {
     return totalRepostActivity.toJS()
   }
 
+  capitalize = (word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1)
+  }
+
   render() {
     return (
       <div className="chart-container full">
@@ -59,9 +64,25 @@ export default class ActivityBar extends Component {
               standalone={false}
               domainPadding={20}
             >
+              <VictoryAxis
+                dependentAxis={true}
+                tickValues={[0,1,2,3,4,5]}
+                style={{
+                  axis: {stroke: "translucent"},
+                  axisLabel: {fontSize: 20, padding: 30},
+                  grid: {stroke: "#ACACAC"},
+                  tickLabels: {fontSize: 15, padding: 5},
+                }}
+              />
+              <VictoryAxis
+                tickFormat={(t) => this.capitalize(t)}
+                style={{
+                  axis: {stroke: "translucent"},
+                }}
+              />
               <VictoryBar
                 standalone={false}
-                labelComponent={<VictoryTooltip/>}
+                labelComponent={<VictoryTooltip pointerLength={8} pointerWidth={14} cornerRadius={0} height={50} width={65} orientation='top' flyoutStyle={{fill: "black"}} style={{fill: "white"}} />}
                 data={[
                   this.commentActivity(),
                   this.followerActivity(),

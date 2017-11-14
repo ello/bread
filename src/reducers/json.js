@@ -2,13 +2,17 @@ import Immutable from 'immutable'
 import * as ACTION_TYPES from '../constants/action_types'
 import { parseJSONApi } from '../helpers/json'
 
+function capitalize(word) {
+  return word.charAt(0).toUpperCase() + word.slice(1)
+}
+
 function mergeDataFromServer(state, response) {
   return state.mergeDeepWith((a, b) => (b === null ? a : b), parseJSONApi(response, state))
 }
 
 function mergeVictoryLabel(collection, labelName, labelValue) {
   return collection.map(function(obj) {
-    return Object.assign(obj, { label: `${obj[labelName]}\n${obj[labelValue]}` })
+    return Object.assign(obj, { label: `${capitalize(obj[labelName])}\n${obj[labelValue]}` })
   })
 }
 
