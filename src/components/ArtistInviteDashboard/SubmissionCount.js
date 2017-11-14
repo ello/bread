@@ -7,6 +7,7 @@ import {
   VictoryTooltip,
 } from 'victory'
 import ChartTitle from './ChartTitle'
+import { colors } from '../../constants/styled/colors'
 
 export default class SubmissionCount extends Component {
   static propTypes = {
@@ -66,7 +67,7 @@ export default class SubmissionCount extends Component {
               y="submissions"
               x="status"
               labelComponent={<VictoryTooltip pointerLength={8} pointerWidth={14} cornerRadius={0} height={50} width={100} orientation='top' flyoutStyle={{fill: "black"}} style={{fill: "white", fontSize: "18px"}}/>}
-              colorScale={["#AAAAAA" /*grey*/, "#B64442" /*red*/, "#00D300" /*green*/, "#FFC700" /*yellow*/]}
+              colorScale={[colors.mediumGrey, colors.red, colors.green, colors.yellow]}
               events={[{
                 target: "data",
                 eventHandlers: {
