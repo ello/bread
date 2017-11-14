@@ -6,6 +6,8 @@ import {
   VictoryBar,
   VictoryAxis,
 } from 'victory'
+import { colors } from '../../constants/styled/colors'
+import { typeface } from '../../constants/styled/font_stack'
 import ChartTitle from './ChartTitle'
 
 export default class ActivityBar extends Component {
@@ -59,10 +61,12 @@ export default class ActivityBar extends Component {
       <div className="chart-container full">
         <ChartTitle title="On Network Activity" />
         <div className="chart-structure">
-          <svg viewBox="0 0 1360 310" className="chart">
+          <svg className="chart bar">
             <VictoryChart
               standalone={false}
-              domainPadding={20}
+              width={1360}
+              height={310}
+              padding={{ top: 20, bottom: 40, left: 0, right: 0 }}
             >
               <VictoryAxis
                 dependentAxis={true}
@@ -70,14 +74,18 @@ export default class ActivityBar extends Component {
                 style={{
                   axis: {stroke: "translucent"},
                   axisLabel: {fontSize: 20, padding: 30},
-                  grid: {stroke: "#ACACAC"},
-                  tickLabels: {fontSize: 15, padding: 5},
+                  grid: {stroke: colors.mediumGrey},
+                  tickLabels: {fontSize: 12, fontFamily: typeface.regular, fill: colors.mediumGrey, padding: -20},
                 }}
               />
               <VictoryAxis
+                role={'yolo'}
+                offsetY={40}
+                domain={{ x: [0, 6] }}
                 tickFormat={(t) => this.capitalize(t)}
                 style={{
                   axis: {stroke: "translucent"},
+                  tickLabels: {fontSize: 12, fontFamily: typeface.regular, fill: colors.black},
                 }}
               />
               <VictoryBar

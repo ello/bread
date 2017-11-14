@@ -6,8 +6,8 @@ import {
   VictoryPie,
   VictoryTooltip,
 } from 'victory'
-import ChartTitle from './ChartTitle'
 import { colors } from '../../constants/styled/colors'
+import ChartTitle from './ChartTitle'
 
 export default class SubmissionCount extends Component {
   static propTypes = {
