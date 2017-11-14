@@ -9,6 +9,8 @@ import {
   VictoryTooltip,
   VictoryScatter,
 } from 'victory'
+import { colors } from '../../constants/styled/colors'
+import { typeface } from '../../constants/styled/font_stack'
 import ChartTitle from './ChartTitle'
 
 export default class SubmissionGraph extends Component {
@@ -34,12 +36,13 @@ export default class SubmissionGraph extends Component {
       <div className="chart-container half">
         <ChartTitle title="Total Submissions Over Time" />
         <div className="chart-structure">
-          <svg viewBox="0 0 660 310" className="chart">
+          <svg className="chart">
             <VictoryChart
               domainPadding={{y: 30}}
               standalone={false}
-              height={400}
-              width={300}
+              width={660}
+              height={310}
+              padding={{ top: 24, bottom: -34, left: 0, right: 0 }}
               groupComponent={<g transform="translate(0, -60)" />}
               containerComponent={<VictoryVoronoiContainer/>}
             >
@@ -47,15 +50,16 @@ export default class SubmissionGraph extends Component {
                 data={this.dailySubmissions()}
                 x={(data) => data.get('date', '')}
                 y={(data) => data.get('submissions', '')}
+                style={{data: {stroke: colors.black}}}
               />
               <VictoryAxis
                 dependentAxis={true}
                 tickValues={[0,5,10,15,20,25,30,35,40,45,50]}
                 style={{
                   axis: {stroke: "translucent"},
-                  axisLabel: {fontSize: 20, padding: 30},
-                  grid: {stroke: "#ACACAC"},
-                  tickLabels: {fontSize: 15, padding: 5},
+                  axisLabel: {fontSize: 20, fontFamily: typeface.regular, fill: colors.mediumGrey, padding: 30},
+                  grid: {stroke: colors.mediumGrey},
+                  tickLabels: {fontSize: 12, fontFamily: typeface.regular, fill: colors.mediumGrey, padding: -34},
                 }}
               />
               <VictoryAxis
@@ -69,7 +73,8 @@ export default class SubmissionGraph extends Component {
                 x={(data) => data.get('date', '')}
                 y={(data) => data.get('submissions', '')}
                 size={6}
-                labelComponent={<VictoryTooltip pointerLength={8} pointerWidth={14} cornerRadius={0} height={50} width={65} orientation='top' flyoutStyle={{fill: "black"}} style={{fill: "white"}} />}
+                style={{data: {fill: colors.black}}}
+                labelComponent={<VictoryTooltip pointerLength={8} pointerWidth={14} cornerRadius={0} height={50} width={100} orientation='top' flyoutStyle={{fill: colors.black}} style={{fill: colors.white, fontSize: 12, fontFamily: typeface.regular}} />}
                 labels={(d) => `${this.formattedDate(d.x)}\n${d.y}`}
                 events={[{
                   target: "data",

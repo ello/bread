@@ -73,9 +73,9 @@ export default class ActivityBar extends Component {
                 tickValues={[0,1,2,3,4,5]}
                 style={{
                   axis: {stroke: "translucent"},
-                  axisLabel: {fontSize: 20, padding: 30, fontFamily: typeface.regular},
+                  axisLabel: {fontSize: 20, fontFamily: typeface.regular, padding: 30},
                   grid: {stroke: colors.mediumGrey},
-                  tickLabels: {fontSize: 12, fontFamily: typeface.regular, fill: colors.mediumGrey, padding: -20},
+                  tickLabels: {fontSize: 12, fontFamily: typeface.regular, fill: colors.mediumGrey, padding: -34},
                 }}
               />
               <VictoryAxis
