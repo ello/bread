@@ -7,6 +7,7 @@ import {
   VictoryTooltip,
 } from 'victory'
 import { colors } from '../../constants/styled/colors'
+import { typeface } from '../../constants/styled/font_stack'
 import ChartTitle from './ChartTitle'
 
 export default class SubmissionCount extends Component {
@@ -52,7 +53,7 @@ export default class SubmissionCount extends Component {
               ]}
               y="participants"
               x="type"
-              labelComponent={<VictoryTooltip pointerLength={8} pointerWidth={14} cornerRadius={0} height={50} width={100} orientation='top' flyoutStyle={{fill: "black"}} style={{fill: "white", fontSize: "18px"}}/>}
+              labelComponent={<VictoryTooltip pointerLength={8} pointerWidth={14} cornerRadius={0} height={50} width={100} orientation='top' flyoutStyle={{fill: colors.black}} style={{fill: colors.white, fontSize: "16px", fontFamily: typeface.regular}}/>}
               colorScale={[colors.mediumGrey, colors.black]}
               events={[{
                 target: "data",
@@ -85,7 +86,7 @@ export default class SubmissionCount extends Component {
             <VictoryLabel
               textAnchor="middle"
               standalone={false}
-              style={{ fontSize: 48, fontWeight: 'bold' }}
+              style={{ fontSize: 48, fontWeight: 'normal', fontFamily: typeface.black }}
               x={200}
               y={200}
               text={this.totalParticipantCount()}
@@ -93,12 +94,12 @@ export default class SubmissionCount extends Component {
             <VictoryLegend
               y={370}
               x={8}
-              style={{ labels: { fontSize: 18 }}}
+              style={{ labels: { fontSize: 16, fontFamily: typeface.regular }}}
               orientation="horizontal"
               gutter={25}
               symbolSpacer={10}
               standalone={false}
-              colorScale={["black"]}
+              colorScale={[colors.black]}
               data={[
                 {name: "Influencers"},
               ]}

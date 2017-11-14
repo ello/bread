@@ -73,7 +73,7 @@ export default class ActivityBar extends Component {
                 tickValues={[0,1,2,3,4,5]}
                 style={{
                   axis: {stroke: "translucent"},
-                  axisLabel: {fontSize: 20, padding: 30},
+                  axisLabel: {fontSize: 20, padding: 30, fontFamily: typeface.regular},
                   grid: {stroke: colors.mediumGrey},
                   tickLabels: {fontSize: 12, fontFamily: typeface.regular, fill: colors.mediumGrey, padding: -20},
                 }}
@@ -90,7 +90,7 @@ export default class ActivityBar extends Component {
               />
               <VictoryBar
                 standalone={false}
-                labelComponent={<VictoryTooltip pointerLength={8} pointerWidth={14} cornerRadius={0} height={50} width={65} orientation='top' flyoutStyle={{fill: "black"}} style={{fill: "white"}} />}
+                labelComponent={<VictoryTooltip pointerLength={8} pointerWidth={14} cornerRadius={0} height={50} width={100} orientation='top' flyoutStyle={{fill: colors.black}} style={{fill: colors.white, fontSize: 12, fontFamily: typeface.regular}} />}
                 data={[
                   this.commentActivity(),
                   this.followerActivity(),
