@@ -8,6 +8,7 @@ import {
   VictoryTooltip,
   VictoryScatter,
   VictoryAxis,
+  VictoryLabel,
 } from 'victory'
 import { colors } from '../../constants/styled/colors'
 import { typeface } from '../../constants/styled/font_stack'
@@ -42,8 +43,7 @@ export default class ViewCountGraph extends Component {
               standalone={false}
               width={660}
               height={310}
-              padding={{ top: 30, bottom: -30, left: 0, right: 0 }}
-              groupComponent={<g transform="translate(0, -60)" />}
+              padding={{ top: 25, bottom: 25, left: 0, right: 0 }}
               containerComponent={<VictoryVoronoiContainer/>}
             >
               <VictoryLine
@@ -55,15 +55,17 @@ export default class ViewCountGraph extends Component {
               <VictoryAxis
                 dependentAxis={true}
                 tickValues={[0,100,200,300]}
+                tickLabelComponent={ <VictoryLabel dx="28" verticalAnchor="end" textAnchor="end" lineHeight="1.75" /> }
                 style={{
                   axis: {stroke: "translucent"},
                   axisLabel: {fontSize: 20, fontFamily: typeface.regular, fill: colors.mediumGrey, padding: 30},
                   grid: {stroke: colors.mediumGrey},
-                  tickLabels: {fontSize: 12, fontFamily: typeface.regular, fill: colors.mediumGrey, padding: -34},
+                  tickLabels: {fontSize: 11, fontFamily: typeface.regular, fill: colors.mediumGrey, padding: 0},
                 }}
               />
               <VictoryAxis
                 tickFormat={(t) => ''}
+                domain={{ x: [0.6, 5.075] }}
                 style={{
                   axis: {stroke: "translucent"},
                 }}

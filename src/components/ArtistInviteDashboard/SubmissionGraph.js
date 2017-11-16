@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import {
-  VictoryAxis,
   VictoryChart,
   VictoryLine,
   VictoryVoronoiContainer,
   VictoryTooltip,
   VictoryScatter,
+  VictoryAxis,
+  VictoryLabel,
 } from 'victory'
 import { colors } from '../../constants/styled/colors'
 import { typeface } from '../../constants/styled/font_stack'
@@ -38,12 +39,11 @@ export default class SubmissionGraph extends Component {
         <div className="chart-structure">
           <svg className="chart">
             <VictoryChart
-              domainPadding={{y: 30}}
+              domainPadding={0}
               standalone={false}
               width={660}
               height={310}
-              padding={{ top: 24, bottom: -34, left: 0, right: 0 }}
-              groupComponent={<g transform="translate(0, -60)" />}
+              padding={{ top: 25, bottom: 25, left: 0, right: 0 }}
               containerComponent={<VictoryVoronoiContainer/>}
             >
               <VictoryLine
@@ -55,15 +55,17 @@ export default class SubmissionGraph extends Component {
               <VictoryAxis
                 dependentAxis={true}
                 tickValues={[0,5,10,15,20,25,30,35,40,45,50]}
+                tickLabelComponent={ <VictoryLabel dx="28" verticalAnchor="end" textAnchor="end" lineHeight="1.75" /> }
                 style={{
                   axis: {stroke: "translucent"},
                   axisLabel: {fontSize: 20, fontFamily: typeface.regular, fill: colors.mediumGrey, padding: 30},
                   grid: {stroke: colors.mediumGrey},
-                  tickLabels: {fontSize: 12, fontFamily: typeface.regular, fill: colors.mediumGrey, padding: -34},
+                  tickLabels: {fontSize: 11, fontFamily: typeface.regular, fill: colors.mediumGrey, padding: 0},
                 }}
               />
               <VictoryAxis
                 tickFormat={(t) => ''}
+                domain={{ x: [0.6, 5.075] }}
                 style={{
                   axis: {stroke: "translucent"},
                 }}

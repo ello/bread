@@ -5,6 +5,7 @@ import {
   VictoryTooltip,
   VictoryBar,
   VictoryAxis,
+  VictoryLabel,
 } from 'victory'
 import { colors } from '../../constants/styled/colors'
 import { typeface } from '../../constants/styled/font_stack'
@@ -66,11 +67,12 @@ export default class ActivityBar extends Component {
               standalone={false}
               width={1360}
               height={310}
-              padding={{ top: 20, bottom: 40, left: 0, right: 0 }}
+              padding={{ top: 40, bottom: 40, left: 0, right: 0 }}
             >
               <VictoryAxis
                 dependentAxis={true}
                 tickValues={[0,1,2,3,4,5]}
+                tickLabelComponent={ <VictoryLabel dx="-5" verticalAnchor="end" textAnchor="end" lineHeight="1.75" /> }
                 style={{
                   axis: {stroke: "translucent"},
                   axisLabel: {fontSize: 20, fontFamily: typeface.regular, padding: 30},
@@ -79,7 +81,6 @@ export default class ActivityBar extends Component {
                 }}
               />
               <VictoryAxis
-                role={'yolo'}
                 offsetY={40}
                 domain={{ x: [0, 6] }}
                 tickFormat={(t) => this.capitalize(t)}
@@ -98,6 +99,7 @@ export default class ActivityBar extends Component {
                   this.mentionActivity(),
                   this.repostActivity(),
                 ]}
+                style={{ data: { width: 40 } }}
                 x="type"
                 y="activities"
               />
