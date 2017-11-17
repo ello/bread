@@ -215,7 +215,9 @@ class ArtistInviteDashboardContainer extends Component {
             type={artistInvite.get('inviteType')}
           />
           <ArtistInviteStatus
-            status="open"
+            status={artistInvite.get('status')}
+            openedAt={artistInvite.get('openedAt')}
+            closedAt={artistInvite.get('closedAt')}
           />
         </ArtistInviteHeader>
 
