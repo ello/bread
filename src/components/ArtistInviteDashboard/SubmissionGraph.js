@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import moment from 'moment'
 import {
   VictoryChart,
   VictoryLine,
   VictoryVoronoiContainer,
   VictoryTooltip,
-  VictoryGroup,
   VictoryScatter,
+  VictoryAxis,
+  VictoryLabel,
 } from 'victory'
+import { colors } from '../../constants/styled/colors'
+import { typeface } from '../../constants/styled/font_stack'
 import ChartTitle from './ChartTitle'
 
 export default class SubmissionGraph extends Component {
@@ -24,57 +28,82 @@ export default class SubmissionGraph extends Component {
     return totalDailySubmissions.valueSeq().toArray()
   }
 
+  formattedDate = (date) => {
+    return moment(date).format('MM/DD/YY')
+  }
+
   render() {
     return (
       <div className="chart-container half">
         <ChartTitle title="Total Submissions Over Time" />
-        <div style={{width: "400px", height: "200px"}}>
-          <svg viewBox="0 0 400 400">
+        <div className="chart-structure">
+          <svg className="chart">
             <VictoryChart
+              domainPadding={0}
               standalone={false}
+              width={660}
+              height={310}
+              padding={{ top: 25, bottom: 25, left: 0, right: 0 }}
               containerComponent={<VictoryVoronoiContainer/>}
             >
-              <VictoryGroup
-                color="#c43a31"
-                labels={(d) => d.y}
-                labelComponent={
-                  <VictoryTooltip
-                    style={{fontSize: 10}}
-                  />
-                }
+              <VictoryLine
                 data={this.dailySubmissions()}
                 x={(data) => data.get('date', '')}
                 y={(data) => data.get('submissions', '')}
-              >
-                <VictoryLine />
-                <VictoryScatter
-                  events={[{
-                    target: "data",
-                    eventHandlers: {
-                      onMouseEnter: () => {
-                        return [
-                          {
-                            target: "data",
-                            mutation: (props) => {
-                              return { size: 8 };
-                            }
+                style={{data: {stroke: colors.black}}}
+              />
+              <VictoryAxis
+                dependentAxis={true}
+                tickValues={[0,5,10,15,20,25,30,35,40,45,50]}
+                tickLabelComponent={ <VictoryLabel dx="28" verticalAnchor="end" textAnchor="end" lineHeight="1.75" /> }
+                style={{
+                  axis: {stroke: "translucent"},
+                  axisLabel: {fontSize: 20, fontFamily: typeface.regular, fill: colors.mediumGrey, padding: 30},
+                  grid: {stroke: colors.mediumGrey},
+                  tickLabels: {fontSize: 11, fontFamily: typeface.regular, fill: colors.mediumGrey, padding: 0},
+                }}
+              />
+              <VictoryAxis
+                tickFormat={(t) => ''}
+                domain={{ x: [0.6, 5.075] }}
+                style={{
+                  axis: {stroke: "translucent"},
+                }}
+              />
+              <VictoryScatter
+                data={this.dailySubmissions()}
+                x={(data) => data.get('date', '')}
+                y={(data) => data.get('submissions', '')}
+                size={6}
+                style={{data: {fill: colors.black}}}
+                labelComponent={<VictoryTooltip pointerLength={8} pointerWidth={14} cornerRadius={0} height={50} width={100} orientation='top' flyoutStyle={{fill: colors.black}} style={{fill: colors.white, fontSize: 12, fontFamily: typeface.regular}} />}
+                labels={(d) => `${this.formattedDate(d.x)}\n${d.y}`}
+                events={[{
+                  target: "data",
+                  eventHandlers: {
+                    onMouseEnter: () => {
+                      return [
+                        {
+                          target: "data",
+                          mutation: (props) => {
+                            return { size: 7 };
                           }
-                        ];
-                      },
-                      onMouseLeave: () => {
-                        return [
-                          {
-                            target: "data",
-                            mutation: (props) => {
-                              return { size: 5 };
-                            }
+                        }
+                      ];
+                    },
+                    onMouseLeave: () => {
+                      return [
+                        {
+                          target: "data",
+                          mutation: (props) => {
+                            return { size: 6 };
                           }
-                        ];
-                      },
-                    }
-                  }]}
-                />
-              </VictoryGroup>
+                        }
+                      ];
+                    },
+                  }
+                }]}
+              />
             </VictoryChart>
           </svg>
         </div>

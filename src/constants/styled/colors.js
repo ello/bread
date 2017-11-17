@@ -13,15 +13,15 @@ export const colors = {
   mediumGrey: '#aaa',
   darkGrey: '#666',
   // color
-  red: '#fe0404',
+  red: '#b64442',
   darkRed: '#970101',
   purple: '#c000ff',
   darkPurple: '#5a0078',
   blue: '#3034f9',
   darkBlue: '#040696',
-  yellow: '#fffed0',
+  yellow: '#ffc700',
   gold: '#ffb100',
   darkGold: '#805900',
-  green: '#00d100',
+  green: '#00d300',
   darkGreen: '#007500',
 }

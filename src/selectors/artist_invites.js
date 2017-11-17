@@ -32,7 +32,9 @@ export function selectTotalSubmissions(state, id) {
 }
 
 export function selectDailySubmissions(state, id) {
-  return state.json.get('dailySubmissions', Immutable.Map()).filter(sub => sub.get('artistInviteId') === id)
+  return state.json.get('dailySubmissions', Immutable.OrderedMap())
+    .filter(sub => sub.get('artistInviteId') === id)
+    .sortBy(sub => sub.get('date'))
 }
 
 export function selectInfluentialParticipants(state, id) {
@@ -44,7 +46,9 @@ export function selectNormalParticipants(state, id) {
 }
 
 export function selectDailyImpressions(state, id) {
-  return state.json.get('dailyImpressions', Immutable.Map()).filter(sub => sub.get('artistInviteId') === id)
+  return state.json.get('dailyImpressions', Immutable.OrderedMap())
+    .filter(sub => sub.get('artistInviteId') === id)
+    .sortBy(sub => sub.get('date'))
 }
 
 export function selectTotalImpressions(state, id) {

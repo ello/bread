@@ -6,6 +6,8 @@ import {
   VictoryPie,
   VictoryTooltip,
 } from 'victory'
+import { colors } from '../../constants/styled/colors'
+import { typeface } from '../../constants/styled/font_stack'
 import ChartTitle from './ChartTitle'
 
 export default class SubmissionCount extends Component {
@@ -50,10 +52,11 @@ export default class SubmissionCount extends Component {
     return (
       <div className="chart-container quarter">
         <ChartTitle title="Total Submissions" />
-        <div style={{width: "300px", height: "300px"}}>
-          <svg viewBox="0 0 400 400">
+        <div className="chart-structure">
+          <svg viewBox="0 0 400 400" className="chart">
             <VictoryPie
               innerRadius={105}
+              labelRadius={123}
               standalone={false}
               padding={60}
               data={[
@@ -64,30 +67,57 @@ export default class SubmissionCount extends Component {
               ]}
               y="submissions"
               x="status"
-              labelComponent={<VictoryTooltip/>}
-              colorScale={["lightgray", "red", "green", "orange"]}
+              labelComponent={<VictoryTooltip pointerLength={8} pointerWidth={14} cornerRadius={0} height={50} width={104} orientation='top' flyoutStyle={{fill: colors.black}} style={{fill: colors.white, fontSize: "16px", fontFamily: typeface.regular}}/>}
+              colorScale={[colors.mediumGrey, colors.red, colors.green, colors.yellow]}
+              events={[{
+                target: "data",
+                eventHandlers: {
+                  onMouseEnter: () => {
+                    return [
+                      {
+                        target: "data",
+                        mutation: (props) => {
+                          return {
+                            slice: { ...props.slice, startAngle: props.slice.startAngle + .04, endAngle: props.slice.endAngle - .04 },
+                            style: { fill: props.style.fill, stroke: props.style.fill, strokeWidth: 10 }};
+                        }
+                      }
+                    ];
+                  },
+                  onMouseLeave: () => {
+                    return [
+                      {
+                        target: "data",
+                        mutation: (props) => {
+                          return { strokeWidth: 0 };
+                        }
+                      }
+                    ];
+                  },
+                }
+              }]}
             />
             <VictoryLabel
               textAnchor="middle"
               standalone={false}
-              style={{ fontSize: 48, fontWeight: 600 }}
+              style={{ fontSize: 48, fontWeight: 'normal', fontFamily: typeface.black }}
               x={200}
               y={200}
               text={totalSubmissions}
             />
             <VictoryLegend
-              x={25}
-              y={350}
-              style={{ labels: { fontSize: 18 }}}
+              y={370}
+              x={8}
+              style={{ labels: { fontSize: 16, fontFamily: typeface.regular }}}
               orientation="horizontal"
               gutter={25}
+              symbolSpacer={10}
               standalone={false}
-              colorScale={["lightgray", "red", "green", "orange"]}
+              colorScale={[colors.yellow, colors.green, colors.red]}
               data={[
-                {name: "Unapproved"},//, symbol: {type: "circle", fill: "orange"}},
-                {name: "Declined"},//, symbol: {type: "circle", fill: "orange"}},
-                {name: "Approved"},//, symbol: {type: "circle", fill: "green"}},
-                {name: "Selected"},//, symbol: {type: "circle", fill: "red"}},
+                {name: "Selected"},
+                {name: "Approved"},
+                {name: "Declined"},
               ]}
             />
           </svg>

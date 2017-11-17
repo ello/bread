@@ -70,7 +70,7 @@
     "selector-list-comma-space-after": "always-single-line",
     "selector-list-comma-space-before": "never",
     "selector-max-attribute": 5,
-    "selector-max-class": 3,
+    "selector-max-class": 4,
     "selector-max-combinators": 3,
     "selector-max-compound-selectors": 4,
     "selector-max-empty-lines": 0,
