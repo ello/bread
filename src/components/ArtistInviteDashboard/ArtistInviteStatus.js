@@ -10,6 +10,8 @@ import ArtistInviteCountDown from './ArtistInviteCountDown'
 
 const propTypes = {
   status: PropTypes.string.isRequired,
+  openedAt: PropTypes.string.isRequired,
+  closedAt: PropTypes.string.isRequired,
 }
 
 const defaultProps = {
@@ -45,14 +47,14 @@ const getStatusText = (status) => {
   }
 }
 
-const ArtistInviteStatus = ({ status }) => (
+const ArtistInviteStatus = ({ status, openedAt, closedAt }) => (
   <StatusHolder className={'status-holder ' + status}>
     <span className="current-status">{getStatusText(status)}</span>
     &nbsp;
     <ArtistInviteCountDown
       status={status}
-      openedAt={(new Date("October 31, 2017 11:13:00")).toString()}
-      closedAt={(new Date("December 1, 2017 11:13:00")).toString()}
+      openedAt={openedAt}
+      closedAt={closedAt}
     />
   </StatusHolder>
 )
