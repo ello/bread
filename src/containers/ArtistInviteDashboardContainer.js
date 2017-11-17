@@ -210,7 +210,7 @@ class ArtistInviteDashboardContainer extends Component {
       <div>
         <ArtistInviteHeader>
           <ArtistInviteCard
-            imgSrc={artistInvite.get('headerImage').getIn(['optimized', 'url'])}
+            imgSrc={artistInvite.getIn(['headerImage', 'optimized', 'url'])}
             title={artistInvite.get('title')}
             type={artistInvite.get('inviteType')}
           />
