@@ -208,18 +208,20 @@ class ArtistInviteDashboardContainer extends Component {
     } = this.props
     return (
       <div>
-        <ArtistInviteHeader>
-          <ArtistInviteCard
-            imgSrc={artistInvite.getIn(['headerImage', 'optimized', 'url'])}
-            title={artistInvite.get('title')}
-            type={artistInvite.get('inviteType')}
-          />
-          <ArtistInviteStatus
-            status={artistInvite.get('status')}
-            openedAt={artistInvite.get('openedAt')}
-            closedAt={artistInvite.get('closedAt')}
-          />
-        </ArtistInviteHeader>
+        {artistInvite.get('id') &&
+          <ArtistInviteHeader>
+            <ArtistInviteCard
+              imgSrc={artistInvite.getIn(['headerImage', 'optimized', 'url'])}
+              title={artistInvite.get('title')}
+              type={artistInvite.get('inviteType')}
+            />
+            <ArtistInviteStatus
+              status={artistInvite.get('status')}
+              openedAt={artistInvite.get('openedAt')}
+              closedAt={artistInvite.get('closedAt')}
+            />
+          </ArtistInviteHeader>
+        }
 
         <ChartsHolder>
           <SubmissionCount
