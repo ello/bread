@@ -6,8 +6,8 @@ import { ff, fs } from '../constants/styled/font_stack'
 import { colors } from '../constants/styled/colors'
 import { em } from '../constants/styled/mixins'
 
-// Button Styles --------------------------------
-const ButtonStyled = styled.button`
+// FormButton Styles --------------------------------
+const FormButtonStyled = styled.button`
   cursor: pointer;
   width: 100%;
   padding: 0 ${em(30)} 0 ${em(30)};
@@ -33,7 +33,7 @@ const ButtonStyled = styled.button`
   }
 `
 
-// Button Props ---------------------------------
+// FormButton Props ---------------------------------
 const propTypes = {
   clickText: PropTypes.string.isRequired,
   handleClick: PropTypes.func,
@@ -65,18 +65,18 @@ const compiledClasses = ({ disabled, className }) => {
   return allClasses.join(' ')
 }
 
-const Button = ({ clickText, type, handleClick, disabled, className }) => (
-  <ButtonStyled
+const FormButton = ({ clickText, type, handleClick, disabled, className }) => (
+  <FormButtonStyled
     type={type}
     onClick={handleClick}
     disabled={disabled}
     className={compiledClasses({ disabled, className })}
   >
     {clickText}
-  </ButtonStyled>
+  </FormButtonStyled>
 )
 
-Button.propTypes = propTypes
-Button.defaultProps = defaultProps
+FormButton.propTypes = propTypes
+FormButton.defaultProps = defaultProps
 
-export default Button
+export default FormButton
