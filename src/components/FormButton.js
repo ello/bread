@@ -19,7 +19,7 @@ const FormButtonStyled = styled.button`
   border-style: solid;
   border-color: ${colors.green};
   background-color: ${colors.green};
-  background-color 0.2s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.2s cubic-bezier(0.23, 1, 0.32, 1), color 0.2s cubic-bezier(0.23, 1, 0.32, 1), width 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: background-color 0.2s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.2s cubic-bezier(0.23, 1, 0.32, 1), color 0.2s cubic-bezier(0.23, 1, 0.32, 1), width 0.2s cubic-bezier(0.23, 1, 0.32, 1);
 
   &:hover {
     border-color: ${colors.darkGreen};
