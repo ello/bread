@@ -101,6 +101,21 @@ const ChartsHolder = styled.section`
         width: 100%;
         height: 100%;
       }
+
+      &.loading {
+        background-color: ${colors.darkGrey};
+
+        .chart { /* stylelint-disable-line selector-max-class */
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        h4 {
+          display: block;
+          margin: 0;
+          padding: 0;
+        }
+      }
     }
 
     &.quarter {

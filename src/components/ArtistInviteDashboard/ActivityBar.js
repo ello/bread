@@ -122,7 +122,11 @@ export default class ActivityBar extends Component {
               </VictoryChart>
             </svg>
           </div> :
-          <div> Loading...</div>
+          <div className="chart-structure loading">
+            <div className="chart">
+              <h4>Loading…</h4>
+            </div>
+          </div>
         }
       </div>
     )
