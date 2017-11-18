@@ -4,12 +4,33 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { ff, fs } from '../constants/styled/font_stack'
 import { colors } from '../constants/styled/colors'
-import { media, contentAlign, toRGB } from '../constants/styled/mixins'
+import { em } from '../constants/styled/mixins'
 
 // Button Styles --------------------------------
 const ButtonStyled = styled.button`
+  cursor: pointer;
+  width: 100%;
+  padding: 0 ${em(30)} 0 ${em(30)};
+  height: ${em(60)};
+  ${fs.body.size}
+  line-height: ${em(60)};
   color: ${colors.white};
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${colors.green};
   background-color: ${colors.green};
+  background-color 0.2s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.2s cubic-bezier(0.23, 1, 0.32, 1), color 0.2s cubic-bezier(0.23, 1, 0.32, 1), width 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+
+  &:hover {
+    border-color: ${colors.darkGreen};
+    background-color: ${colors.darkGreen};
+  }
+
+  &:disabled {
+    cursor: default;
+    border-color: ${colors.lightGreen};
+    background-color: ${colors.lightGreen};
+  }
 `
 
 // Button Props ---------------------------------
