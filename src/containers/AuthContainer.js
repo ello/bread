@@ -16,11 +16,16 @@ import styled from 'styled-components'
 // import { em } from '../constants/styled/mixins'
 
 // AuthContainer Styles --------------------------------
-const AuthContainerHolder = styled.form`
+const AuthContainerFormHolder = styled.div`
   position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
-  background-color: pink;
+  z-index: 0;
 `
 
 function mapStateToProps(state) {
@@ -54,18 +59,20 @@ class AuthContainer extends Component {
     let element
     if (isLoggedIn) {
       element = (
-        <AuthContainerHolder className="AuthContainer LoggedIn">
+        <div className="AuthContainer LoggedIn">
           {children}
-        </AuthContainerHolder>
+        </div>
       )
     } else if (isLoading) {
       element = <div className="AuthContainer Loading"><p>Loading</p></div>
     } else {
       element = (
-        <AuthContainerHolder className="AuthContainer LoggedOut">
-          { error && <p className="error">{error}</p> }
-          <EnterForm login={this.login} />
-        </AuthContainerHolder>
+        <div className="AuthContainer LoggedOut">
+          <AuthContainerFormHolder>
+            { error && <p className="error">{error}</p> }
+            <EnterForm login={this.login} />
+          </AuthContainerFormHolder>
+        </div>
       )
     }
     return element

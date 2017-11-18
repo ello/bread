@@ -8,25 +8,18 @@ import ArtistInviteDashboardContainer from './containers/ArtistInviteDashboardCo
 import TopNav from './containers/TopNavContainer'
 import { BASENAME } from './env'
 
-import styled from 'styled-components'
-
-// Form Styles --------------------------------
-const AppInner = styled.div`
-  position: relative;
-`
-
 class App extends Component {
   render() {
     return (
       <Router basename={BASENAME}>
-        <AppInner>
+        <div>
           <TopNav />
           <AuthContainer>
             <Route exact path="/" render={() => <Redirect to="/artist-invites" />} />
             <Route exact path="/artist-invites" component={ArtistInvitesContainer} />
             <Route exact path="/artist-invites/:id" component={ArtistInviteDashboardContainer} />
           </AuthContainer>
-        </AppInner>
+        </div>
       </Router>
     )
   }

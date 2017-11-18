@@ -10,7 +10,6 @@ import FormButton from './FormButton'
 
 // Form Styles --------------------------------
 const FormStyled = styled.form`
-  margin: 0 auto;
   width: 100%;
   max-width: 320px;
 `
