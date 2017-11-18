@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import Button from './Button'
+
 export default class EnterForm extends Component {
   static propTypes = {
     login: PropTypes.func.isRequired,
@@ -44,7 +46,7 @@ export default class EnterForm extends Component {
           onChange={e => this.handleChange(e)}
         />
         <br />
-        <button type="submit">Sign In</button>
+        <Button type="submit" clickText="Log In" />
       </form>
     )
   }
