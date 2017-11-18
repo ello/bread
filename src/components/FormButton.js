@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import styled from 'styled-components'
-import { ff, fs } from '../constants/styled/font_stack'
+import { fs } from '../constants/styled/font_stack'
 import { colors } from '../constants/styled/colors'
 import { em } from '../constants/styled/mixins'
 

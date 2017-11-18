@@ -10,6 +10,19 @@ import {
   selectAuthError,
 } from '../selectors/auth'
 
+import styled from 'styled-components'
+// import { fs } from '../constants/styled/font_stack'
+// import { colors } from '../constants/styled/colors'
+// import { em } from '../constants/styled/mixins'
+
+// AuthContainer Styles --------------------------------
+const AuthContainerHolder = styled.form`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: pink;
+`
+
 function mapStateToProps(state) {
   return {
     isLoggedIn: selectAuthIsLoggedIn(state),
@@ -41,18 +54,18 @@ class AuthContainer extends Component {
     let element
     if (isLoggedIn) {
       element = (
-        <div className="AuthContainer LoggedIn">
+        <AuthContainerHolder className="AuthContainer LoggedIn">
           {children}
-        </div>
+        </AuthContainerHolder>
       )
     } else if (isLoading) {
       element = <div className="AuthContainer Loading"><p>Loading</p></div>
     } else {
       element = (
-        <div className="AuthContainer LoggedOut">
+        <AuthContainerHolder className="AuthContainer LoggedOut">
           { error && <p className="error">{error}</p> }
           <EnterForm login={this.login} />
-        </div>
+        </AuthContainerHolder>
       )
     }
     return element

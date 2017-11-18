@@ -1,7 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import styled from 'styled-components'
+// import { fs } from '../constants/styled/font_stack'
+// import { colors } from '../constants/styled/colors'
+// import { em } from '../constants/styled/mixins'
+
 import FormButton from './FormButton'
+
+// Form Styles --------------------------------
+const FormStyled = styled.form`
+  margin: 0 auto;
+  width: 100%;
+  max-width: 320px;
+`
 
 export default class EnterForm extends Component {
   static propTypes = {
@@ -29,7 +41,7 @@ export default class EnterForm extends Component {
   render() {
     const { username, password } = this.state
     return (
-      <form onSubmit={e => this.submit(e)}>
+      <FormStyled onSubmit={e => this.submit(e)}>
         <input
           type="string"
           name="username"
@@ -47,7 +59,7 @@ export default class EnterForm extends Component {
         />
         <br />
         <FormButton type="submit" clickText="Log In" />
-      </form>
+      </FormStyled>
     )
   }
 }
