@@ -1,7 +1,7 @@
 import Immutable from 'immutable'
 
 export function selectArtistInvites(state) {
-  return state.json.get('artistInvites', Immutable.Map())
+  return state.json.get('artistInvites', Immutable.Map()).sortBy(inv => inv.get('openedAt')).reverse()
 }
 
 export function selectArtistInvite(state, id) {

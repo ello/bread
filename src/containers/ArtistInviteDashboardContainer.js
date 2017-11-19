@@ -101,6 +101,21 @@ const ChartsHolder = styled.section`
         width: 100%;
         height: 100%;
       }
+
+      &.loading {
+        background-color: ${colors.darkGrey};
+
+        .chart { /* stylelint-disable-line selector-max-class */
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        h4 {
+          display: block;
+          margin: 0;
+          padding: 0;
+        }
+      }
     }
 
     &.quarter {
@@ -208,16 +223,20 @@ class ArtistInviteDashboardContainer extends Component {
     } = this.props
     return (
       <div>
-        <ArtistInviteHeader>
-          <ArtistInviteCard
-            imgSrc={artistInvite.get('headerImage').getIn(['optimized', 'url'])}
-            title={artistInvite.get('title')}
-            type={artistInvite.get('inviteType')}
-          />
-          <ArtistInviteStatus
-            status="open"
-          />
-        </ArtistInviteHeader>
+        {artistInvite.get('id') &&
+          <ArtistInviteHeader>
+            <ArtistInviteCard
+              imgSrc={artistInvite.getIn(['headerImage', 'optimized', 'url'])}
+              title={artistInvite.get('title')}
+              type={artistInvite.get('inviteType')}
+            />
+            <ArtistInviteStatus
+              status={artistInvite.get('status')}
+              openedAt={artistInvite.get('openedAt')}
+              closedAt={artistInvite.get('closedAt')}
+            />
+          </ArtistInviteHeader>
+        }
 
         <ChartsHolder>
           <SubmissionCount
