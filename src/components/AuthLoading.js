@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 
 import styled from 'styled-components'
 import { fs } from '../constants/styled/font_stack'
-import { colors } from '../constants/styled/colors'
-import { em } from '../constants/styled/mixins'
 
 const LoadingContainerStyled = styled.div`
   position: absolute;
