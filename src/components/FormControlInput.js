@@ -28,7 +28,7 @@ const FormControlInputStyled = styled.input`
     background-color: ${colors.white};
   }
 
-  &::selection {
+  ::selection {
     colors: ${colors.white}
     background-color: ${colors.offBlack};
   }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import trim from 'lodash/trim'
 
 import styled from 'styled-components'
 import { ff, fs } from '../constants/styled/font_stack'
@@ -48,21 +49,66 @@ export default class EnterForm extends Component {
     this.state = {
       username: '',
       password: '',
+      usernameValid: false,
+      passwordValid: false,
+      formValid: false,
+      buttonDisabled: true,
     }
   }
 
   submit(e) {
     e.preventDefault()
-    const { username, password } = this.state
-    this.props.login(username, password)
+    const { username, password, formValid } = this.state
+
+    if (formValid) {
+      this.props.login(username, password)
+    }
   }
 
   handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value })
+    const name = e.target.name
+    const newValue = (name === 'username') ? trim(e.target.value) : e.target.value
+
+    this.setState({
+      [name]: newValue
+    }, this.validateField(name, newValue))
+  }
+
+  validateField(name, value) {
+    let isValid = false
+
+    switch(name) {
+      case 'username':
+        isValid = value.length > 0
+        break
+      case 'password':
+        isValid = value.length >= 8
+        break
+      default:
+        break
+    }
+    this.setState({
+      [`${name}Valid`]: isValid,
+    }, this.validateForm)
+  }
+
+  validateForm() {
+    const { usernameValid, passwordValid } = this.state
+
+    const formValid = usernameValid && passwordValid
+    const buttonDisabled = !formValid
+
+    console.log(`form: ${formValid}; button: ${buttonDisabled}`)
+
+    this.setState({
+      formValid: formValid,
+      buttonDisabled: buttonDisabled,
+    })
+
   }
 
   render() {
-    const { username, password } = this.state
+    const { username, password, buttonDisabled } = this.state
     return (
       <FormStyled onSubmit={e => this.submit(e)}>
         <h2>Sign in.</h2>
@@ -90,7 +136,7 @@ export default class EnterForm extends Component {
           />
         </p>
         <p>
-          <FormButton type="submit" clickText="Log In" />
+          <FormButton type="submit" clickText="Log In" disabled={buttonDisabled} />
         </p>
         <p className="forgot">
           <a href="/forgot-password">Forgot password?</a>
