@@ -4,8 +4,6 @@ import trim from 'lodash/trim'
 
 import styled from 'styled-components'
 import { ff, fs } from '../constants/styled/font_stack'
-// import { colors } from '../constants/styled/colors'
-// import { em } from '../constants/styled/mixins'
 
 import FormControlInput from './FormControlInput'
 import FormButton from './FormButton'

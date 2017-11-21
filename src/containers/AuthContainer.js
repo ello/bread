@@ -11,9 +11,8 @@ import {
 } from '../selectors/auth'
 
 import styled from 'styled-components'
-// import { fs } from '../constants/styled/font_stack'
-// import { colors } from '../constants/styled/colors'
-// import { em } from '../constants/styled/mixins'
+
+import AuthLoading from '../components/AuthLoading'
 
 // AuthContainer Styles --------------------------------
 const AuthContainerFormHolder = styled.div`
@@ -23,6 +22,15 @@ const AuthContainerFormHolder = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+`
+
+const AuthContainerLoadingHolder = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   z-index: 0;
@@ -64,7 +72,11 @@ class AuthContainer extends Component {
         </div>
       )
     } else if (isLoading) {
-      element = <div className="AuthContainer Loading"><p>Loading</p></div>
+      element = (
+        <AuthContainerLoadingHolder>
+          <AuthLoading />
+        </AuthContainerLoadingHolder>
+      )
     } else {
       element = (
         <div className="AuthContainer LoggedOut">
