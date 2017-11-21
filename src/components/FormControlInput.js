@@ -24,7 +24,8 @@ const FormControlInputStyled = styled.input`
   color: ${colors.black};
   background-color: ${colors.grey};
 
-  &:focus {
+  &:focus,
+  &.has-value {
     background-color: ${colors.white};
   }
 
@@ -79,7 +80,7 @@ const defaultProps = {
   autoCapitalize: null,
   autoCorrect: null,
   disabled: false,
-  className: null,
+  className: '',
   labelText: null,
 }
 
@@ -100,7 +101,7 @@ class FormControlInput extends React.Component {
             name={name}
             value={value}
             placeholder={placeholder}
-            className={className}
+            className={className + (value.length > 1 ? 'has-value' : '')}
             autoCapitalize={autoCapitalize}
             autoCorrect={autoCorrect}
             disabled={disabled}
@@ -115,7 +116,7 @@ class FormControlInput extends React.Component {
         name={name}
         value={value}
         placeholder={placeholder}
-        className={className}
+        className={className + (value.length > 1 ? 'has-value' : '')}
         autoCapitalize={autoCapitalize}
         autoCorrect={autoCorrect}
         disabled={disabled}
