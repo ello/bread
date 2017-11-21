@@ -148,7 +148,7 @@ function sizingPackage(baseSize, lineHeight, marginBottom) {
   return fullPackage
 }
 
-const small = sizingPackage(12, 1.5, (12 * 1.5))
+const small = sizingPackage(11, 1.5, (11 * 1.5))
 const body = sizingPackage(14, 1.5, (16 * 1.5))
 const h1 = sizingPackage(64, 1.2, 64)
 const h2 = sizingPackage(48, 1.3, 48)

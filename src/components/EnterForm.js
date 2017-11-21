@@ -47,6 +47,8 @@ export default class EnterForm extends Component {
           name="username"
           placeholder="Enter your username or email"
           value={username}
+          autoCapitalize="on"
+          autoCorrect="on"
           handleChange={e => this.handleChange(e)}
           labelText="Username or Email"
         />
@@ -56,6 +58,8 @@ export default class EnterForm extends Component {
           name="password"
           placeholder="Enter your password"
           value={password}
+          autoCapitalize="on"
+          autoCorrect="on"
           handleChange={e => this.handleChange(e)}
           labelText="Password"
         />
