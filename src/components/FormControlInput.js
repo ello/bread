@@ -19,8 +19,6 @@ const FormControlInputStyled = styled.input`
   padding: 0 ${em(30)} 0 ${em(30)};
   width: 100%;
   height: ${em(60)};
-  font-family: ${ff.regular.full};
-  ${fs.body.size}
   color: ${colors.black};
   background-color: ${colors.grey};
 
@@ -30,7 +28,7 @@ const FormControlInputStyled = styled.input`
   }
 
   ::selection {
-    colors: ${colors.white}
+    color: ${colors.white};
     background-color: ${colors.offBlack};
   }
 `

@@ -96,8 +96,6 @@ export default class EnterForm extends Component {
     const formValid = usernameValid && passwordValid
     const buttonDisabled = !formValid
 
-    console.log(`form: ${formValid}; button: ${buttonDisabled}`)
-
     this.setState({
       formValid: formValid,
       buttonDisabled: buttonDisabled,
