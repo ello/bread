@@ -19,13 +19,18 @@ const FormControlInputStyled = styled.input`
   padding: 0 ${em(30)} 0 ${em(30)};
   width: 100%;
   height: ${em(60)};
-  font-family: ${ff.regular};
+  font-family: ${ff.regular.full};
   ${fs.body.size}
   color: ${colors.black};
   background-color: ${colors.grey};
 
   &:focus {
     background-color: ${colors.white};
+  }
+
+  &::selection {
+    colors: ${colors.white}
+    background-color: ${colors.offBlack};
   }
 `
 
@@ -79,18 +84,16 @@ const defaultProps = {
 }
 
 class FormControlInput extends React.Component {
-  // handleChange = (event) => {
-  //   this.props.textChange(event)
-  // }
-
-  // componentDidMount(){
-  //    this.textInput.focus()
-  // }
-
   render({ handleChange, type, name, placeholder, value, autoCapitalize, autoCorrect, disabled, className, labelText } = this.props) {
     if (labelText) {
       return (
         <FormControlInputWithLabel>
+          <LabelStyled
+            htmlFor={name}
+            className={value ? 'has-value' : null}
+          >
+            {labelText}
+          </LabelStyled>
           <FormControlInputStyled
             onChange={handleChange}
             type={type}
@@ -102,12 +105,6 @@ class FormControlInput extends React.Component {
             autoCorrect={autoCorrect}
             disabled={disabled}
           />
-          <LabelStyled
-            htmlFor={name}
-            className={value ? 'has-value' : null}
-          >
-            {labelText}
-          </LabelStyled>
         </FormControlInputWithLabel>
       )
     }

@@ -101,6 +101,9 @@ function weight(family, style, weight) {
     weight: css`
     font-weight: ${weight};
   `,
+    typeface: css`
+    ${family}
+  `,
   }
   return fullPackage
 }
