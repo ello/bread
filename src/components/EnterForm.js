@@ -6,6 +6,7 @@ import styled from 'styled-components'
 // import { colors } from '../constants/styled/colors'
 // import { em } from '../constants/styled/mixins'
 
+import FormControlInput from './FormControlInput'
 import FormButton from './FormButton'
 
 // Form Styles --------------------------------
@@ -41,20 +42,22 @@ export default class EnterForm extends Component {
     const { username, password } = this.state
     return (
       <FormStyled onSubmit={e => this.submit(e)}>
-        <input
-          type="string"
+        <FormControlInput
+          type="text"
           name="username"
-          placeholder="Username/Email"
+          placeholder="Enter your username or email"
           value={username}
-          onChange={e => this.handleChange(e)}
+          handleChange={e => this.handleChange(e)}
+          labelText="Username or Email"
         />
         <br />
-        <input
+        <FormControlInput
           type="password"
           name="password"
-          placeholder="Password"
+          placeholder="Enter your password"
           value={password}
-          onChange={e => this.handleChange(e)}
+          handleChange={e => this.handleChange(e)}
+          labelText="Password"
         />
         <br />
         <FormButton type="submit" clickText="Log In" />
