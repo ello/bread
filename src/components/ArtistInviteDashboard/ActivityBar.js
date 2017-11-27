@@ -78,7 +78,7 @@ export default class ActivityBar extends Component {
         <ChartTitle title="On Network Activity" />
         {this.isLoaded() ?
           <div className="chart-structure">
-            <svg className="chart bar">
+            <svg className="chart bar" viewBox="0 0 1360 310">
               <VictoryChart
                 standalone={false}
                 width={1360}
