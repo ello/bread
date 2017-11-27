@@ -85,7 +85,9 @@ const renderLoggedIn = ({ handleSignOut }) => {
 const renderLoggedOut = () => (
   <NavHolder>
     <NavList>
-      <li><Link to='/'>Back to Ello</Link></li>
+      <li>
+        <a href="/">Back to Ello</a>
+      </li>
     </NavList>
   </NavHolder>
 )
