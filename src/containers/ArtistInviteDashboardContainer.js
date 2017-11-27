@@ -224,21 +224,19 @@ class ArtistInviteDashboardContainer extends Component {
     } = this.props
     return (
       <div>
-        <Helmet title={`${artistInvite.get('title')} – Artist Invite Dashboard`} />
-        {artistInvite.get('id') &&
-          <ArtistInviteHeader>
-            <ArtistInviteCard
-              imgSrc={artistInvite.getIn(['headerImage', 'optimized', 'url'])}
-              title={artistInvite.get('title')}
-              type={artistInvite.get('inviteType')}
-            />
-            <ArtistInviteStatus
-              status={artistInvite.get('status')}
-              openedAt={artistInvite.get('openedAt')}
-              closedAt={artistInvite.get('closedAt')}
-            />
-          </ArtistInviteHeader>
-        }
+        <Helmet title={artistInvite.get('id') ? `${artistInvite.get('title')} | Artist Invite Dashboard` : 'Artist Invite Dashboard'} />
+        <ArtistInviteHeader>
+          <ArtistInviteCard
+            imgSrc={(artistInvite.get('id')) ? artistInvite.getIn(['headerImage', 'optimized', 'url']) : null}
+            title={artistInvite.get('id') ? artistInvite.get('title') : null}
+            type={artistInvite.get('id') ? artistInvite.get('inviteType') : null}
+          />
+          <ArtistInviteStatus
+            status={artistInvite.get('id') ? artistInvite.get('status') : 'unknown'}
+            openedAt={artistInvite.get('id') ? artistInvite.get('openedAt') : null}
+            closedAt={artistInvite.get('id') ? artistInvite.get('closedAt') : null}
+          />
+        </ArtistInviteHeader>
 
         <ChartsHolder>
           <SubmissionCount
