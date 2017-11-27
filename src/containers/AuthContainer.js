@@ -36,6 +36,12 @@ class AuthContainer extends Component {
     dispatch(signIn(email, password))
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      window.scrollTo(0, 0)
+    }
+  }
+
   render() {
     const { isLoggedIn, isLoading, error } = this.props
     let element
