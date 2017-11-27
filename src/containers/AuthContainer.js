@@ -11,6 +11,33 @@ import {
   selectAuthError,
 } from '../selectors/auth'
 
+import styled from 'styled-components'
+
+import AuthLoading from '../components/AuthLoading'
+
+// AuthContainer Styles --------------------------------
+const AuthContainerFormHolder = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 10px 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+`
+
+const AuthContainerLoadingHolder = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+`
+
 function mapStateToProps(state) {
   return {
     isLoggedIn: selectAuthIsLoggedIn(state),
@@ -49,17 +76,21 @@ class AuthContainer extends Component {
       element = this.props.children
     } else if (isLoading) {
       element = (
-        <div className="AuthContainer Loading">
+        <AuthContainerLoadingHolder>
           <Helmet title="Loading…" />
-          <p>Loading</p>
-        </div>
+          <AuthLoading />
+        </AuthContainerLoadingHolder>
       )
     } else {
       element = (
         <div className="AuthContainer LoggedOut">
-          <Helmet title="Sign In" />
-          { error && <p className="error">{error}</p> }
-          <EnterForm login={this.login} />
+          <AuthContainerFormHolder>
+            <Helmet title="Sign In" />
+            <EnterForm
+              login={this.login}
+              error={error}
+            />
+          </AuthContainerFormHolder>
         </div>
       )
     }

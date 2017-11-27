@@ -14,12 +14,14 @@ import Nav from '../components/TopNav/Nav'
 
 const HeaderHolder = styled.header`
   display: block;
+  position: relative;
   margin: 0 auto;
   margin-bottom: 80px;
   padding: ${em(40)};
   max-width: 1440px;
   width: 100%;
   height: ${em(100)};
+  z-index: 3;
   ${media.max1360`padding: ${em(20)};`}
   ${media.max960`margin-bottom: 60px;`}
   ${media.max640`

@@ -11,7 +11,7 @@ injectGlobal`
   /* reset ----------------------------------------------------------------------------------------- */
   /* stylelint-disable */
   html {
-    font: normal 400 100% / 1.5 ${ff.regular.family};
+    font: normal 400 100% / 1.5 ${ff.regular.typeface};
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
