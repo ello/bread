@@ -82,8 +82,10 @@ class AuthContainer extends Component {
       element = (
         <div className="AuthContainer LoggedOut">
           <AuthContainerFormHolder>
-            { error && <p className="error">{error}</p> }
-            <EnterForm login={this.login} />
+            <EnterForm
+              login={this.login}
+              error={error}
+            />
           </AuthContainerFormHolder>
         </div>
       )

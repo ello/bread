@@ -4,6 +4,7 @@ import trim from 'lodash/trim'
 
 import styled from 'styled-components'
 import { ff, fs } from '../constants/styled/font_stack'
+import { colors } from '../constants/styled/colors'
 
 import FormControlInput from './FormControlInput'
 import FormButton from './FormButton'
@@ -37,9 +38,15 @@ const FormStyled = styled.form`
   }
 `
 
+const ErrorMessage = styled.p`
+  padding-bottom: 10px;
+  color: ${colors.yellow};
+`
+
 export default class EnterForm extends Component {
   static propTypes = {
     login: PropTypes.func.isRequired,
+    error: PropTypes.string,
   }
 
   constructor(props) {
@@ -51,6 +58,7 @@ export default class EnterForm extends Component {
       passwordValid: false,
       formValid: false,
       buttonDisabled: true,
+      error: this.props.error,
     }
   }
 
@@ -104,10 +112,13 @@ export default class EnterForm extends Component {
   }
 
   render() {
-    const { username, password, buttonDisabled } = this.state
+    const { error, username, password, buttonDisabled } = this.state
     return (
       <FormStyled onSubmit={e => this.submit(e)}>
         <h2>Sign in.</h2>
+        {error &&
+          <ErrorMessage>{error}</ErrorMessage>
+        }
         <p>
           <FormControlInput
             type="text"
