@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { Redirect } from 'react-router'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import 'sanitize.css/sanitize.css'
 import AuthContainer from './containers/AuthContainer';
 import ArtistInvitesContainer from './containers/ArtistInvitesContainer'
@@ -14,11 +13,14 @@ class App extends Component {
       <Router basename={BASENAME}>
         <div>
           <TopNav />
-          <AuthContainer>
-            <Route exact path="/" render={() => <Redirect to="/artist-invites" />} />
-            <Route exact path="/artist-invites" component={ArtistInvitesContainer} />
-            <Route exact path="/artist-invites/:id" component={ArtistInviteDashboardContainer} />
-          </AuthContainer>
+
+          <Switch>
+            <Redirect exact from="/" to="/artist-invites" />
+            <AuthContainer>
+              <Route exact path="/artist-invites" component={ArtistInvitesContainer} />
+              <Route exact path="/artist-invites/:id" component={ArtistInviteDashboardContainer} />
+            </AuthContainer>
+          </Switch>
         </div>
       </Router>
     )
