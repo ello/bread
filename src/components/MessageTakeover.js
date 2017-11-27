@@ -2,7 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import styled from 'styled-components'
-import { ff, fs } from '../constants/styled/font_stack'
+import { ff, fs, link } from '../constants/styled/font_stack'
+import { colors } from '../constants/styled/colors'
+import { em } from '../constants/styled/mixins'
 
 const MessageTakeoverStyled = styled.div`
   position: absolute;
@@ -26,11 +28,44 @@ const MessageTakeoverStyled = styled.div`
     ${ff.light.full}
     ${fs.h4.size}
   }
+`
 
-  p {
-    display: block;
-    margin: 0;
-    margin-top: 10px;
+const LinkHolderStyled = styled.p`
+  display: block;
+  margin: 0;
+  margin-top: 10px;
+  ${link.subtle.package}
+
+  a {
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: -${em(6)};
+      width: 0%;
+      border-bottom: ${colors.mediumGrey} solid 0;
+      transition: width 0.2s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.2s ease;
+    }
+
+    &:hover {
+      text-decoration: none;
+
+      &:before {
+        width: 100%;
+        border-bottom: ${colors.grey} solid 1.5pt;
+      }
+    }
+
+    &:active {
+      text-decoration: none;
+
+      &:before {
+        width: 100%;
+        border-bottom: ${colors.white} solid 1.5pt;
+        transition: border-color 0 ease;
+      }
+    }
   }
 `
 
@@ -51,9 +86,9 @@ const MessageTakeover = ({ messageText, linkText, linkPath }) => (
     <div className="container">
       <h2>{messageText}</h2>
       {(linkText && linkPath) &&
-        <p>
+        <LinkHolderStyled>
           <a href={linkPath}>{linkText}</a>
-        </p>
+        </LinkHolderStyled>
       }
     </div>
   </MessageTakeoverStyled>
