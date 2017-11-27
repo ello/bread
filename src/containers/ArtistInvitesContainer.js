@@ -62,7 +62,7 @@ class ArtistInvitesContainer extends Component {
     return (
       <ArtistInvitesList>
         <Helmet title="Artist Invites" />
-        {(Object.keys(artistInvites).length > 0) ? renderArtistInvites({ artistInvites }) : renderEmpty()}
+        {(artistInvites && (Object.keys(artistInvites).length > 0)) ? renderArtistInvites({ artistInvites }) : renderEmpty()}
       </ArtistInvitesList>
     )
   }
