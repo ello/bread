@@ -37,7 +37,7 @@ export default class ViewCountGraph extends Component {
       <div className="chart-container half">
         <ChartTitle title="Total Views Over Time" />
         <div className="chart-structure">
-          <svg className="chart">
+          <svg className="chart" viewBox="0 0 660 310">
             <VictoryChart
               domainPadding={{y: 30}}
               standalone={false}

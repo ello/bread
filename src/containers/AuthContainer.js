@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 import EnterForm from '../components/EnterForm'
 import { signIn } from '../actions/authentication'
 import {
@@ -47,7 +48,6 @@ function mapStateToProps(state) {
 
 class AuthContainer extends Component {
   static propTypes = {
-    children: PropTypes.node.isRequired,
     isLoggedIn: PropTypes.bool.isRequired,
     isLoading: PropTypes.bool.isRequired,
     error: PropTypes.string,
@@ -63,18 +63,21 @@ class AuthContainer extends Component {
     dispatch(signIn(email, password))
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      window.scrollTo(0, 0)
+    }
+  }
+
   render() {
-    const { isLoggedIn, isLoading, error, children } = this.props
+    const { isLoggedIn, isLoading, error } = this.props
     let element
     if (isLoggedIn) {
-      element = (
-        <div className="AuthContainer LoggedIn">
-          {children}
-        </div>
-      )
+      element = this.props.children
     } else if (isLoading) {
       element = (
         <AuthContainerLoadingHolder>
+          <Helmet title="Loading…" />
           <AuthLoading />
         </AuthContainerLoadingHolder>
       )
@@ -82,6 +85,7 @@ class AuthContainer extends Component {
       element = (
         <div className="AuthContainer LoggedOut">
           <AuthContainerFormHolder>
+            <Helmet title="Sign In" />
             <EnterForm
               login={this.login}
               error={error}

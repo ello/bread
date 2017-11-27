@@ -10,12 +10,14 @@ import ArtistInviteCountDown from './ArtistInviteCountDown'
 
 const propTypes = {
   status: PropTypes.string.isRequired,
-  openedAt: PropTypes.string.isRequired,
-  closedAt: PropTypes.string.isRequired,
+  openedAt: PropTypes.string,
+  closedAt: PropTypes.string,
 }
 
 const defaultProps = {
-  status: 'closed'
+  status: 'unknown',
+  openedAt: null,
+  closedAt: null,
 }
 
 const StatusHolder = styled.h3`
@@ -23,6 +25,7 @@ const StatusHolder = styled.h3`
   ${fs.h4.size}
   color: ${colors.grey};
 
+  &.unknown { .current-status { color: ${colors.mediumGrey}; } }
   &.closed { .current-status { color: ${colors.red}; } }
   &.open { .current-status { color: ${colors.green}; } }
   &.preview { .current-status { color: ${colors.blue}; } }
@@ -32,6 +35,8 @@ const StatusHolder = styled.h3`
 
 const getStatusText = (status) => {
   switch (status) {
+    case 'unknown':
+      return 'Calculating status…'
     case 'closed':
       return 'Invite Closed'
     case 'open':
@@ -51,11 +56,13 @@ const ArtistInviteStatus = ({ status, openedAt, closedAt }) => (
   <StatusHolder className={'status-holder ' + status}>
     <span className="current-status">{getStatusText(status)}</span>
     &nbsp;
-    <ArtistInviteCountDown
-      status={status}
-      openedAt={openedAt}
-      closedAt={closedAt}
-    />
+    {(status && openedAt && closedAt) &&
+      <ArtistInviteCountDown
+        status={status}
+        openedAt={openedAt}
+        closedAt={closedAt}
+      />
+    }
   </StatusHolder>
 )
 

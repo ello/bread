@@ -37,7 +37,7 @@ export default class SubmissionGraph extends Component {
       <div className="chart-container half">
         <ChartTitle title="Total Submissions Over Time" />
         <div className="chart-structure">
-          <svg className="chart">
+          <svg className="chart" viewBox="0 0 660 310">
             <VictoryChart
               domainPadding={0}
               standalone={false}

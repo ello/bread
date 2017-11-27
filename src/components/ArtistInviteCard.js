@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { ff, fs } from '../constants/styled/font_stack'
 import { colors } from '../constants/styled/colors'
 import { media, contentAlign, toRGB } from '../constants/styled/mixins'
 
 const propTypes = {
-  imgSrc: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  imgSrc: PropTypes.string,
+  title: PropTypes.string,
   type: PropTypes.string,
 }
 
@@ -16,6 +16,13 @@ const defaultProps = {
   imgSrc: null,
   title: null,
   type: null,
+}
+
+const bgImage = (imgSrc) => {
+  // prevents rendering a 404 if we don't have the image location yet
+  if (imgSrc !== null) {
+    return css` background-image: url(${imgSrc}); `
+  }
 }
 
 const CardHolder = styled.span`
@@ -26,7 +33,7 @@ const CardHolder = styled.span`
   width: 100%;
   max-width: 1360px;
   background-color: ${colors.darkGrey};
-  background-image: url(${(props) => props.imgSrc});
+  ${(props) => bgImage(props.imgSrc)}
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;

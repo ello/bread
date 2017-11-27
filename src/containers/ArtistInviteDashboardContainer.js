@@ -29,10 +29,12 @@ import {
   selectMentionActivity,
   selectRepostActivity,
 } from '../selectors/artist_invites'
+import { Helmet } from 'react-helmet'
 
 import styled from 'styled-components'
 import { colors } from '../constants/styled/colors'
 import { media } from '../constants/styled/mixins'
+import { ff } from '../constants/styled/font_stack'
 
 import ArtistInviteCard from '../components/ArtistInviteCard'
 import ArtistInviteStatus from '../components/ArtistInviteDashboard/ArtistInviteStatus'
@@ -103,8 +105,6 @@ const ChartsHolder = styled.section`
       }
 
       &.loading {
-        background-color: ${colors.darkGrey};
-
         .chart { /* stylelint-disable-line selector-max-class */
           display: flex;
           align-items: center;
@@ -114,6 +114,8 @@ const ChartsHolder = styled.section`
           display: block;
           margin: 0;
           padding: 0;
+          color: ${colors.darkGrey};
+          ${ff.light.full}
         }
       }
     }
@@ -223,20 +225,19 @@ class ArtistInviteDashboardContainer extends Component {
     } = this.props
     return (
       <div>
-        {artistInvite.get('id') &&
-          <ArtistInviteHeader>
-            <ArtistInviteCard
-              imgSrc={artistInvite.getIn(['headerImage', 'optimized', 'url'])}
-              title={artistInvite.get('title')}
-              type={artistInvite.get('inviteType')}
-            />
-            <ArtistInviteStatus
-              status={artistInvite.get('status')}
-              openedAt={artistInvite.get('openedAt')}
-              closedAt={artistInvite.get('closedAt')}
-            />
-          </ArtistInviteHeader>
-        }
+        <Helmet title={artistInvite.get('id') ? `${artistInvite.get('title')} | Artist Invite Dashboard` : 'Artist Invite Dashboard'} />
+        <ArtistInviteHeader>
+          <ArtistInviteCard
+            imgSrc={(artistInvite.get('id')) ? artistInvite.getIn(['headerImage', 'optimized', 'url']) : null}
+            title={artistInvite.get('id') ? artistInvite.get('title') : null}
+            type={artistInvite.get('id') ? artistInvite.get('inviteType') : null}
+          />
+          <ArtistInviteStatus
+            status={artistInvite.get('id') ? artistInvite.get('status') : 'unknown'}
+            openedAt={artistInvite.get('id') ? artistInvite.get('openedAt') : null}
+            closedAt={artistInvite.get('id') ? artistInvite.get('closedAt') : null}
+          />
+        </ArtistInviteHeader>
 
         <ChartsHolder>
           <SubmissionCount
