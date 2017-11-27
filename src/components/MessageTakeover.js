@@ -17,7 +17,7 @@ const MessageTakeoverStyled = styled.div`
   z-index: 0;
 
   .container {
-    display:block;
+    display: block;
     text-align: center;
   }
 
@@ -26,6 +26,7 @@ const MessageTakeoverStyled = styled.div`
     ${ff.light.full}
     ${fs.h4.size}
   }
+
   p {
     display: block;
     margin: 0;
