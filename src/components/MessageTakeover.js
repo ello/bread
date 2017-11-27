@@ -70,7 +70,7 @@ const LinkHolderStyled = styled.p`
 `
 
 const propTypes = {
-  messageText: PropTypes.bool.isRequired,
+  messageText: PropTypes.string.isRequired,
   linkText: PropTypes.string,
   linkPath: PropTypes.string,
 }
