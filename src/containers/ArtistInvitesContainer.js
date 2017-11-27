@@ -8,6 +8,7 @@ import { Helmet } from 'react-helmet'
 import styled from 'styled-components'
 import { media } from '../constants/styled/mixins'
 
+import MessageTakeover from '../components/MessageTakeover'
 import ArtistInviteListItem from '../components/ArtistInviteListItem'
 
 const ArtistInvitesList = styled.section`
@@ -21,6 +22,30 @@ function mapStateToProps(state, props) {
     artistInvites: selectArtistInvites(state, props)
   }
 }
+
+const renderArtistInvites = ({ artistInvites }) => (
+  <div>
+    {artistInvites.map((ai) =>
+      <ArtistInviteListItem
+        key={'artist-invite:' + ai.get('id')}
+        id={ai.get('id')}
+        title={ai.get('title')}
+        type={ai.get('inviteType')}
+        headerImage={ai.get('headerImage')}
+      />
+    ).toArray()}
+  </div>
+)
+
+const renderEmpty = () => (
+  <div>
+    <MessageTakeover
+      messageText="No Dashboards available."
+      linkText="Back to Ello"
+      linkPath="/"
+    />
+  </div>
+)
 
 class ArtistInvitesContainer extends Component {
   static propTypes = {
@@ -37,15 +62,7 @@ class ArtistInvitesContainer extends Component {
     return (
       <ArtistInvitesList>
         <Helmet title="Artist Invites" />
-        {artistInvites.map((ai) =>
-          <ArtistInviteListItem
-            key={'artist-invite:' + ai.get('id')}
-            id={ai.get('id')}
-            title={ai.get('title')}
-            type={ai.get('inviteType')}
-            headerImage={ai.get('headerImage')}
-          />
-        ).toArray()}
+        {(Object.keys(artistInvites).length > 0) ? renderArtistInvites({ artistInvites }) : renderEmpty()}
       </ArtistInvitesList>
     )
   }
