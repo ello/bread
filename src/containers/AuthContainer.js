@@ -13,7 +13,7 @@ import {
 
 import styled from 'styled-components'
 
-import AuthLoading from '../components/AuthLoading'
+import MessageTakeover from '../components/MessageTakeover'
 
 // AuthContainer Styles --------------------------------
 const AuthContainerFormHolder = styled.div`
@@ -78,7 +78,7 @@ class AuthContainer extends Component {
       element = (
         <AuthContainerLoadingHolder>
           <Helmet title="Loading…" />
-          <AuthLoading />
+          <MessageTakeover messageText="Loading…" />
         </AuthContainerLoadingHolder>
       )
     } else {
