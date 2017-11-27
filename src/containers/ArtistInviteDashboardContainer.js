@@ -34,6 +34,7 @@ import { Helmet } from 'react-helmet'
 import styled from 'styled-components'
 import { colors } from '../constants/styled/colors'
 import { media } from '../constants/styled/mixins'
+import { ff } from '../constants/styled/font_stack'
 
 import ArtistInviteCard from '../components/ArtistInviteCard'
 import ArtistInviteStatus from '../components/ArtistInviteDashboard/ArtistInviteStatus'
@@ -104,8 +105,6 @@ const ChartsHolder = styled.section`
       }
 
       &.loading {
-        background-color: ${colors.darkGrey};
-
         .chart { /* stylelint-disable-line selector-max-class */
           display: flex;
           align-items: center;
@@ -115,6 +114,8 @@ const ChartsHolder = styled.section`
           display: block;
           margin: 0;
           padding: 0;
+          color: ${colors.darkGrey};
+          ${ff.light.full}
         }
       }
     }

@@ -2,7 +2,7 @@ import React from 'react'
 // import PropTypes from 'prop-types'
 
 import styled from 'styled-components'
-import { fs } from '../constants/styled/font_stack'
+import { ff, fs } from '../constants/styled/font_stack'
 
 const LoadingContainerStyled = styled.div`
   position: absolute;
@@ -16,8 +16,8 @@ const LoadingContainerStyled = styled.div`
 
   h2 {
     display: block;
+    ${ff.light.full}
     ${fs.h4.size}
-    font-weight: 400;
   }
 `
 
