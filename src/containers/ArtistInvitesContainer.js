@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { loadArtistInvites } from '../actions/artist_invites'
 import { selectArtistInvites } from '../selectors/artist_invites'
+import { Helmet } from 'react-helmet'
 
 import styled from 'styled-components'
 import { media } from '../constants/styled/mixins'
@@ -35,6 +36,7 @@ class ArtistInvitesContainer extends Component {
     const { artistInvites } = this.props
     return (
       <ArtistInvitesList>
+        <Helmet title="Artist Invites" />
         {artistInvites.map((ai) =>
           <ArtistInviteListItem
             key={'artist-invite:' + ai.get('id')}

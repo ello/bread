@@ -29,6 +29,7 @@ import {
   selectMentionActivity,
   selectRepostActivity,
 } from '../selectors/artist_invites'
+import { Helmet } from 'react-helmet'
 
 import styled from 'styled-components'
 import { colors } from '../constants/styled/colors'
@@ -223,6 +224,7 @@ class ArtistInviteDashboardContainer extends Component {
     } = this.props
     return (
       <div>
+        <Helmet title={`${artistInvite.get('title')} – Artist Invite Dashboard`} />
         {artistInvite.get('id') &&
           <ArtistInviteHeader>
             <ArtistInviteCard

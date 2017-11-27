@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 import EnterForm from '../components/EnterForm'
 import { signIn } from '../actions/authentication'
 import {
@@ -41,10 +42,16 @@ class AuthContainer extends Component {
     if (isLoggedIn) {
       element = this.props.children
     } else if (isLoading) {
-      element = <div className="AuthContainer Loading"><p>Loading</p></div>
+      element = (
+        <div className="AuthContainer Loading">
+          <Helmet title="Loading…" />
+          <p>Loading</p>
+        </div>
+      )
     } else {
       element = (
         <div className="AuthContainer LoggedOut">
+          <Helmet title="Sign In" />
           { error && <p className="error">{error}</p> }
           <EnterForm login={this.login} />
         </div>
