@@ -20,7 +20,6 @@ function mapStateToProps(state) {
 
 class AuthContainer extends Component {
   static propTypes = {
-    children: PropTypes.node.isRequired,
     isLoggedIn: PropTypes.bool.isRequired,
     isLoading: PropTypes.bool.isRequired,
     error: PropTypes.string,
@@ -37,14 +36,10 @@ class AuthContainer extends Component {
   }
 
   render() {
-    const { isLoggedIn, isLoading, error, children } = this.props
+    const { isLoggedIn, isLoading, error } = this.props
     let element
     if (isLoggedIn) {
-      element = (
-        <div className="AuthContainer LoggedIn">
-          {children}
-        </div>
-      )
+      element = this.props.children
     } else if (isLoading) {
       element = <div className="AuthContainer Loading"><p>Loading</p></div>
     } else {
