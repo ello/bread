@@ -7,6 +7,7 @@ import {
   VictoryAxis,
   VictoryLabel,
 } from 'victory'
+import { numberToHuman } from '../../lib/number_to_human'
 import { colors } from '../../constants/styled/colors'
 import { typeface } from '../../constants/styled/font_stack'
 import ChartTitle from './ChartTitle'
@@ -88,7 +89,7 @@ export default class ActivityBar extends Component {
                 <VictoryAxis
                   dependentAxis={true}
                   // tickValues={[0,1,2,3,4,5]}
-                  tickFormat={(t) => `${parseInt(t)}`}
+                  tickFormat={(t) => `${numberToHuman(t, false)}`}
                   tickLabelComponent={ <VictoryLabel dx="-5" verticalAnchor="end" textAnchor="end" lineHeight="1.75" /> }
                   style={{
                     axis: {stroke: "translucent"},
