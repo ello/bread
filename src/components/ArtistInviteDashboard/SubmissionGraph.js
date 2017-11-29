@@ -76,7 +76,7 @@ export default class SubmissionGraph extends Component {
                 y={(data) => data.get('submissions', '')}
                 size={6}
                 style={{data: {fill: colors.black}}}
-                labelComponent={<VictoryTooltip pointerLength={8} pointerWidth={14} cornerRadius={0} height={50} width={100} orientation='top' flyoutStyle={{fill: colors.black}} style={{fill: colors.white, fontSize: 12, fontFamily: typeface.regular}} />}
+                labelComponent={<VictoryTooltip pointerLength={8} pointerWidth={14} cornerRadius={2} height={50} width={100} orientation='top' flyoutStyle={{fill: colors.black}} style={{fill: colors.white, fontSize: 12, fontFamily: typeface.regular}} />}
                 labels={(d) => `${this.formattedDate(d.x)}\n${d.y}`}
                 events={[{
                   target: "data",
