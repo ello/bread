@@ -49,7 +49,6 @@ export default class ViewCountGraph extends Component {
             >
               <VictoryAxis
                 dependentAxis={true}
-                // tickValues={[0,100,200,300]}
                 tickFormat={(t) => `${numberToHuman(t, false)}`}
                 tickLabelComponent={ <VictoryLabel dx="28" verticalAnchor="end" textAnchor="end" lineHeight="1.75" /> }
                 style={{
@@ -61,7 +60,7 @@ export default class ViewCountGraph extends Component {
               />
               <VictoryAxis
                 tickFormat={(t) => ''}
-                domain={{ x: [0.6, 5.075] }}
+                // domain={{ x: [0.6, 5.075] }}
                 style={{
                   axis: {stroke: "translucent"},
                 }}
@@ -79,7 +78,7 @@ export default class ViewCountGraph extends Component {
                 size={6}
                 style={{data: {fill: colors.black}}}
                 labelComponent={<VictoryTooltip pointerLength={8} pointerWidth={14} cornerRadius={2} height={50} width={100} orientation='top' flyoutStyle={{fill: colors.black}} style={{fill: colors.white, fontSize: 12, fontFamily: typeface.regular}} />}
-                labels={(d) => `${this.formattedDate(d.x)}\n${d.y}`}
+                labels={(d) => `${this.formattedDate(d.x)}\n${numberToHuman(d.y, false)}`}
                 events={[{
                   target: "data",
                   eventHandlers: {
