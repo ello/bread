@@ -99,7 +99,7 @@ export default class ActivityBar extends Component {
                   }}
                 />
                 <VictoryAxis
-                  offsetY={40}
+                  // offsetY={40}
                   domain={{ x: [0, 6] }}
                   tickFormat={(t) => this.capitalize(t)}
                   style={{

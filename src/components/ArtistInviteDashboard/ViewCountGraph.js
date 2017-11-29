@@ -40,7 +40,7 @@ export default class ViewCountGraph extends Component {
         <div className="chart-structure">
           <svg className="chart" viewBox="0 0 660 310">
             <VictoryChart
-              domainPadding={{y: 30}}
+              domainPadding={0}
               standalone={false}
               width={660}
               height={310}
