@@ -47,12 +47,6 @@ export default class ViewCountGraph extends Component {
               padding={{ top: 25, bottom: 25, left: 0, right: 0 }}
               containerComponent={<VictoryVoronoiContainer/>}
             >
-              <VictoryLine
-                data={this.dailyImpressions()}
-                x={(data) => data.get('date', '')}
-                y={(data) => data.get('impressions', '')}
-                style={{data: {stroke: colors.black}}}
-              />
               <VictoryAxis
                 dependentAxis={true}
                 // tickValues={[0,100,200,300]}
@@ -71,6 +65,12 @@ export default class ViewCountGraph extends Component {
                 style={{
                   axis: {stroke: "translucent"},
                 }}
+              />
+              <VictoryLine
+                data={this.dailyImpressions()}
+                x={(data) => data.get('date', '')}
+                y={(data) => data.get('impressions', '')}
+                style={{data: {stroke: colors.black}}}
               />
               <VictoryScatter
                 data={this.dailyImpressions()}

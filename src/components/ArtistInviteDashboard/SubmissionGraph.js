@@ -47,12 +47,6 @@ export default class SubmissionGraph extends Component {
               padding={{ top: 25, bottom: 25, left: 0, right: 0 }}
               containerComponent={<VictoryVoronoiContainer/>}
             >
-              <VictoryLine
-                data={this.dailySubmissions()}
-                x={(data) => data.get('date', '')}
-                y={(data) => data.get('submissions', '')}
-                style={{data: {stroke: colors.black}}}
-              />
               <VictoryAxis
                 dependentAxis={true}
                 tickFormat={(t) => `${numberToHuman(t, false)}`}
@@ -70,6 +64,12 @@ export default class SubmissionGraph extends Component {
                 style={{
                   axis: {stroke: "translucent"},
                 }}
+              />
+              <VictoryLine
+                data={this.dailySubmissions()}
+                x={(data) => data.get('date', '')}
+                y={(data) => data.get('submissions', '')}
+                style={{data: {stroke: colors.black}}}
               />
               <VictoryScatter
                 data={this.dailySubmissions()}
