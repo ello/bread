@@ -102,6 +102,10 @@ const ChartsHolder = styled.section`
         position: absolute;
         width: 100%;
         height: 100%;
+
+        &:not(:root) {
+          overflow: visible;
+        }
       }
 
       &.loading {
