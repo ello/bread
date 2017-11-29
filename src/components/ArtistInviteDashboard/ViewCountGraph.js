@@ -54,7 +54,8 @@ export default class ViewCountGraph extends Component {
               />
               <VictoryAxis
                 dependentAxis={true}
-                tickValues={[0,100,200,300]}
+                // tickValues={[0,100,200,300]}
+                tickFormat={(t) => `${parseInt(t)}`}
                 tickLabelComponent={ <VictoryLabel dx="28" verticalAnchor="end" textAnchor="end" lineHeight="1.75" /> }
                 style={{
                   axis: {stroke: "translucent"},

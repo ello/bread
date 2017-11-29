@@ -54,7 +54,7 @@ export default class SubmissionGraph extends Component {
               />
               <VictoryAxis
                 dependentAxis={true}
-                tickValues={[0,5,10,15,20,25,30,35,40,45,50]}
+                tickFormat={(t) => `${parseInt(t)}`}
                 tickLabelComponent={ <VictoryLabel dx="28" verticalAnchor="end" textAnchor="end" lineHeight="1.75" /> }
                 style={{
                   axis: {stroke: "translucent"},
