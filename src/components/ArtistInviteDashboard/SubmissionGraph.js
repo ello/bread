@@ -53,7 +53,6 @@ export default class SubmissionGraph extends Component {
                 tickLabelComponent={ <VictoryLabel dx="28" verticalAnchor="end" textAnchor="end" lineHeight="1.75" /> }
                 style={{
                   axis: {stroke: "translucent"},
-                  axisLabel: {fontSize: 20, fontFamily: typeface.regular, fill: colors.mediumGrey, padding: 30},
                   grid: {stroke: colors.mediumGrey},
                   tickLabels: {fontSize: 11, fontFamily: typeface.regular, fill: colors.mediumGrey, padding: 0},
                 }}
@@ -97,7 +96,7 @@ export default class SubmissionGraph extends Component {
                         {
                           target: "data",
                           mutation: (props) => {
-                            return { size: 6 };
+                            return { size: 5 };
                           }
                         }
                       ];
