@@ -40,7 +40,7 @@ export default class SubmissionGraph extends Component {
         <div className="chart-structure">
           <svg className="chart" viewBox="0 0 660 310">
             <VictoryChart
-              domainPadding={{ x: [100, 10], y: 0 }}
+              domainPadding={{ x: [150, 10], y: 0 }}
               standalone={false}
               width={660}
               height={310}
