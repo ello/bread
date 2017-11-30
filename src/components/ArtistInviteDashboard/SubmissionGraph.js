@@ -33,6 +33,13 @@ export default class SubmissionGraph extends Component {
     return moment(date).format('MM/DD/YY')
   }
 
+  leftOffset = () => {
+    const { totalDailySubmissions } = this.props
+    const totalDailySubmissionsCount = Object.keys(totalDailySubmissions).length
+    const leftOffset = totalDailySubmissionsCount * 12
+    return leftOffset
+  }
+
   render() {
     return (
       <div className="chart-container half">
@@ -40,7 +47,7 @@ export default class SubmissionGraph extends Component {
         <div className="chart-structure">
           <svg className="chart" viewBox="0 0 660 310">
             <VictoryChart
-              domainPadding={{ x: [100, 10], y: 0 }}
+              domainPadding={{ x: [this.leftOffset(), 10], y: 0 }}
               standalone={false}
               width={660}
               height={310}

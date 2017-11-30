@@ -33,14 +33,22 @@ export default class ViewCountGraph extends Component {
     return moment(date).format('MM/DD/YY')
   }
 
+  leftOffset = () => {
+    const { totalDailyImpressions } = this.props
+    const totalDailyImpressionsCount = Object.keys(totalDailyImpressions).length
+    const leftOffset = totalDailyImpressionsCount * 12
+    return leftOffset
+  }
+
   render() {
+    console.log()
     return (
       <div className="chart-container half">
         <ChartTitle title="Total Views Over Time" />
         <div className="chart-structure">
           <svg className="chart" viewBox="0 0 660 310">
             <VictoryChart
-              domainPadding={{ x: [100, 10], y: 0 }}
+              domainPadding={{ x: [this.leftOffset(), 10], y: 0 }}
               standalone={false}
               width={660}
               height={310}

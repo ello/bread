@@ -90,7 +90,7 @@ export default class ActivityBar extends Component {
                 <VictoryAxis
                   dependentAxis={true}
                   tickCount={6}
-                  tickFormat={(t, i) => i % 2 !== 0 ? `${numberToHuman(t, false)}` : ''}
+                  tickFormat={(t, i) => i % 2 === 0 ? `${numberToHuman(t, false)}` : ''}
                   tickLabelComponent={ <VictoryLabel dx="-5" verticalAnchor="end" textAnchor="end" lineHeight="1.75" /> }
                   style={{
                     axis: {stroke: "translucent"},
