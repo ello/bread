@@ -59,9 +59,8 @@ export default class SubmissionGraph extends Component {
               />
               <VictoryAxis
                 tickFormat={(t) => ''}
-                // domain={{ x: [0.6, 5.075] }}
                 style={{
-                  axis: {stroke: "translucent"},
+                  axis: {stroke: colors.mediumGrey},
                 }}
               />
               <VictoryLine

@@ -81,6 +81,7 @@ export default class ActivityBar extends Component {
           <div className="chart-structure">
             <svg className="chart bar" viewBox="0 0 1360 310">
               <VictoryChart
+                domainPadding={{ x: [250, 250], y: [0, 0] }}
                 standalone={false}
                 width={1360}
                 height={310}
@@ -88,7 +89,6 @@ export default class ActivityBar extends Component {
               >
                 <VictoryAxis
                   dependentAxis={true}
-                  // tickValues={[0,1,2,3,4,5]}
                   tickFormat={(t) => `${numberToHuman(t, false)}`}
                   tickLabelComponent={ <VictoryLabel dx="-5" verticalAnchor="end" textAnchor="end" lineHeight="1.75" /> }
                   style={{
@@ -98,11 +98,9 @@ export default class ActivityBar extends Component {
                   }}
                 />
                 <VictoryAxis
-                  // offsetY={40}
-                  domain={{ x: [0, 6] }}
                   tickFormat={(t) => this.capitalize(t)}
                   style={{
-                    axis: {stroke: "translucent"},
+                    axis: {stroke: colors.mediumGrey},
                     tickLabels: {fontSize: 12, fontFamily: typeface.regular, fill: colors.black},
                   }}
                 />
