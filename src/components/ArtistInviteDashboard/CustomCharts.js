@@ -4,13 +4,14 @@ import PropTypes from 'prop-types'
 import {
   VictoryLegend,
   VictoryPie,
+  VictoryLabel,
   VictoryTooltip,
 } from 'victory'
 import { numberToHuman } from '../../lib/number_to_human'
 
 import styled from 'styled-components'
 import { colors } from '../../constants/styled/colors'
-import { ff, fs } from '../../constants/styled/font_stack'
+import { ff, fs, typeface } from '../../constants/styled/font_stack'
 import { media } from '../../constants/styled/mixins'
 
 import ChartTitle from './ChartTitle'
@@ -99,22 +100,58 @@ const CustomPie = ({
     <svg viewBox="0 0 400 400" className="chart">
       <VictoryPie
         innerRadius={105}
+        labelRadius={123}
         standalone={false}
         padding={60}
         data={datum.get('data', Immutable.List()).toJS()}
         y="title"
         x="value"
-        labelComponent={<VictoryTooltip/>}
-        colorScale={["lightgray", "black", "green", "orange"]}
+        labelComponent={<VictoryTooltip pointerLength={8} pointerWidth={14} cornerRadius={2} height={50} width={104} orientation='top' flyoutStyle={{fill: colors.black}} style={{fill: colors.white, fontSize: "16px", fontFamily: typeface.regular}}/>}
+        colorScale={[colors.mediumGrey, colors.red, colors.green, colors.yellow]}
+        events={[{
+          target: "data",
+          eventHandlers: {
+            onMouseEnter: () => {
+              return [
+                {
+                  target: "data",
+                  mutation: (props) => {
+                    return {
+                      slice: { ...props.slice, startAngle: props.slice.startAngle + .04, endAngle: props.slice.endAngle - .04 },
+                      style: { fill: props.style.fill, stroke: props.style.fill, strokeWidth: 10 }};
+                  }
+                }
+              ];
+            },
+            onMouseLeave: () => {
+              return [
+                {
+                  target: "data",
+                  mutation: (props) => {
+                    return { strokeWidth: 0 };
+                  }
+                }
+              ];
+            },
+          }
+        }]}
+      />
+      <VictoryLabel
+        textAnchor="middle"
+        standalone={false}
+        style={{ fontSize: 48, fontWeight: 'normal', fontFamily: typeface.black }}
+        x={200}
+        y={200}
       />
       <VictoryLegend
-        x={25}
-        y={350}
-        style={{ labels: { fontSize: 18 }}}
+        y={370}
+        x={8}
+        style={{ labels: { fontSize: 16, fontFamily: typeface.regular }}}
         orientation="horizontal"
         gutter={25}
+        symbolSpacer={10}
         standalone={false}
-        colorScale={["lightgray", "black", "green", "orange"]}
+        colorScale={[colors.purple, colors.black, colors.blue]}
         data={pieChartLegend(datum.get('data'))}
       />
     </svg>

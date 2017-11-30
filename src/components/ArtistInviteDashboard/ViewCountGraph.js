@@ -66,7 +66,7 @@ export default class ViewCountGraph extends Component {
               standalone={false}
               width={660}
               height={310}
-              padding={{ top: 25, bottom: 25, left: 0, right: 0 }}
+              padding={{ top: 20, bottom: 20, left: 0, right: 0 }}
               containerComponent={<VictoryVoronoiContainer/>}
             >
               <VictoryAxis
