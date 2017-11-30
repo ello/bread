@@ -49,7 +49,8 @@ export default class SubmissionGraph extends Component {
             >
               <VictoryAxis
                 dependentAxis={true}
-                tickFormat={(t) => `${numberToHuman(t, false)}`}
+                tickCount={12}
+                tickFormat={(t, i) => i % 2 === 0 ? `${numberToHuman(t, false)}` : ''}
                 tickLabelComponent={ <VictoryLabel dx="28" verticalAnchor="end" textAnchor="end" lineHeight="1.75" /> }
                 style={{
                   axis: {stroke: "translucent"},

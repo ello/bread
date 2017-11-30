@@ -85,11 +85,12 @@ export default class ActivityBar extends Component {
                 standalone={false}
                 width={1360}
                 height={310}
-                padding={{ top: 40, bottom: 40, left: 0, right: 0 }}
+                padding={{ top: 25, bottom: 40, left: 0, right: 0 }}
               >
                 <VictoryAxis
                   dependentAxis={true}
-                  tickFormat={(t) => `${numberToHuman(t, false)}`}
+                  tickCount={6}
+                  tickFormat={(t, i) => i % 2 !== 0 ? `${numberToHuman(t, false)}` : ''}
                   tickLabelComponent={ <VictoryLabel dx="-5" verticalAnchor="end" textAnchor="end" lineHeight="1.75" /> }
                   style={{
                     axis: {stroke: "translucent"},
