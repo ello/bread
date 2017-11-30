@@ -40,6 +40,19 @@ export default class ViewCountGraph extends Component {
     return leftOffset
   }
 
+  maxImpressions = () => {
+    const submissions = this.dailyImpressions().map(function(datum) {
+      const submissionsEntry = datum._root.entries[1][1]
+      if ((submissionsEntry !== undefined)) {
+        return submissionsEntry
+      }
+    })
+
+    let max = Math.max.apply(null, submissions)
+    max = Number.parseInt(max)
+    return max
+  }
+
   render() {
     console.log()
     return (
@@ -48,6 +61,7 @@ export default class ViewCountGraph extends Component {
         <div className="chart-structure">
           <svg className="chart" viewBox="0 0 660 310">
             <VictoryChart
+              domain={{y: [0, this.maxImpressions()]}}
               domainPadding={{ x: [this.leftOffset(), 10], y: 0 }}
               standalone={false}
               width={660}
