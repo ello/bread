@@ -36,7 +36,7 @@ export default class ViewCountGraph extends Component {
   leftOffset = () => {
     const { totalDailyImpressions } = this.props
     const totalDailyImpressionsCount = Object.keys(totalDailyImpressions).length
-    const leftOffset = totalDailyImpressionsCount * 12
+    const leftOffset = totalDailyImpressionsCount * (60 / totalDailyImpressionsCount)
     return leftOffset
   }
 
