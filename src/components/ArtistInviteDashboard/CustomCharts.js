@@ -107,7 +107,7 @@ const CustomPie = ({
         y="title"
         x="value"
         labelComponent={<VictoryTooltip pointerLength={8} pointerWidth={14} cornerRadius={2} height={50} width={104} orientation='top' flyoutStyle={{fill: colors.black}} style={{fill: colors.white, fontSize: "16px", fontFamily: typeface.regular}}/>}
-        colorScale={[colors.mediumGrey, colors.red, colors.green, colors.yellow]}
+        colorScale={[colors.purple, colors.black, colors.blue, colors.orange, colors.gold, colors.green]}
         events={[{
           target: "data",
           eventHandlers: {
@@ -151,7 +151,7 @@ const CustomPie = ({
         gutter={25}
         symbolSpacer={10}
         standalone={false}
-        colorScale={[colors.purple, colors.black, colors.blue]}
+        colorScale={[colors.purple, colors.black, colors.blue, colors.orange, colors.gold, colors.green]}
         data={pieChartLegend(datum.get('data'))}
       />
     </svg>
