@@ -39,10 +39,11 @@ export default class ViewCountGraph extends Component {
       if ((submissionsEntry !== undefined)) {
         return submissionsEntry
       }
+      return 0
     })
 
     let max = Math.max.apply(null, submissions)
-    max = Number.parseInt(max)
+    max = Number.parseInt(max, 10)
     return max
   }
 
