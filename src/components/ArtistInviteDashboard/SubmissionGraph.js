@@ -33,13 +33,6 @@ export default class SubmissionGraph extends Component {
     return moment(date).format('MM/DD/YY')
   }
 
-  leftOffset = () => {
-    const { totalDailySubmissions } = this.props
-    const totalDailySubmissionsCount = Object.keys(totalDailySubmissions).length
-    const leftOffset = totalDailySubmissionsCount * 12
-    return leftOffset
-  }
-
   maxSubmissions = () => {
     const submissions = this.dailySubmissions().map(function(datum) {
       const submissionsEntry = datum._root.entries[0][1]
@@ -61,7 +54,7 @@ export default class SubmissionGraph extends Component {
           <svg className="chart" viewBox="0 0 660 310">
             <VictoryChart
               domain={{y: [0, this.maxSubmissions()]}}
-              domainPadding={{ x: [this.leftOffset(), 10], y: 0 }}
+              domainPadding={{ x: [100, 10], y: 0 }}
               standalone={false}
               width={660}
               height={310}
