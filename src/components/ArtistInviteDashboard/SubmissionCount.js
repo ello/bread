@@ -67,7 +67,7 @@ export default class SubmissionCount extends Component {
               ]}
               y="submissions"
               x="status"
-              labelComponent={<VictoryTooltip pointerLength={8} pointerWidth={14} cornerRadius={0} height={50} width={104} orientation='top' flyoutStyle={{fill: colors.black}} style={{fill: colors.white, fontSize: "16px", fontFamily: typeface.regular}}/>}
+              labelComponent={<VictoryTooltip pointerLength={8} pointerWidth={14} cornerRadius={2} height={50} width={104} orientation='top' flyoutStyle={{fill: colors.black}} style={{fill: colors.white, fontSize: "16px", fontFamily: typeface.regular}}/>}
               colorScale={[colors.mediumGrey, colors.red, colors.green, colors.yellow]}
               events={[{
                 target: "data",

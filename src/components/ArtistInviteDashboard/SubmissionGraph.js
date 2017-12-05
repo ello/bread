@@ -10,6 +10,7 @@ import {
   VictoryAxis,
   VictoryLabel,
 } from 'victory'
+import { numberToHuman } from '../../lib/number_to_human'
 import { colors } from '../../constants/styled/colors'
 import { typeface } from '../../constants/styled/font_stack'
 import ChartTitle from './ChartTitle'
@@ -32,6 +33,20 @@ export default class SubmissionGraph extends Component {
     return moment(date).format('MM/DD/YY')
   }
 
+  maxSubmissions = () => {
+    const submissions = this.dailySubmissions().map(function(datum) {
+      const submissionsEntry = datum._root.entries[0][1]
+      if ((submissionsEntry !== undefined)) {
+        return submissionsEntry
+      }
+      return 0
+    })
+
+    let max = Math.max.apply(null, submissions)
+    max = Number.parseInt(max, 10)
+    return max
+  }
+
   render() {
     return (
       <div className="chart-container half">
@@ -39,36 +54,36 @@ export default class SubmissionGraph extends Component {
         <div className="chart-structure">
           <svg className="chart" viewBox="0 0 660 310">
             <VictoryChart
-              domainPadding={0}
+              domain={{y: [0, this.maxSubmissions()]}}
+              domainPadding={{ x: [100, 10], y: 0 }}
               standalone={false}
               width={660}
               height={310}
-              padding={{ top: 25, bottom: 25, left: 0, right: 0 }}
+              padding={{ top: 20, bottom: 20, left: 0, right: 0 }}
               containerComponent={<VictoryVoronoiContainer/>}
             >
-              <VictoryLine
-                data={this.dailySubmissions()}
-                x={(data) => data.get('date', '')}
-                y={(data) => data.get('submissions', '')}
-                style={{data: {stroke: colors.black}}}
-              />
               <VictoryAxis
                 dependentAxis={true}
-                tickValues={[0,5,10,15,20,25,30,35,40,45,50]}
+                tickCount={12}
+                tickFormat={(t, i) => i % 2 === 0 ? `${numberToHuman(t, false)}` : ''}
                 tickLabelComponent={ <VictoryLabel dx="28" verticalAnchor="end" textAnchor="end" lineHeight="1.75" /> }
                 style={{
                   axis: {stroke: "translucent"},
-                  axisLabel: {fontSize: 20, fontFamily: typeface.regular, fill: colors.mediumGrey, padding: 30},
                   grid: {stroke: colors.mediumGrey},
                   tickLabels: {fontSize: 11, fontFamily: typeface.regular, fill: colors.mediumGrey, padding: 0},
                 }}
               />
               <VictoryAxis
                 tickFormat={(t) => ''}
-                domain={{ x: [0.6, 5.075] }}
                 style={{
-                  axis: {stroke: "translucent"},
+                  axis: {stroke: colors.mediumGrey},
                 }}
+              />
+              <VictoryLine
+                data={this.dailySubmissions()}
+                x={(data) => data.get('date', '')}
+                y={(data) => data.get('submissions', '')}
+                style={{data: {stroke: colors.black}}}
               />
               <VictoryScatter
                 data={this.dailySubmissions()}
@@ -76,8 +91,8 @@ export default class SubmissionGraph extends Component {
                 y={(data) => data.get('submissions', '')}
                 size={6}
                 style={{data: {fill: colors.black}}}
-                labelComponent={<VictoryTooltip pointerLength={8} pointerWidth={14} cornerRadius={0} height={50} width={100} orientation='top' flyoutStyle={{fill: colors.black}} style={{fill: colors.white, fontSize: 12, fontFamily: typeface.regular}} />}
-                labels={(d) => `${this.formattedDate(d.x)}\n${d.y}`}
+                labelComponent={<VictoryTooltip pointerLength={8} pointerWidth={14} cornerRadius={2} height={50} width={100} orientation='top' flyoutStyle={{fill: colors.black}} style={{fill: colors.white, fontSize: 12, fontFamily: typeface.regular}} />}
+                labels={(d) => `${this.formattedDate(d.x)}\n${numberToHuman(d.y, false)}`}
                 events={[{
                   target: "data",
                   eventHandlers: {
@@ -96,7 +111,7 @@ export default class SubmissionGraph extends Component {
                         {
                           target: "data",
                           mutation: (props) => {
-                            return { size: 6 };
+                            return { size: 5 };
                           }
                         }
                       ];
