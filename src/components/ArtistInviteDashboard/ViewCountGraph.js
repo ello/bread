@@ -56,7 +56,7 @@ export default class ViewCountGraph extends Component {
           <svg className="chart" viewBox="0 0 660 310">
             <VictoryChart
               domain={{y: [0, this.maxImpressions()]}}
-              domainPadding={{ x: [100, 10], y: 0 }}
+              domainPadding={{ x: [0, 80], y: 0 }}
               standalone={false}
               width={660}
               height={310}
@@ -85,6 +85,7 @@ export default class ViewCountGraph extends Component {
                 x={(data) => data.get('date', '')}
                 y={(data) => data.get('impressions', '')}
                 style={{data: {stroke: colors.black}}}
+                groupComponent={<g transform="translate(60)"/>}
               />
               <VictoryScatter
                 data={this.dailyImpressions()}
@@ -92,6 +93,7 @@ export default class ViewCountGraph extends Component {
                 y={(data) => data.get('impressions', '')}
                 size={6}
                 style={{data: {fill: colors.black}}}
+                groupComponent={<g transform="translate(60)"/>}
                 labelComponent={<VictoryTooltip pointerLength={8} pointerWidth={14} cornerRadius={2} height={50} width={100} orientation='top' flyoutStyle={{fill: colors.black}} style={{fill: colors.white, fontSize: 12, fontFamily: typeface.regular}} />}
                 labels={(d) => `${this.formattedDate(d.x)}\n${numberToHuman(d.y, false)}`}
                 events={[{
