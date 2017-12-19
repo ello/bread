@@ -44,6 +44,10 @@ export default class ViewCountAverageOverlay extends Component {
     const { totalImpressions, totalSubmissions } = this.props
     const impressions = totalImpressions.toJS().impressions
     const average = impressions / totalSubmissions
+
+    if (Number.isNaN(average)) {
+      return 0
+    }
     return numberToHuman(average)
 }
 
