@@ -73,11 +73,19 @@ export default class ActivityBar extends Component {
       !totalRepostActivity.isEmpty()
   }
 
+  isEmpty = () => {
+    return this.commentActivity().activities === 0 &&
+      this.followerActivity().activities === 0 &&
+      this.loveActivity().activities === 0 &&
+      this.mentionActivity().activities === 0 &&
+      this.repostActivity().activities === 0
+  }
+
   render() {
     return (
       <div className="chart-container full">
         <ChartTitle title="On Network Activity" />
-        {this.isLoaded() ?
+        {this.isLoaded() && !this.isEmpty() ?
           <div className="chart-structure">
             <svg className="chart bar" viewBox="0 0 1360 310">
               <VictoryChart
@@ -125,7 +133,7 @@ export default class ActivityBar extends Component {
           </div> :
           <div className="chart-structure loading">
             <div className="chart">
-              <h4>Loading…</h4>
+              <h4>{(this.isLoaded() && this.isEmpty()) ? 'Not enough data yet…' : 'Loading…'}</h4>
             </div>
           </div>
         }

@@ -41,6 +41,10 @@ export default class ViewCountOverlay extends Component {
   totalImpressionsFmt = () => {
     const { totalImpressions } = this.props
     const impressions = totalImpressions.toJS().impressions
+
+    if (Number.isNaN(impressions)) {
+      return 0
+    }
     return numberToHuman(impressions)
 }
 
