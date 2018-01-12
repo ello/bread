@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 // import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'
-import { link, fs } from '../../constants/styled/font_stack'
+import { link } from '../../constants/styled/font_stack'
 import { colors } from '../../constants/styled/colors'
 import { media, em, resetList } from '../../constants/styled/mixins'
 
