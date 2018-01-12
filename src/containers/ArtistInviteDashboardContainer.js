@@ -38,6 +38,7 @@ import { ff } from '../constants/styled/font_stack'
 
 import ArtistInviteCard from '../components/ArtistInviteCard'
 import ArtistInviteStatus from '../components/ArtistInviteDashboard/ArtistInviteStatus'
+import ArtistInviteNav from '../components/ArtistInviteDashboard/ArtistInviteNav'
 import SubmissionCount from '../components/ArtistInviteDashboard/SubmissionCount'
 import ParticipantCount from '../components/ArtistInviteDashboard/ParticipantCount'
 import SubmissionGraph from '../components/ArtistInviteDashboard/SubmissionGraph'
@@ -55,9 +56,15 @@ const ArtistInviteHeader = styled.header`
   width: 100%;
   max-width: 1440px;
 
-  .status-holder {
+  .status-holder,
+  .invite-nav-holder {
     margin: 40px 0 40px 0;
   }
+  ${media.max640`
+    .invite-nav-holder {
+      margin: 4px 0 0 0;
+    }
+  `}
 `
 
 const ChartsHolder = styled.section`
@@ -235,6 +242,9 @@ class ArtistInviteDashboardContainer extends Component {
             imgSrc={(artistInvite.get('id')) ? artistInvite.getIn(['headerImage', 'optimized', 'url']) : null}
             title={artistInvite.get('id') ? artistInvite.get('title') : null}
             type={artistInvite.get('id') ? artistInvite.get('inviteType') : null}
+          />
+          <ArtistInviteNav
+            inviteLinkPath={`/artist-invites/${artistInvite.get('id') ? artistInvite.get('slug') : null}`}
           />
           <ArtistInviteStatus
             status={artistInvite.get('id') ? artistInvite.get('status') : 'unknown'}
