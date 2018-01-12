@@ -72,7 +72,7 @@ const defaultProps = {
 const ArtistInviteNav = ({ inviteLinkPath }) => (
   <ArtistInviteNavHolder className="invite-nav-holder">
     <ArtistInviteNavList>
-      <li><a href={inviteLinkPath || '/artist-invites'}>View Artist Invite</a></li>
+      <li><a href={inviteLinkPath || '/artist-invites'} target="_blank">View Artist Invite</a></li>
     </ArtistInviteNavList>
   </ArtistInviteNavHolder>
 )
