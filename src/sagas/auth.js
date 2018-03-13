@@ -46,7 +46,7 @@ function* rehydrateSaga() {
       const expiresAt = payload.auth.get('expiresAt')
 
       // Prefer existing, valid token.
-      if (accessToken && (expiresAt * 1000 > Date.now())) {
+      if (accessToken && (expiresAt > Date.now())) {
         yield put(bootstrapSuccess({ accessToken, refreshToken, expiresAt }))
       // Secondary is valid refresh token.
       } else if (refreshToken) {
